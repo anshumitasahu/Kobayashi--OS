@@ -14,11 +14,12 @@ export default function Home() {
     const openedApps = useAppStore((state) => state.openedApps);
     const openApp = useAppStore((state) => state.openApp);
     const closeApp = useAppStore((state) => state.closeApp);
+    const Wallpaper = useAppStore((state) => state.Wallpaper)
 
     return (
         <div className="flex flex-col w-screen h-screen text-black">
             <div className="w-screen h-screen absolute -z-10">
-                <img src="/bg2.png" alt="" className="h-full w-full object-cover" />
+                <img src={Wallpaper} alt="" className="h-full w-full object-cover" />
             </div>
             <TopBar />
             <div ref={desktopRef} className="relative flex-1 overflow-hidden">
