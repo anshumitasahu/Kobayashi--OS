@@ -26,10 +26,11 @@ export default function Calculator() {
         }
     };
 
-    const handleButtons = numbers.map((number) =>
+    const handleButtons = numbers.map((number, index) =>
         <button
             onClick={() => handleClick(number)}
             className="font-bold text-gray-500 bg-gray-300/40 rounded-xl px-2 py-4"
+            key={index}
         >
             {number}
         </button>

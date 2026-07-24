@@ -14,5 +14,4 @@ export const useAppStore = create((set) => ({
             openedApps: state.openedApps.filter((app) => app.id !== appId)
         }))
     }
-
 }));

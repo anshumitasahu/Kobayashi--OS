@@ -9,19 +9,11 @@ export default function Window({
     icon
 }) {
     const windowRef = useRef(null);
-    const [position, setPosition] = useState({
-        x: 200,
-        y: 100,
-    });
+    const [position, setPosition] = useState({ x: 200, y: 100, });
     const [zindex, setzindex] = useState(zIndex);
     const [isMinimized, setIsMinimized] = useState(false);
-
     const [isDragging, setIsDragging] = useState(false);
-
-    const [offset, setOffset] = useState({
-        x: 0,
-        y: 0,
-    });
+    const [offset, setOffset] = useState({ x: 0, y: 0, });
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -76,8 +68,8 @@ export default function Window({
             className={`bg-white/50 backdrop-blur-lg text-black p-2 rounded-lg ${isMinimized ? "close-app" : "open-app"}`}
             style={{
                 position: "absolute",
-                left: position.x,
-                top: position.y,
+                left: `${position.x}px`,
+                top: `${position.y}px`,
                 zIndex: zindex,
             }}
         >
@@ -103,6 +95,7 @@ export default function Window({
                         onClick={closeApp}
                         className="bg-red-400 text-white font-bold rounded-full p-2 cursor-pointer"
                     >
+
                     </button>
                 </div>
             </div>
