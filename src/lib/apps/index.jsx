@@ -1,7 +1,8 @@
-import { CalculatorIcon, ListBulletsIcon, GearIcon } from "@phosphor-icons/react";
+import { CalculatorIcon, ListBulletsIcon, GearIcon, ImageIcon } from "@phosphor-icons/react";
 import Calculator from "../../components/home/AppLogic/Calculator";
 import ToDos from "../../components/home/AppLogic/ToDoList";
 import Settings from "../../components/home/AppLogic/Settings";
+import Gallery from "../../components/home/AppLogic/Gallery";
 
 export const AppsMenu = [
     {
@@ -24,5 +25,12 @@ export const AppsMenu = [
         icon: GearIcon,
         app: <Settings />,
         id: 3
+    },
+    {
+        name: "Gallery",
+        description: "use to slide image carsouel",
+        icon: ImageIcon,
+        app: <Gallery />,
+        id: 4
     }
 ]

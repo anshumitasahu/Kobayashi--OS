@@ -3,10 +3,8 @@ import { useAppStore } from "../../../store";
 
 export default function Settings() {
     const Wallpaper = [
-        "bg-4.jpeg",
         "bg3.jpg",
         "bg2.png",
-        "bg2.jpeg",
         "bg1.jpg",
         "bg.png",
         "hero.jpg",
@@ -19,14 +17,14 @@ export default function Settings() {
 
     return (
         <div className="h-100 w-130 overflow-scroll p-3">
-            <div className="flex items-center gap-3 mt-1 mb-1 w-full bg-white/10 rounded-md border border-white px-2 py-1">
+            <div className="flex items-center gap-3 mt-1 mb-1 w-full bg-white/10 rounded-md border border-black/20 px-2 py-1">
                 <input type="text" placeholder="Search here" className="w-full outline-0" />
                 <button>
-                    <MagnifyingGlassIcon size={20} color="white" />
+                    <MagnifyingGlassIcon size={20} color="black" />
                 </button>
             </div>
             <div>
-                <h1>
+                <h1 className="mb-1 mt-2">
                     Choose Wallpapers:
                 </h1>
                 <div className="flex flex-wrap gap-2">
