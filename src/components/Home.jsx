@@ -8,7 +8,7 @@ import { AppsMenu } from "../lib/apps";
 import { v4 as uuidv4 } from 'uuid';
 import { useAppStore } from '../store.jsx';
 
-export default function Home() {
+export default function Home(zIndex) {
     const desktopRef = useRef();
 
     const openedApps = useAppStore((state) => state.openedApps);
@@ -26,9 +26,10 @@ export default function Home() {
                 {openedApps.map((app) => (
                     <Window
                         key={app.id}
+                        id= {app.id}
                         title={app.name}
                         icon={<app.icon size={14} />}
-                        zIndex={5}
+                        zIndex={app.zIndex}
                         desktopRef={desktopRef}
                         closeApp={() => closeApp(app.id)}
                     >

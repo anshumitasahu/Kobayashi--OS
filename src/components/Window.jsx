@@ -1,6 +1,9 @@
 import { XIcon } from "@phosphor-icons/react";
 import { useState, useEffect, useRef } from "react";
+import { useAppStore } from '../store.jsx';
+
 export default function Window({
+    id,
     title,
     closeApp,
     children,
@@ -10,10 +13,10 @@ export default function Window({
 }) {
     const windowRef = useRef(null);
     const [position, setPosition] = useState({ x: 200, y: 100, });
-    const [zindex, setzindex] = useState(zIndex);
     const [isMinimized, setIsMinimized] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0, });
+    const bringToFront = useAppStore((state) => state.bringToFront)
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -22,8 +25,8 @@ export default function Window({
             x: e.clientX - position.x,
             y: e.clientY - position.y,
         });
-
-        setzindex(prev => prev + 1);
+        bringToFront(id)
+        console.log(zIndex)
     };
 
     const handleMouseUp = () => {
@@ -70,7 +73,7 @@ export default function Window({
                 position: "absolute",
                 left: `${position.x}px`,
                 top: `${position.y}px`,
-                zIndex: zindex,
+                zIndex: zIndex,
             }}
         >
             <div className="flex justify-between items-center cursor-move pb-2"
