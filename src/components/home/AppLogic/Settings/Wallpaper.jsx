@@ -52,28 +52,13 @@ export default function Wallpaper() {
     ];
 
     const gradients = [
-        // 1. Sunset Horizon (Warm Orange to Magenta)
         "linear-gradient(135deg, #FF512F 0%, #DD2476 100%)",
-
-        // 2. Ocean Breeze (Deep Teal to Bright Cyan)
         "linear-gradient(135deg, #00B4DB 0%, #0083B0 100%)",
-
-        // 3. Neon Cyberpunk (Electric Purple to Vivid Pink)
         "linear-gradient(135deg, #F355DA 0%, #6E0DD0 100%)",
-
-        // 4. Soft Pastel (Mint to Light Peach)
         "linear-gradient(135deg, #E0C3FC 0%, #8EC5FC 100%)",
-
-        // 5. Lush Forest (Emerald Green to Lime Accent)
         "linear-gradient(135deg, #11998E 0%, #38EF7D 100%)",
-
-        // 6. Midnight Sky (Navy to Soft Indigo)
         "linear-gradient(135deg, #0F2027 0%, #203A43 50%, #2C5364 100%)",
-
-        // 7. Golden hour (Warm Amber to Soft Rose)
         "linear-gradient(135deg, #FF9A9E 0%, #FECFEF 100%)",
-
-        // 8. Aurora Borealis (Dark Slate to Soft Cyan)
         "linear-gradient(135deg, #439CFB 0%, #F187FB 100%)"
     ];
 
