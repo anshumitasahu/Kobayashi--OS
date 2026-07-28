@@ -1,13 +1,9 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
 import { Wall } from '@phosphor-icons/react';
-
 export const useAppStore = create((set) => ({
     openedApps: [],
-    background: {
-        value: "bg2.png",
-        type: "image"
-    },
+    Wallpaper: "/bg2.png",
     highestZindex: 1,
     openApp: (app) => {
         const uniqueId = uuidv4();
@@ -21,29 +17,8 @@ export const useAppStore = create((set) => ({
             openedApps: state.openedApps.filter((app) => app.id !== appId)
         }));
     },
-    setWallpaper: (image) => {
-        set({
-            background: {
-                value: image,
-                type: "image"
-            },
-        });
-    },
-    setSolidColor: (color) => {
-        set({
-            background: {
-                value: color,
-                type: "color"
-            }
-        })
-    },
-    setGradient: (gradient) => {
-        set({
-            background: {
-                value: gradient,
-                type: "gradient"
-            }
-        })
+    setWallpaper: (Wallpaper) => {
+        set({ Wallpaper });
     },
     bringToFront: (id) => {
         set(state => {

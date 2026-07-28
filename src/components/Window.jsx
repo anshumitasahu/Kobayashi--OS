@@ -73,6 +73,7 @@ export default function Window({
                 left: `${position.x}px`,
                 top: `${position.y}px`,
                 zIndex: zIndex,
+                userSelect: "none"
             }}
         >
             <div className="flex justify-between items-center cursor-move pb-2"

@@ -14,22 +14,11 @@ export default function Home(zIndex) {
     const openedApps = useAppStore((state) => state.openedApps);
     const openApp = useAppStore((state) => state.openApp);
     const closeApp = useAppStore((state) => state.closeApp);
-    const background = useAppStore((state) => state.background)
-
+    const Wallpaper = useAppStore((state) => state.Wallpaper)
     return (
-        <div className="flex flex-col w-screen h-screen text-black">
+        <div className="flex flex-col w-screen h-screen text-black brightness-100">
             <div className="w-screen h-screen absolute -z-10">
-                {background.type === "image" ? (
-                    <img src={background.value} alt="" className="w-full h-full object-cover" />
-                ) : null},
-
-                {background.type === "color" ? (
-                    <div className="w-screen h-screen" style={{ backgroundColor: background.value }} />
-                ) : null}
-
-                {background.type === "gradient" ? (
-                    <div className="w-screen h-screen" style={{ background: background.value }} />
-                ) : null}
+                <img src={Wallpaper} alt="" className="h-full w-full object-cover" />
             </div>
             <TopBar />
             <div ref={desktopRef} className="relative flex-1 overflow-hidden">
