@@ -4,7 +4,10 @@ import { Wall } from '@phosphor-icons/react';
 
 export const useAppStore = create((set) => ({
     openedApps: [],
-    Wallpaper: "/bg2.png",
+    background: {
+        value: "bg2.png",
+        type: "image"
+    },
     highestZindex: 1,
     openApp: (app) => {
         const uniqueId = uuidv4();
@@ -18,8 +21,29 @@ export const useAppStore = create((set) => ({
             openedApps: state.openedApps.filter((app) => app.id !== appId)
         }));
     },
-    setWallpaper: (Wallpaper) => {
-        set({ Wallpaper });
+    setWallpaper: (image) => {
+        set({
+            background: {
+                value: image,
+                type: "image"
+            },
+        });
+    },
+    setSolidColor: (color) => {
+        set({
+            background: {
+                value: color,
+                type: "color"
+            }
+        })
+    },
+    setGradient: (gradient) => {
+        set({
+            background: {
+                value: gradient,
+                type: "gradient"
+            }
+        })
     },
     bringToFront: (id) => {
         set(state => {

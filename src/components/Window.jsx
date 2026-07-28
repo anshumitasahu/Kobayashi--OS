@@ -26,7 +26,6 @@ export default function Window({
             y: e.clientY - position.y,
         });
         bringToFront(id)
-        console.log(zIndex)
     };
 
     const handleMouseUp = () => {
