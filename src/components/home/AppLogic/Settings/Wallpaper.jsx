@@ -16,13 +16,16 @@ export default function Wallpaper() {
 
     return (
         <div className="overflow-scroll px-2 bg-white/70 rounded-md">
+            <h1 className="text-md mt-2 mb-4">
+                Appearance
+            </h1>
             <div>
-                <h1 className="mb-3 mt-1 text-sm">
+                <h2 className="mb-3 mt-1 text-sm">
                     Wallpapers
-                </h1>
-                <div className="flex flex-wrap gap-2">
+                </h2>
+                <div className="grid grid-cols-2 gap-3">
                     {Wallpaper.map((Wallpaper) => (
-                        <img src={Wallpaper} key={Wallpaper} alt="" onClick={() => setWallpaper(Wallpaper)} className="w-40 h-auto rounded hover:scale-103 transition" />
+                        <img src={Wallpaper} key={Wallpaper} alt="" onClick={() => setWallpaper(Wallpaper)} className="rounded hover:scale-103 transition" />
                     ))}
                 </div>
             </div>

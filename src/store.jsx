@@ -1,6 +1,7 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
-import { Wall } from '@phosphor-icons/react';
+// import { Wall } from '@phosphor-icons/react';
+// import Settings from './components/home/AppLogic/Settings';
 export const useAppStore = create((set) => ({
     openedApps: [],
     Wallpaper: "/bg2.png",
@@ -37,5 +38,11 @@ export const useAppStore = create((set) => ({
                 })
             }
         })
-    }
+    },
+    // openSetting: (Setting) => {
+    //     const openSetting = null
+    //     set((state) => ({
+    //         OpenSetting: { OpenSetting }
+    //     }))
+    // }
 }));
