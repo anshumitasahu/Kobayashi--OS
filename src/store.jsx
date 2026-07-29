@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
-// import { Wall } from '@phosphor-icons/react';
-// import Settings from './components/home/AppLogic/Settings';
+import Wallpaper from './components/home/AppLogic/Settings/Wallpaper';
 export const useAppStore = create((set) => ({
     openedApps: [],
     Wallpaper: "/bg2.png",
+    openedSetting: <Wallpaper />,
     highestZindex: 1,
     openApp: (app) => {
         const uniqueId = uuidv4();
@@ -39,10 +39,7 @@ export const useAppStore = create((set) => ({
             }
         })
     },
-    // openSetting: (Setting) => {
-    //     const openSetting = null
-    //     set((state) => ({
-    //         OpenSetting: { OpenSetting }
-    //     }))
-    // }
+    openSetting: (setting) => {
+        set({ openedSetting: setting.setting })
+    }
 }));

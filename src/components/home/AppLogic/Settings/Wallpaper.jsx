@@ -15,7 +15,7 @@ export default function Wallpaper() {
     const setWallpaper = useAppStore((state) => state.setWallpaper)
 
     return (
-        <div className="overflow-scroll px-2 bg-white/70 rounded-md">
+        <div className="overflow-scroll h-100 px-2 bg-white/70 rounded-md">
             <h1 className="text-md mt-2 mb-4">
                 Appearance
             </h1>
