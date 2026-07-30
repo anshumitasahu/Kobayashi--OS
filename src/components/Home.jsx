@@ -1,8 +1,6 @@
 import { useRef } from "react";
 import TopBar from "./home/topbar";
 import AppsBar from "./home/AppsBar";
-import Calculator from "./home/AppLogic/Calculator";
-import ToDos from "./home/AppLogic/ToDoList";
 import Window from "./Window";
 import { AppsMenu } from "../lib/apps";
 import { v4 as uuidv4 } from 'uuid';
@@ -27,7 +25,7 @@ export default function Home(zIndex) {
                         key={app.id}
                         id={app.id}
                         title={app.name}
-                        icon={<app.icon size={14} />}
+                        icon={app.icon}
                         zIndex={app.zIndex}
                         desktopRef={desktopRef}
                         closeApp={() => closeApp(app.id)}

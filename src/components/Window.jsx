@@ -79,7 +79,7 @@ export default function Window({
             <div className="flex justify-between items-center cursor-move pb-2"
                 onMouseDown={handleMouseDown}>
                 <div className="flex gap-2 text-xs capitalize text-gray-500 items-center">
-                    {icon}
+                    <img src={icon} className="w-5" />
                     {title}
                 </div>
                 <div className="flex gap-1 h-fit">

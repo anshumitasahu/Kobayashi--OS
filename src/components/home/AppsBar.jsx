@@ -1,4 +1,3 @@
-
 import { AppsMenu } from "../../lib/apps";
 
 export default function AppsBar({ openApp }) {
@@ -9,17 +8,16 @@ export default function AppsBar({ openApp }) {
                     className="cursor-pointer"
                     onClick={() => alert("menu not implememnted")}
                 >
-                    <img src="/devscope-icon.png" className="w-12 bg-blue-500 p-2 rounded-md hover:-translate-y-1" />
+                    <img src="/devscope-icon2.png" className="w-12 bg-sky-500 p-2 rounded-xl hover:-translate-y-1" />
                 </div>
-
                 {
-                    AppsMenu.map((apps, index) => (
+                    AppsMenu.map((apps) => (
                         <div
-                            className="bg-pink-700 text-white p-3 rounded-md hover:-translate-y-1 cursor-pointer"
+                            className="rounded-md hover:-translate-y-1 cursor-pointer"
                             onClick={() => openApp(apps)}
-                            key={index}
+                            key={apps.id}
                         >
-                            <apps.icon size={24} />
+                            <img src={apps.icon} className="w-13" />
                         </div>
                     ))
                 }

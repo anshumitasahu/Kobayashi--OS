@@ -29,16 +29,6 @@ export default function Wallpaper() {
                     ))}
                 </div>
             </div>
-            {/* <div>
-                <h1>
-                    Choose Theme:
-                </h1>
-                <div className="flex gap-2">
-                    <div className="bg-black h-5 w-5 rounded-full"></div>
-                    <div className="bg-green-500 w-5 h-5 rounded-full"></div>
-                    <div className="bg-primary w-5 h-5 rounded-full"></div>
-                </div>
-            </div> */}
         </div>
     )
 }
