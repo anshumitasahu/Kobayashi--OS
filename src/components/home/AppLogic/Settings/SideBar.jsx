@@ -19,7 +19,12 @@ export default function SideBar() {
                         key={setting.id}
                         onClick={() => openSetting(setting)}
                     >
-                        <div className={`p-2 rounded-md bg-${setting.color}`}>
+                        <div
+                            className="p-2 rounded-md"
+                            style={{
+                                backgroundColor: setting.color
+                            }}
+                        >
                             <setting.icon size={16} color="white" />
                         </div>
                         <div>{setting.name}</div>

@@ -6,6 +6,10 @@ export const useAppStore = create((set) => ({
     Wallpaper: "/bg2.png",
     openedSetting: <Wallpaper />,
     highestZindex: 1,
+    Brightness: 100,
+    setBrightness: (Brightness) => {
+        set({ Brightness })
+    },
     openApp: (app) => {
         const uniqueId = uuidv4();
         set((state) => ({

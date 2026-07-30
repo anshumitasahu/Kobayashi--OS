@@ -2,14 +2,14 @@ import { useAppStore } from "../../../../store";
 
 export default function Wallpaper() {
     const Wallpaper = [
-        "bg3.jpg",
         "bg2.png",
-        "bg1.jpg",
         "bg.png",
-        "hero.jpg",
         "bg.jpeg",
         "bg-5.jpg",
-        "bg-6.jpg"
+        "bg-6.jpg",
+        "bg-n.png",
+        "bg-1.png",
+        "bg-new.webp"
     ]
 
     const setWallpaper = useAppStore((state) => state.setWallpaper)

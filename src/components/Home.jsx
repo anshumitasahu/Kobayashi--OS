@@ -13,8 +13,15 @@ export default function Home(zIndex) {
     const openApp = useAppStore((state) => state.openApp);
     const closeApp = useAppStore((state) => state.closeApp);
     const Wallpaper = useAppStore((state) => state.Wallpaper)
+    const Brightness = useAppStore((state) => state.Brightness)
+
     return (
-        <div className="flex flex-col w-screen h-screen text-black brightness-100">
+        <div
+            className="flex flex-col w-screen h-screen text-black"
+            style={{
+                filter: `brightness(${Brightness}%)`
+            }}
+        >
             <div className="w-screen h-screen absolute -z-10">
                 <img src={Wallpaper} alt="" className="h-full w-full object-cover" />
             </div>
