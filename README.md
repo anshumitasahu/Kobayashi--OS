@@ -8,4 +8,4 @@ An all-in-one developer workspace that brings essential development tools into a
 
 ## Live Demo
 
-https://your-project.vercel.app
+https://dev-dock-ruddy.vercel.app/
