@@ -3,11 +3,11 @@ import { useAppStore } from "../../../../store";
 
 export default function Wallpaper() {
 
-    const setWallpaper = useAppStore((state) => state.stateWallpaper);
+    const setWallpaper = useAppStore((state) => state.setWallpaper);
+    const IconStyle = useAppStore((state) => state.IconStyle)
     const setIconStyle = useAppStore((state) => state.setIconStyle);
-    const [isActive, setIsActive] = useState("");
 
-    const Wallpaper = [
+    const wallpapers = [
         "bg2.png",
         "bg.png",
         "bg.jpeg",
@@ -36,7 +36,7 @@ export default function Wallpaper() {
                     Wallpaper
                 </h2>
                 <div className="grid grid-cols-2 gap-3">
-                    {Wallpaper.map((wallpaper) => (
+                    {wallpapers.map((wallpaper) => (
                         <img
                             src={wallpaper}
                             key={wallpaper}
@@ -54,14 +54,12 @@ export default function Wallpaper() {
 
                         <button
                             key={styles}
-                            onClick={() => {
-                                console.log("seleted:" + styles)
-                                setIconStyle(styles);
-                                setIsActive(styles)
-                            }}
+                            onClick={() =>
+                                setIconStyle(styles)
+                            }
                             className="font-bold rounded-full text-white px-2 py-1"
                             style={{
-                                backgroundColor: isActive === styles ? '#2563eb' : '#64748b'
+                                backgroundColor: IconStyle === styles ? '#2563eb' : '#64748b'
                             }}
                         >
                             {styles}
