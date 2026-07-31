@@ -8,28 +8,28 @@ export const AppsMenu = [
     {
         name: "Calculator",
         description: "use to calucate stuffs",
-        icon: IconsApperance.colloid.Calculator,
+        icon: IconsApperance.Colloid.Calculator,
         app: <Calculator />,
         id: 1
     },
     {
         name: "Todo",
         description: "use to do todo list",
-        icon: IconsApperance.colloid.ToDo,
+        icon: IconsApperance.Colloid.ToDo,
         app: <ToDos />,
         id: 2
     },
     {
         name: "Settings",
         description: "use to customize the desktop",
-        icon: IconsApperance.colloid.Settings,
+        icon: IconsApperance.Colloid.Settings,
         app: <Settings />,
         id: 3
     },
     {
         name: "Gallery",
         description: "use to slide image carsouel",
-        icon: IconsApperance.colloid.Gallery,
+        icon: IconsApperance.Colloid.Gallery,
         app: <Gallery />,
         id: 4
     }

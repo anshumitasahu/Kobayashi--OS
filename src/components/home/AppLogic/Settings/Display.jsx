@@ -7,14 +7,14 @@ export default function Display() {
 
     return (
         <div className="bg-white max-h-100 min-h-100 overflow-scroll rounded p-3">
-            <h1>
+            <h1 className="text-md mt-2 mb-4">
                 Display
             </h1>
-            <div>
-                <h2>
+            <div className="border-b ">
+                <h2 className="mb-3 mt-1 text-sm">
                     Brightness
                 </h2>
-                <div>
+                <div className="flex gap-2">
                     <input
                         type="range"
                         min="15"
@@ -22,7 +22,7 @@ export default function Display() {
                         value={Brightness}
                         onChange={(e) => setBrightness(Number(e.target.value))}
                     />
-                    <p>{Brightness}</p>
+                    <p>{Brightness}%</p>
                 </div>
             </div>
         </div>
