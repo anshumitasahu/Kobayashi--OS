@@ -13,7 +13,7 @@ export default function AppsBar({ openApp }) {
                     className="cursor-pointer"
                     onClick={() => alert("menu not implememnted")}
                 >
-                    <img src="/devscope-icon2.png" className="w-12 bg-sky-500 p-2 rounded-xl hover:-translate-y-1" />
+                    <img src="/logo.svg" className="w-12 bg-white p-2 rounded-xl hover:-translate-y-1" />
                 </div>
                 {
                     apps.map((app) => (

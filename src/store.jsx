@@ -1,8 +1,16 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
 import Wallpaper from './components/home/AppLogic/Settings/Wallpaper';
+import Welcome from './components/home/AppLogic/Welcome';
+
 export const useAppStore = create((set) => ({
-    openedApps: [],
+    openedApps: [{
+        id: uuidv4(),
+        name: "Welcome",
+        app: <Welcome />,
+        icon: "/logo.svg",
+        zIndex: 1,
+    }],
     Wallpaper: localStorage.getItem("Wallpaper") || "./bg2.png",
     openedSetting: <Wallpaper />,
     highestZindex: 1,

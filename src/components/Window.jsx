@@ -12,7 +12,7 @@ export default function Window({
     icon
 }) {
     const windowRef = useRef(null);
-    const [position, setPosition] = useState({ x: 200, y: 100, });
+    const [position, setPosition] = useState({ x: 350, y: 100, });
     const [isMinimized, setIsMinimized] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0, });

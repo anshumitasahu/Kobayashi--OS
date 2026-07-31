@@ -3,7 +3,8 @@ import ToDos from "../../components/home/AppLogic/ToDoList";
 import Settings from "../../components/home/AppLogic/Settings";
 import Gallery from "../../components/home/AppLogic/Gallery";
 import Browser from "../../components/home/AppLogic/Browser";
-import { IconsApperance } from "../apps/icons"
+import { IconsApperance } from "../apps/icons";
+import Notes from "../../components/home/AppLogic/Notes";
 
 export const AppsMenu = (iconStyle = "Colloid") => [
     {
@@ -27,18 +28,24 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         app: <Settings />,
         id: 3
     },
-    {
-        name: "Gallery",
-        description: "use to slide image carsouel",
-        icon: IconsApperance[iconStyle].Gallery,
-        app: <Gallery />,
-        id: 4
-    },
+    // {
+    //     name: "Gallery",
+    //     description: "use to slide image carsouel",
+    //     icon: IconsApperance[iconStyle].Gallery,
+    //     app: <Gallery />,
+    //     id: 4
+    // },
     {
         name: "Browser",
         description: "use as a search engine",
         icon: IconsApperance[iconStyle].Browser,
         app: <Browser />,
         id: 5
+    }, {
+        name: "Notes",
+        description: "use to store thoughts and random text",
+        icon: IconsApperance[iconStyle].Notes,
+        app: <Notes />,
+        id: 6
     }
 ]
