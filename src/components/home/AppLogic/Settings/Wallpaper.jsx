@@ -16,11 +16,11 @@ export default function Wallpaper() {
 
     return (
         <div className="overflow-scroll h-100 px-2 bg-white/70 rounded-md">
-            <h1 className="text-md mt-2 mb-4 font-semibold">
+            <h1 className="text-sm mt-2 mb-4 font-semibold">
                 Appearance
             </h1>
             <div className="mb-3">
-                <h2 className="mb-3 mt-1 text-sm text-gray-600">
+                <h2 className="mb-3 mt-1 text-xs text-gray-600">
                     Wallpaper
                 </h2>
                 <div className="grid grid-cols-2 gap-3">
