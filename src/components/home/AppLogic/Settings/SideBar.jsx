@@ -27,7 +27,7 @@ export default function SideBar() {
                         >
                             <setting.icon size={16} color="white" />
                         </div>
-                        <div>{setting.name}</div>
+                        <div className="text-sm">{setting.name}</div>
                         <div></div>
                     </div>
                 )

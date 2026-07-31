@@ -10,7 +10,7 @@ export const SettingsIndex = [
         description: "used for the customization of desktop",
         icon: PaletteIcon,
         setting: <Wallpaper />,
-        color: "#EC4899"
+        color: "#F472B6"
     },
     {
         id: 2,
@@ -18,7 +18,7 @@ export const SettingsIndex = [
         description: "used for the info of the owner of the os",
         icon: UserIcon,
         setting: <AboutUs />,
-        color: "#10B981"
+        color: "#34D399"
     },
     {
         id: 3,
@@ -26,6 +26,6 @@ export const SettingsIndex = [
         description: "used for the customization of display",
         icon: MonitorIcon,
         setting: <Display />,
-        color: "#8B5CF6"
+        color: "#A78BFA"
     }
 ];
