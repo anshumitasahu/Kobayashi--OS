@@ -67,7 +67,7 @@ export default function Window({
     return (
         <div
             ref={windowRef}
-            className={`bg-white/50 backdrop-blur-lg text-black p-2 rounded-lg ${isMinimized ? "close-app" : "open-app"}`}
+            className={`bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg ${isMinimized ? "close-app" : "open-app"}`}
             style={{
                 position: "absolute",
                 left: `${position.x}px`,

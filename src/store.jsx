@@ -3,12 +3,18 @@ import { v4 as uuidv4 } from 'uuid';
 import Wallpaper from './components/home/AppLogic/Settings/Wallpaper';
 export const useAppStore = create((set) => ({
     openedApps: [],
-    Wallpaper: "/bg2.png",
+    Wallpaper: localStorage.getItem("Wallpaper") || "./bg2.png",
     openedSetting: <Wallpaper />,
     highestZindex: 1,
-    Brightness: 100,
+    Brightness: localStorage.getItem("Brightness") || 100,
+    IconStyle: localStorage.getItem("IconStyle") || "Colloid",
     setBrightness: (Brightness) => {
+        localStorage.setItem("Brightness", Brightness);
         set({ Brightness })
+    },
+    setIconStyle: (IconStyle) => {
+        localStorage.setItem("IconStyle", IconStyle)
+        set({ IconStyle })
     },
     openApp: (app) => {
         const uniqueId = uuidv4();
@@ -23,6 +29,7 @@ export const useAppStore = create((set) => ({
         }));
     },
     setWallpaper: (Wallpaper) => {
+        localStorage.setItem("Wallpaper", Wallpaper);
         set({ Wallpaper });
     },
     bringToFront: (id) => {

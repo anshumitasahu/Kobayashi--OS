@@ -4,32 +4,32 @@ import Settings from "../../components/home/AppLogic/Settings";
 import Gallery from "../../components/home/AppLogic/Gallery";
 import { IconsApperance } from "../apps/icons"
 
-export const AppsMenu = [
+export const AppsMenu = (iconStyle = "Colloid") => [
     {
         name: "Calculator",
         description: "use to calucate stuffs",
-        icon: IconsApperance.Colloid.Calculator,
+        icon: IconsApperance[iconStyle].Calculator,
         app: <Calculator />,
         id: 1
     },
     {
         name: "Todo",
         description: "use to do todo list",
-        icon: IconsApperance.Colloid.ToDo,
+        icon: IconsApperance[iconStyle].ToDo,
         app: <ToDos />,
         id: 2
     },
     {
         name: "Settings",
         description: "use to customize the desktop",
-        icon: IconsApperance.Colloid.Settings,
+        icon: IconsApperance[iconStyle].Settings,
         app: <Settings />,
         id: 3
     },
     {
         name: "Gallery",
         description: "use to slide image carsouel",
-        icon: IconsApperance.Colloid.Gallery,
+        icon: IconsApperance[iconStyle].Gallery,
         app: <Gallery />,
         id: 4
     }
