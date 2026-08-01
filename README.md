@@ -55,17 +55,17 @@ bun dev
 
 ## Screenshots
 <p align="center">
-  <img src="/Openpage.png" width="49%">
-  <img src="/welcome.png" width="49%">
+  <img src="public/Openpage.png" width="49%">
+  <img src="public/welcome.png" width="49%">
 </p>
 
 <p align="center">
-  <img src="/windows.png" width="70%">
+  <img src="public/windows.png" width="70%">
 </p>
 
 <p align="center">
-  <img src="/settings!.png" width="49%">
-  <img src="/settings2.png" width="49%">
+  <img src="public/settings!.png" width="49%">
+  <img src="public/settings2.png" width="49%">
 </p>
 
 ## Contributing
