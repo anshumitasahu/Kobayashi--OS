@@ -28,19 +28,12 @@ Welcome to **Kobayashi OS**—a minimalist Web OS designed to bring a warm, desk
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/tailwindcss/tailwindcss-original.svg" width="45" alt="Tailwind CSS" />
 </p>
 
-- **Core Stack:** 
-HTML5,
-JavaScript,
-TypeScript,
-React,
-Vite,
-Tailwind CSS
-- **State & Window Management:** 
-Modern React architecture with seamless window dragging, layering, and state management.
+- **Core Stack:** HTML5, JavaScript, TypeScript, React, Vite, Tailwind CSS, Bun
+- **State & Window Management:** Modern React architecture with seamless window dragging, layering, and state synchronization.
+- **State Management:** Zustand
 
 ## Live Demo
-
-🔗 https://dev-dock-ruddy.vercel.app/
+🔗 **Try Kobayashi OS:** <https://dev-dock-ruddy.vercel.app/>
 
 ## 🚀 Quick Start
 
@@ -48,32 +41,34 @@ Get a local copy up and running in a few simple steps:
 
 ```bash
 # Clone the repository
-git clone [https://github.com/your-username/kobayashi-os.git](https://github.com/your-username/kobayashi-os.git)
+git clone https://github.com/anshumitasahu/Kobayashi--OS.git
 
 # Navigate to the project directory
-cd kobayashi-os
+cd Kobayashi--OS
 
-# Install dependencies using Bun
+# Install dependencies
 bun install
 
 # Start the development server
 bun dev
 ```
 
-
----
-
-### Key changes made:
-1. Changed `npm install` to **`bun install`**.
-2. Changed `npm run dev` to **`bun dev`** (or `bun run dev`).
-3. Updated the comment to explicitly mention Bun.
-
-<FollowUp label="Want to add a badge or install instructions for Bun in the prerequisites section?" query="How do I add Bun prerequisites or a Bun badge to my GitHub README?"/>
-
-
 ## Screenshots
-<img src="/Openpage.png">
-<img src="/welcome.png">
-<img src="/windows.png">
-<img src="/settings!.png">
-<img src="/sttings2.png">
+<p align="center">
+  <img src="Openpage.png" width="49%">
+  <img src="welcome.png" width="49%">
+</p>
+
+<p align="center">
+  <img src="windows.png" width="49%">
+  <img src="settings!.png" width="49%">
+</p>
+
+<p align="center">
+  <img src="settings2.png" width="70%">
+</p>
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to open an issue to report bugs, suggest features, or submit a pull request.
