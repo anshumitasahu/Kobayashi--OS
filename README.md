@@ -60,7 +60,7 @@ bun dev
 </p>
 
 <p align="center">
-  <img src="/windows.png" width="70s%">
+  <img src="/windows.png" width="70%">
 </p>
 
 <p align="center">
