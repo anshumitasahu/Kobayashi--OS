@@ -1,4 +1,7 @@
 # Kobayashi OS
+<p align="center">
+  <img src="public/edited-img.png" alt="Kobayashi OS Desktop" width="100%">
+</p>
 
 A lightweight, light-themed, anime-inspired Web Operating System.
 
