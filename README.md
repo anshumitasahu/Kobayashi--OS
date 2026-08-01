@@ -19,7 +19,7 @@ Welcome to **Kobayashi OS**—a minimalist Web OS designed to bring a warm, desk
 >
 > This is Version 1.0. More applications and features are currently in development.
 
-## 🛠️ Built With
+## Built With
 
 <p align="left">
   <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg" width="45" alt="React" />
@@ -35,7 +35,7 @@ Welcome to **Kobayashi OS**—a minimalist Web OS designed to bring a warm, desk
 ## Live Demo
 🔗 **Try Kobayashi OS:** <https://dev-dock-ruddy.vercel.app/>
 
-## 🚀 Quick Start
+## Quick Start
 
 Get a local copy up and running in a few simple steps:
 
