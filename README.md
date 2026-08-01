@@ -73,3 +73,7 @@ bun dev
 
 ## Screenshots
 <img src="/Openpage.png">
+<img src="/welcome.png">
+<img src="/windows.png">
+<img src="/settings!.png">
+<img src="/sttings2.png">
