@@ -9,14 +9,15 @@ export default function Window({
     children,
     desktopRef,
     zIndex,
-    icon
+    icon,
+    windowState,
 }) {
     const windowRef = useRef(null);
     const [position, setPosition] = useState({ x: 350, y: 100, });
-    const [isMinimized, setIsMinimized] = useState(false);
     const [isDragging, setIsDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0, });
-    const bringToFront = useAppStore((state) => state.bringToFront)
+    const bringToFront = useAppStore((state) => state.bringToFront);
+    const minimize = useAppStore((state) => state.minimize);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -51,7 +52,11 @@ export default function Window({
     };
 
     const minimizeApp = () => {
-        setIsMinimized(prev => !prev);
+        minimize(id)
+    }
+
+    const maximizeApp = () => {
+        alert("not implemented will be implemented later");
     }
 
     useEffect(() => {
@@ -67,13 +72,15 @@ export default function Window({
     return (
         <div
             ref={windowRef}
-            className={`bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg ${isMinimized ? "close-app" : "open-app"}`}
+            className={`bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg }`}
             style={{
+                transform: windowState === "minimized" ? "scale(0)" : "scale(1)",
                 position: "absolute",
                 left: `${position.x}px`,
                 top: `${position.y}px`,
                 zIndex: zIndex,
-                userSelect: "none"
+                userSelect: "none",
+                
             }}
         >
             <div className="flex justify-between items-center cursor-move pb-2"
@@ -90,6 +97,7 @@ export default function Window({
 
                     </button>
                     <button
+                        onClick={maximizeApp}
                         className="bg-amber-400 text-white font-bold rounded-full p-2 cursor-pointer"
                     >
 

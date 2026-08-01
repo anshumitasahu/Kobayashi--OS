@@ -10,6 +10,7 @@ export const useAppStore = create((set) => ({
         app: <Welcome />,
         icon: "/logo.svg",
         zIndex: 1,
+        windowState: "normal"
     }],
     Wallpaper: localStorage.getItem("Wallpaper") || "./bg2.png",
     openedSetting: <Wallpaper />,
@@ -27,7 +28,7 @@ export const useAppStore = create((set) => ({
     openApp: (app) => {
         const uniqueId = uuidv4();
         set((state) => ({
-            openedApps: [...state.openedApps, { ...app, id: uniqueId, zIndex: state.highestZindex + 1 }],
+            openedApps: [...state.openedApps, { ...app, id: uniqueId, zIndex: state.highestZindex + 1, windowState: "normal" }],
             highestZindex: state.highestZindex + 1
         }))
     },
@@ -60,5 +61,19 @@ export const useAppStore = create((set) => ({
     },
     openSetting: (setting) => {
         set({ openedSetting: setting.setting })
-    }
+    },
+    minimize: (id) => {
+        set((state) => ({
+            openedApps: state.openedApps.map((app) =>
+                app.id === id ? { ...app, windowState: "minimized" } : app
+            ),
+        }));
+    },
+    restore: (id) => {
+        set((state) => ({
+            openedApps: state.openedApps.map((app) =>
+                app.id === id ? { ...app, windowState: "normal" } : app
+            ),
+        }));
+    },
 }));

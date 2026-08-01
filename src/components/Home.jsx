@@ -12,8 +12,8 @@ export default function Home(zIndex) {
     const openedApps = useAppStore((state) => state.openedApps);
     const openApp = useAppStore((state) => state.openApp);
     const closeApp = useAppStore((state) => state.closeApp);
-    const Wallpaper = useAppStore((state) => state.Wallpaper)
-    const Brightness = useAppStore((state) => state.Brightness)
+    const Wallpaper = useAppStore((state) => state.Wallpaper);
+    const Brightness = useAppStore((state) => state.Brightness);
 
     return (
         <div
@@ -29,12 +29,13 @@ export default function Home(zIndex) {
             <div ref={desktopRef} className="relative flex-1 overflow-hidden">
                 {openedApps.map((app) => (
                     <Window
-                        key={app.id}
                         id={app.id}
-                        title={app.name}
+                        key={app.id}
                         icon={app.icon}
+                        title={app.name}
                         zIndex={app.zIndex}
                         desktopRef={desktopRef}
+                        windowState={app.windowState}
                         closeApp={() => closeApp(app.id)}
                     >
                         {app.app}
