@@ -14,11 +14,9 @@ Welcome to Kobayashi OS — a minimalist, beautifully crafted Web OS designed to
 • **Customizable Themes:** Wallpapers and icons tailored to fit your personal style.
 • **Built-in Web Apps:** Pre-packaged with a note-taker, calculator, settings app for deep customization, and more.
 
-
 > **Note:**
 > This is Version 1.0! More exciting features and apps are actively on the way.
 
-## 🛠️ Built With
 
 ## 🛠️ Built With
 
