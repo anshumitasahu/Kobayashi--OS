@@ -20,12 +20,15 @@ Welcome to Kobayashi OS — a minimalist, beautifully crafted Web OS designed to
 
 ## 🛠️ Built With
 
+## 🛠️ Built With
+
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 
-* **Core Stack:** HTML5, JavaScript, TypeScript, React, Vite, TailwindCSS
+* **Core Stack:** 
+HTML5, JavaScript, TypeScript, React, Vite, TailwindCSS
 * **State & Window Management:** Modern web architecture for seamless window dragging and layering.
 
 
