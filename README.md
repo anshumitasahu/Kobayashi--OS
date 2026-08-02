@@ -3,24 +3,23 @@
   <img src="public/edited-img.png" alt="Kobayashi OS Desktop" width="100%">
 </p>
 
-A lightweight, light-themed, anime-inspired Web Operating System.
+A browser based desktop enviroment built wiith React, Typescript, Javascript, Bun, Tailwind CSS, and Zustand.
 
-Welcome to **Kobayashi OS**—a minimalist Web OS designed to bring a warm, desktop-like experience directly to your browser. Built with a bright, clean visual language inspired by modern anime aesthetics, it blends functionality with charm to create a smooth, distraction-free desktop experience.
+Kobayashi OS is project on web OS misson, this Web Operating System is inspired by the desktop enviroments and Anime based theme. It focuses on window manager, desktop customization, and ofcourse recreating the feel of using a real web os in browser.
 
 > **Version 1.0 is Live!**
->
-> Kobayashi OS v1.0 introduces a core suite of essential applications, including Notes, Calculator, and Settings. Development is ongoing, with additional apps and features planned for future releases.
+> Kobayashi OS v1.0 introduces a core suite of essential applications, including Notes, Calculator, and Settings. Settings includes brightness control, wallpaper customization and icon style customization. Development is ongoing, with additional apps and features planned for future releases.
 
 ## Features
 
-- **Light & Airy Aesthetic** — Soft pastel colors, high-contrast readability, and a clean anime-inspired design.
-- **Desktop Experience** — Multi-window interface with intuitive app management.
-- **Customizable Themes** — Personalize your desktop with different wallpapers and icons.
-- **Built-in Apps** — Includes Notes, Calculator, Settings, and more.
+- **Window Manager** — Draggable windows with proper layering and multiple app instances.
+- **Desktop Customization** — Change wallpapers, desktop icons, and screen brightness.
+- **Built-in Applications** — Notes, Calculator, Settings, To-Dos and Browser.
+- **Persistent State** — Settings and application data are stored using Local Storage.
+- **Modern Architecture** — Global state management powered by Zustand.
 
 > **Note**
->
-> This is Version 1.0. More applications and features are currently in development.
+> Some applications currently display placeholder alerts while they are being developed. Additional functionality will be added in future releases.
 
 ## Built With
 
