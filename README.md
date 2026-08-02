@@ -3,23 +3,26 @@
   <img src="public/edited-img.png" alt="Kobayashi OS Desktop" width="100%">
 </p>
 
-A browser based desktop enviroment built wiith React, Typescript, Javascript, Bun, Tailwind CSS, and Zustand.
+A browser-based desktop environment built with React, TypeScript, JavaScript, Bun, Tailwind CSS, and Zustand.
 
-Kobayashi OS is project on web OS misson, this Web Operating System is inspired by the desktop enviroments and Anime based theme. It focuses on window manager, desktop customization, and ofcourse recreating the feel of using a real web os in browser.
+Kobayashi OS is my take on building a Web Operating System. Inspired by modern desktop environments and anime-themed interfaces, the project focuses on window management, desktop customization, and recreating the feel of using a real operating system in the browser.
+
+Multiple instances of the same application can be opened, allowing the desktop to behave more like a traditional operating system.
 
 > **Version 1.0 is Live!**
-> Kobayashi OS v1.0 introduces a core suite of essential applications, including Notes, Calculator, and Settings. Settings includes brightness control, wallpaper customization and icon style customization. Development is ongoing, with additional apps and features planned for future releases.
+>
+> Version 1.0 includes Notes, Calculator, Settings, Browser, and To-Dos. The Settings app currently supports brightness control, wallpaper customization, and icon style customization. Development is still ongoing, with more applications and features planned for future updates.
 
 ## Features
 
-- **Window Manager** — Draggable windows with proper layering and multiple app instances.
+- **Window Manager** — Draggable windows with proper layering and support for multiple instances of the same application.
 - **Desktop Customization** — Change wallpapers, desktop icons, and screen brightness.
-- **Built-in Applications** — Notes, Calculator, Settings, To-Dos and Browser.
-- **Persistent State** — Settings and application data are stored using Local Storage.
-- **Modern Architecture** — Global state management powered by Zustand.
+- **Built-in Applications** — Notes, Calculator, Browser, Settings, and To-Dos.
+- **Persistent State** — Settings and application data are saved using Local Storage.
+- **State Management** — Global state powered by Zustand.
 
 > **Note**
-> Some applications currently display placeholder alerts while they are being developed. Additional functionality will be added in future releases.
+> Some applications are still under development and currently use placeholder alerts. They will be replaced with full implementations in future updates. Additional functionality will be added in future releases.
 
 ## Built With
 
