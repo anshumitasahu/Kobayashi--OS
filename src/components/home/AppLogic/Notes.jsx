@@ -20,9 +20,9 @@ export default function Notes() {
 
 
     return (
-        <div className="bg-white/50">
+        <div className="bg-white lg:w-full lg:h-full md:h-70 md:w-100">
             <textarea
-                className="w-100 h-70 resize-none outline-0 p-2"
+                className="w-full h-full resize-none outline-0 p-2"
                 placeholder="Enter your thoughts here"
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}

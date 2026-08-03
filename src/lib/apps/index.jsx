@@ -8,18 +8,20 @@ import Notes from "../../components/home/AppLogic/Notes";
 
 export const AppsMenu = (iconStyle = "Colloid") => [
     {
+        id: 1,
         name: "Calculator",
         description: "use to calucate stuffs",
         icon: IconsApperance[iconStyle].Calculator,
         app: <Calculator />,
-        id: 1
+        width: 290.33,
+        height: 442
     },
     {
+        id: 2,
         name: "Todo",
         description: "use to do todo list",
         icon: IconsApperance[iconStyle].ToDo,
         app: <ToDos />,
-        id: 2
     },
     {
         name: "Settings",

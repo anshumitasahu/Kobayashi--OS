@@ -37,7 +37,7 @@ export default function Calculator() {
     );
 
     return (
-        <div className="text-black flex flex-col gap-3 w-fit h-fit p-3 rounded-xl bg-white">
+        <div className="text-black flex flex-col gap-3 w-full h-full p-3 rounded-xl bg-white">
             <input
                 type="text"
                 value={display}
