@@ -26,7 +26,7 @@ export default function AppsBar({ openApp }) {
                                 key={app.id}
                                 className="rounded-md hover:-translate-y-1 cursor-pointer"
                                 onClick={() => {
-                                    const existing = openedApps.find((property) => property.name === app.name && property.windowState === "minimized");
+                                    const existing = openedApps.find((property) => property.name === app.name && property.windowState !== "normal");
                                     if (existing) {
                                         restore(existing.id);
                                     } else {

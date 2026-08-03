@@ -90,5 +90,12 @@ export const useAppStore = create((set) => ({
                 )
             })
         }))
+    },
+    maximize: (id) => {
+        set((state) => ({
+            openedApps: state.openedApps.map((app) =>
+                app.id === id ? { ...app, windowState: "maximized" } : app
+            )
+        }))
     }
 }));

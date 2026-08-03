@@ -6,7 +6,7 @@ import { AppsMenu } from "../lib/apps";
 import { v4 as uuidv4 } from 'uuid';
 import { useAppStore } from '../store.jsx';
 
-export default function Home(zIndex) {
+export default function Home() {
     const desktopRef = useRef();
 
     const openedApps = useAppStore((state) => state.openedApps);

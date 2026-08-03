@@ -21,6 +21,7 @@ export default function Window({
     const bringToFront = useAppStore((state) => state.bringToFront);
     const minimize = useAppStore((state) => state.minimize);
     const setWindowPosition = useAppStore((state) => state.setWindowPosition);
+    const maximize = useAppStore((state) => state.maximize);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -60,7 +61,7 @@ export default function Window({
     }
 
     const maximizeApp = () => {
-        alert("not implemented will be implemented later");
+        maximize(id)
     }
 
     useEffect(() => {
@@ -76,7 +77,7 @@ export default function Window({
         <div
             ref={windowRef}
             onMouseDown={() => bringToFront(id)}
-            className={`bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg`}
+            className={`bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg ${windowState === "maximized" ? "h-full" : "h-fit"}`}
             style={{
                 transform: windowState === "minimized" ? "scale(0)" : "scale(1)",
                 position: "absolute",
@@ -84,6 +85,7 @@ export default function Window({
                 top: `${y}px`,
                 zIndex: zIndex,
                 userSelect: "none",
+                width: windowState === "maximized" ? "100vw" : "inherit",
             }}
         >
             <div className="flex justify-between items-center cursor-move pb-2"
