@@ -21,6 +21,7 @@ export default function AppsBar({ openApp }) {
                 {
                     apps.map((app) => {
                         const minimized = openedApps.find((property) => property.name === app.name && property.windowState === "minimized")
+                        const maximized = openedApps.find((property) => property.name === app.name && property.windowState === "maximized")
                         return (
                             < div
                                 key={app.id}
@@ -36,7 +37,10 @@ export default function AppsBar({ openApp }) {
                             >
                                 <div className="flex flex-col items-center">
                                     {minimized && (
-                                        <div className="w-1 h-1 bg-primary rounded-full"></div>
+                                        <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                                    )}
+                                    {maximized && (
+                                        <div className="w-1 h-1 bg-green-400 rounded-full"></div>
                                     )}
                                     <img src={app.icon} className="w-13" />
                                 </div>

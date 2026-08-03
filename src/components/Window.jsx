@@ -22,6 +22,7 @@ export default function Window({
     const minimize = useAppStore((state) => state.minimize);
     const setWindowPosition = useAppStore((state) => state.setWindowPosition);
     const maximize = useAppStore((state) => state.maximize);
+    const restore = useAppStore((state) => state.restore);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
@@ -56,13 +57,6 @@ export default function Window({
         );
     };
 
-    const minimizeApp = () => {
-        minimize(id)
-    }
-
-    const maximizeApp = () => {
-        maximize(id)
-    }
 
     useEffect(() => {
         window.addEventListener("mousemove", handleMouseMove);
@@ -77,7 +71,7 @@ export default function Window({
         <div
             ref={windowRef}
             onMouseDown={() => bringToFront(id)}
-            className={`bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg ${windowState === "maximized" ? "h-full" : "h-fit"}`}
+            className={`bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg`}
             style={{
                 transform: windowState === "minimized" ? "scale(0)" : "scale(1)",
                 position: "absolute",
@@ -86,6 +80,9 @@ export default function Window({
                 zIndex: zIndex,
                 userSelect: "none",
                 width: windowState === "maximized" ? "100vw" : "inherit",
+                height: windowState === "maximized" ? "100%" : "inherit",
+                left: windowState === "maximized" ? 0 : `${x}px`,
+                top: windowState === "maximized" ? "0" : `${y}px`
             }}
         >
             <div className="flex justify-between items-center cursor-move pb-2"
@@ -96,12 +93,18 @@ export default function Window({
                 </div>
                 <div className="flex gap-1 h-fit">
                     <button
-                        onClick={minimizeApp}
+                        onClick={() => {
+                            if (windowState === "maximized") {
+                                restore(id)
+                            } else {
+                                maximize(id)
+                            }
+                        }}
                         className="bg-green-400 text-white font-bold rounded-full p-2 cursor-pointer"
                     >
                     </button>
                     <button
-                        onClick={maximizeApp}
+                        onClick={() => minimize(id)}
                         className="bg-amber-400 text-white font-bold rounded-full p-2 cursor-pointer"
                     >
                     </button>

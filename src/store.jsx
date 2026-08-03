@@ -12,8 +12,6 @@ export const useAppStore = create((set) => ({
         zIndex: 1,
         x: 350,
         y: 100,
-        width: 100,
-        height: 80,
         windowState: "normal"
     }],
     Wallpaper: localStorage.getItem("Wallpaper") || "./bg2.png",
