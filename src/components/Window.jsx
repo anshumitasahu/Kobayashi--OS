@@ -79,8 +79,8 @@ export default function Window({
                 top: `${y}px`,
                 zIndex: zIndex,
                 userSelect: "none",
-                width: windowState === "maximized" ? "100vw" : "inherit",
-                height: windowState === "maximized" ? "100%" : "inherit",
+                width: windowState === "maximized" ? "100vw" : "auto",
+                height: windowState === "maximized" ? "100%" : "auto",
                 left: windowState === "maximized" ? 0 : `${x}px`,
                 top: windowState === "maximized" ? "0" : `${y}px`
             }}

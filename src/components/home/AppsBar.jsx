@@ -11,7 +11,7 @@ export default function AppsBar({ openApp }) {
 
     return (
         <div className="w-full flex justify-center items-center absolute bottom-0 z-1000">
-            <div className="flex justify-center items-center gap-5 w-fit bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-white">
+            <div className="flex justify-center items-center gap-5 w-fit h-23 bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-white">
                 <div
                     className="cursor-pointer"
                     onClick={() => alert("menu not implememnted")}
@@ -36,13 +36,13 @@ export default function AppsBar({ openApp }) {
                                 }}
                             >
                                 <div className="flex flex-col items-center">
+                                    <img src={app.icon} className="w-13" />
                                     {minimized && (
                                         <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
                                     )}
                                     {maximized && (
                                         <div className="w-1 h-1 bg-green-400 rounded-full"></div>
                                     )}
-                                    <img src={app.icon} className="w-13" />
                                 </div>
                             </div>
                         )
