@@ -29,10 +29,14 @@ export default function Home(zIndex) {
             <div ref={desktopRef} className="relative flex-1 overflow-hidden">
                 {openedApps.map((app) => (
                     <Window
+                        x={app.x}
+                        y={app.y}
                         id={app.id}
                         key={app.id}
                         icon={app.icon}
                         title={app.name}
+                        width={app.width}
+                        height={app.height}
                         zIndex={app.zIndex}
                         desktopRef={desktopRef}
                         windowState={app.windowState}

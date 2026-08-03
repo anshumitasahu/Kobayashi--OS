@@ -1,4 +1,3 @@
-import { XIcon } from "@phosphor-icons/react";
 import { useState, useEffect, useRef } from "react";
 import { useAppStore } from '../store.jsx';
 
@@ -11,20 +10,24 @@ export default function Window({
     zIndex,
     icon,
     windowState,
+    x,
+    y,
+    width,
+    height,
 }) {
     const windowRef = useRef(null);
-    const [position, setPosition] = useState({ x: 350, y: 100, });
     const [isDragging, setIsDragging] = useState(false);
     const [offset, setOffset] = useState({ x: 0, y: 0, });
     const bringToFront = useAppStore((state) => state.bringToFront);
     const minimize = useAppStore((state) => state.minimize);
+    const setWindowPosition = useAppStore((state) => state.setWindowPosition);
 
     const handleMouseDown = (e) => {
         setIsDragging(true);
 
         setOffset({
-            x: e.clientX - position.x,
-            y: e.clientY - position.y,
+            x: e.clientX - x,
+            y: e.clientY - y,
         });
         bringToFront(id)
     };
@@ -45,10 +48,11 @@ export default function Window({
         const desktopWidth = desktopRef.current.clientWidth;
         const desktopHeight = desktopRef.current.clientHeight;
 
-        setPosition({
-            x: Math.max(0, Math.min(newX, desktopWidth - windowWidth)),
-            y: Math.max(0, Math.min(newY, desktopHeight - windowHeight)),
-        });
+        setWindowPosition(
+            id,
+            Math.max(0, Math.min(newX, desktopWidth - windowWidth)),
+            Math.max(0, Math.min(newY, desktopHeight - windowHeight)),
+        );
     };
 
     const minimizeApp = () => {
@@ -68,19 +72,18 @@ export default function Window({
             window.removeEventListener("mouseup", handleMouseUp);
         };
     }, [isDragging, offset]);
-
     return (
         <div
             ref={windowRef}
-            className={`bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg }`}
+            onMouseDown={() => bringToFront(id)}
+            className={`bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg`}
             style={{
                 transform: windowState === "minimized" ? "scale(0)" : "scale(1)",
                 position: "absolute",
-                left: `${position.x}px`,
-                top: `${position.y}px`,
+                left: `${x}px`,
+                top: `${y}px`,
                 zIndex: zIndex,
                 userSelect: "none",
-                
             }}
         >
             <div className="flex justify-between items-center cursor-move pb-2"
@@ -94,19 +97,16 @@ export default function Window({
                         onClick={minimizeApp}
                         className="bg-green-400 text-white font-bold rounded-full p-2 cursor-pointer"
                     >
-
                     </button>
                     <button
                         onClick={maximizeApp}
                         className="bg-amber-400 text-white font-bold rounded-full p-2 cursor-pointer"
                     >
-
                     </button>
                     <button
                         onClick={closeApp}
                         className="bg-red-400 text-white font-bold rounded-full p-2 cursor-pointer"
                     >
-
                     </button>
                 </div>
             </div>
