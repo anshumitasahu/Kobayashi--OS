@@ -86,7 +86,7 @@ export const useAppStore = create((set) => ({
         set((state) => ({
             openedApps: state.openedApps.map((app) => {
                 return (
-                    app.id === id ? { ...app, x: X, y: Y } : app
+                    app.id === id ? { ...app, x: newX, y: newY } : app
                 )
             })
         }))

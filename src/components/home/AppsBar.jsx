@@ -1,3 +1,4 @@
+import { div } from "motion/react-client";
 import { AppsMenu } from "../../lib/apps";
 import { useAppStore } from "../../store";
 
@@ -5,7 +6,7 @@ export default function AppsBar({ openApp }) {
 
     const openedApps = useAppStore((state) => state.openedApps)
     const IconStyle = useAppStore((state) => state.IconStyle);
-    const restore = useAppStore((state) => state.restore)
+    const restore = useAppStore((state) => state.restore);
     const apps = AppsMenu(IconStyle);
 
     return (
@@ -18,22 +19,30 @@ export default function AppsBar({ openApp }) {
                     <img src="/logo.svg" className="w-12 bg-white p-2 rounded-xl hover:-translate-y-1" />
                 </div>
                 {
-                    apps.map((app) => (
-                        <div
-                            className="rounded-md hover:-translate-y-1 cursor-pointer"
-                            onClick={() => {
-                                const existing = openedApps.find((property) => property.name === app.name && property.windowState === "minimized");
-                                if (existing) {
-                                    restore(existing.id);
-                                } else {
-                                    openApp(app);
-                                }
-                            }}
-                            key={app.id}
-                        >
-                            <img src={app.icon} className="w-13" />
-                        </div>
-                    ))
+                    apps.map((app) => {
+                        const minimized = openedApps.find((property) => property.name === app.name && property.windowState === "minimized")
+                        return (
+                            < div
+                                key={app.id}
+                                className="rounded-md hover:-translate-y-1 cursor-pointer"
+                                onClick={() => {
+                                    const existing = openedApps.find((property) => property.name === app.name && property.windowState === "minimized");
+                                    if (existing) {
+                                        restore(existing.id);
+                                    } else {
+                                        openApp(app);
+                                    }
+                                }}
+                            >
+                                <div className="flex flex-col items-center">
+                                    {minimized && (
+                                        <div className="w-1 h-1 bg-primary rounded-full"></div>
+                                    )}
+                                    <img src={app.icon} className="w-13" />
+                                </div>
+                            </div>
+                        )
+                    })
                 }
             </div>
         </div >
