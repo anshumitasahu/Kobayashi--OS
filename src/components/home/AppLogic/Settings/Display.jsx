@@ -16,7 +16,7 @@ export default function Display() {
     ];
 
     return (
-        <div className="bg-white max-h-100 min-h-100 overflow-scroll rounded p-3">
+        <div className="bg-white h-full w-full overflow-scroll rounded p-3">
             <h1 className="text-sm mt-2 mb-4 font-semibold">
                 Display
             </h1>

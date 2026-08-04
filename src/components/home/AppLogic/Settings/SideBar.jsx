@@ -5,7 +5,7 @@ import { SettingsIndex } from "../../../../lib/settingsStore/settingsIndex";
 export default function SideBar() {
     const openSetting = useAppStore((state) => state.openSetting);
     return (
-        <div className="w-fit">
+        <div className="w-full">
             <div className="flex items-center gap-3 mt-1 mb-1 w-full bg-white rounded-md border border-black/10 px-2 py-1 text-xs">
                 <button>
                     <MagnifyingGlassIcon size={18} color="black" />

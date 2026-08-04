@@ -75,12 +75,10 @@ export default function Window({
             style={{
                 transform: windowState === "minimized" ? "scale(0)" : "scale(1)",
                 position: "absolute",
-                left: `${x}px`,
-                top: `${y}px`,
                 zIndex: zIndex,
                 userSelect: "none",
-                width: windowState === "maximized" ? "100vw" : "auto",
-                height: windowState === "maximized" ? "100%" : "auto",
+                width: windowState === "maximized" ? "100%" : `${width}px`,
+                height: windowState === "maximized" ? "100%" : `${height}px`,
                 left: windowState === "maximized" ? 0 : `${x}px`,
                 top: windowState === "maximized" ? "0" : `${y}px`
             }}
@@ -115,7 +113,7 @@ export default function Window({
                     </button>
                 </div>
             </div>
-            <div className="flex flex-1 justify-center items-center">
+            <div className="flex-1 overflow-hidden">
                 {children}
             </div>
         </div>

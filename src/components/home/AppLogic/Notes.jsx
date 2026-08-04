@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 export default function Notes() {
     const [notes, setNotes] = useState("");
@@ -7,7 +7,6 @@ export default function Notes() {
         const getItems = JSON.parse(localStorage.getItem("notes"));
         if (getItems) {
             setNotes(getItems);
-            console.log("parsed value:" + getItems)
         }
     }, [])
 
@@ -15,12 +14,11 @@ export default function Notes() {
     useEffect(() => {
 
         localStorage.setItem("notes", JSON.stringify(notes));
-        console.log("srinified note:" + JSON.stringify(notes))
     }, [notes])
 
 
     return (
-        <div className="bg-white lg:w-full lg:h-full md:h-70 md:w-100">
+        <div className="bg-white h-full w-full">
             <textarea
                 className="w-full h-full resize-none outline-0 p-2"
                 placeholder="Enter your thoughts here"

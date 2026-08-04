@@ -35,6 +35,8 @@ export default function Home() {
                         key={app.id}
                         icon={app.icon}
                         title={app.name}
+                        width={app.width}
+                        height={app.height}
                         zIndex={app.zIndex}
                         desktopRef={desktopRef}
                         windowState={app.windowState}

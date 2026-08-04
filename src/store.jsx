@@ -8,6 +8,8 @@ export const useAppStore = create((set) => ({
         id: uuidv4(),
         name: "Welcome",
         app: <Welcome />,
+        width: 620,
+        height: 200,
         icon: "/logo.svg",
         zIndex: 1,
         x: 350,
@@ -31,7 +33,7 @@ export const useAppStore = create((set) => ({
         const uniqueId = uuidv4();
         set((state) => ({
             openedApps: [...state.openedApps, {
-                ...app, id: uniqueId, zIndex: state.highestZindex + 1, windowState: "normal", x: 250, y: 100
+                ...app, id: uniqueId, zIndex: state.highestZindex + 1, windowState: "normal", x: 250, y: 100,
             }],
             highestZindex: state.highestZindex + 1
         }))

@@ -1,6 +1,6 @@
 export default function Welcome() {
     return (
-        <div className="flex gap-5 justify-between items-center p-4 bg-white rounded-lg">
+        <div className="flex gap-5 w-fit h-fit justify-between items-center p-4 bg-white rounded-lg">
             <div>
                 <img src="/avatar/1.webp" className="w-32 h-32 rounded-full" alt="" />
             </div>

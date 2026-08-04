@@ -15,7 +15,7 @@ export default function Wallpaper() {
     ]
 
     return (
-        <div className="overflow-scroll h-100 px-2 bg-white/70 rounded-md">
+        <div className="overflow-scroll h-full px-2 bg-white/70 rounded-md">
             <h1 className="text-sm mt-2 mb-4 font-semibold">
                 Appearance
             </h1>

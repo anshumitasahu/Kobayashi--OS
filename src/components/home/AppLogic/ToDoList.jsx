@@ -42,7 +42,7 @@ export default function ToDos() {
     }
 
     return (
-        <div className="w-100 min-h-50 bg-white p-4 rounded-xl flex flex-col gap-4">
+        <div className="w-full h-full bg-white p-4 rounded-xl flex flex-col gap-4">
             <div className="flex gap-4">
                 <input
                     type="text"

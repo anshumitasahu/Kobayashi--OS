@@ -13,8 +13,8 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         description: "use to calucate stuffs",
         icon: IconsApperance[iconStyle].Calculator,
         app: <Calculator />,
-        width: 290.33,
-        height: 442
+        width: 290,
+        height: 500
     },
     {
         id: 2,
@@ -22,13 +22,17 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         description: "use to do todo list",
         icon: IconsApperance[iconStyle].ToDo,
         app: <ToDos />,
+        width: 400,
+        height: 280,
     },
     {
+        id: 3,
         name: "Settings",
         description: "use to customize the desktop",
         icon: IconsApperance[iconStyle].Settings,
         app: <Settings />,
-        id: 3
+        width: 688,
+        height: 400,
     },
     // {
     //     name: "Gallery",
@@ -38,16 +42,23 @@ export const AppsMenu = (iconStyle = "Colloid") => [
     //     id: 4
     // },
     {
+        id: 5,
         name: "Browser",
         description: "use as a search engine",
         icon: IconsApperance[iconStyle].Browser,
         app: <Browser />,
-        id: 5
-    }, {
+        width: 700,
+        height: 500,
+    },
+    {
+        id: 6,
         name: "Notes",
         description: "use to store thoughts and random text",
         icon: IconsApperance[iconStyle].Notes,
         app: <Notes />,
-        id: 6
+        width: 400,
+        height: 300,
     }
 ]
+
+//height and width are given in pixels
