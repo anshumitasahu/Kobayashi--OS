@@ -34,13 +34,13 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         width: 688,
         height: 400,
     },
-    // {
-    //     name: "Gallery",
-    //     description: "use to slide image carsouel",
-    //     icon: IconsApperance[iconStyle].Gallery,
-    //     app: <Gallery />,
-    //     id: 4
-    // },
+    {
+        name: "Gallery",
+        description: "use to slide image carsouel",
+        icon: IconsApperance[iconStyle].Gallery,
+        app: <Gallery />,
+        id: 4
+    },
     {
         id: 5,
         name: "Browser",
@@ -60,5 +60,3 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         height: 300,
     }
 ]
-
-//height and width are given in pixels

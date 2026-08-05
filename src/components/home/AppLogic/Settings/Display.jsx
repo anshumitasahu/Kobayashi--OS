@@ -1,4 +1,9 @@
 import { useAppStore } from "../../../../store"
+import ColloidBtns from "./IconBtns/ColloidBtns";
+import DeepinBtns from "./IconBtns/DeepinBtns";
+import FluentBtns from "./IconBtns/FluentBtns";
+import MacTahoeBtns from "./IconBtns/MacTahoeBtns";
+import WhiteSurBtns from "./IconBtns/WhiteSurBtns";
 
 export default function Display() {
 
@@ -8,11 +13,26 @@ export default function Display() {
     const setIconStyle = useAppStore((state) => state.setIconStyle);
 
     const IconStyles = [
-        "Colloid",
-        "Deepin",
-        "Fluent",
-        "MacTahoe",
-        "WhiteSur"
+        {
+            name: "Colloid",
+            element: <ColloidBtns />
+        },
+        {
+            name: "Deepin",
+            element: <DeepinBtns />
+        },
+        {
+            name: "Fluent",
+            element: <FluentBtns />
+        },
+        {
+            name: "MacTahoe",
+            element: <MacTahoeBtns />
+        },
+        {
+            name: "WhiteSur",
+            element: <WhiteSurBtns />
+        }
     ];
 
     return (
@@ -43,17 +63,17 @@ export default function Display() {
                     {IconStyles.map((styles) => (
 
                         <button
-                            key={styles}
+                            key={styles.name}
                             onClick={() =>
-                                setIconStyle(styles)
+                                setIconStyle(styles.name)
                             }
-                            className="font-bold rounded-full text-white px-2 py-1 hover:cursor-pointer hover:scale-103 transition"
+                            className="font-bold rounded-md flex flex-col justify-center items-center text-white p-2 hover:cursor-pointer hover:scale-103 transition"
                             style={{
-                                backgroundColor: IconStyle === styles ? '#f699b4' : '#fbd38d'
+                                backgroundColor: IconStyle === styles.name ? '#fc6d96' : '#bd97f7'
                             }}
                         >
-                            {styles}
-
+                            {styles.name}
+                            {styles.element}
                         </button>
                     ))}
                 </div>
