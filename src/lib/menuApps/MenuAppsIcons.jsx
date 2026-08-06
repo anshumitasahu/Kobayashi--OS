@@ -1,4 +1,4 @@
-export const IconsApperance = {
+export const MenuIconApperance = {
     Colloid: {
         Calculator: "./colloid/calc.svg",
         ToDo: "./colloid/todo.svg",

@@ -3,7 +3,6 @@ import TopBar from "./home/topbar";
 import AppsBar from "./home/AppsBar";
 import Window from "./Window";
 import { AppsMenu } from "../lib/apps";
-import { v4 as uuidv4 } from 'uuid';
 import { useAppStore } from '../store.jsx';
 import MenuApps from "./home/AppLogic/MenuApp.jsx";
 

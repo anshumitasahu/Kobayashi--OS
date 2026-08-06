@@ -35,7 +35,8 @@ export const useAppStore = create((set) => ({
         const uniqueId = uuidv4();
         set((state) => ({
             openedApps: [...state.openedApps, {
-                ...app, id: uniqueId, zIndex: state.highestZindex + 1, windowState: "normal", x: 250, y: 100,
+                ...app, id: uniqueId, zIndex: state.highestZindex + 1, windowState: "normal", x: 250, y: 100, width: app.width ?? 500,
+                height: app.height ?? 400,
             }],
             highestZindex: state.highestZindex + 1
         }))
@@ -110,5 +111,10 @@ export const useAppStore = create((set) => ({
         set((state) => ({
             isMenuOpen: false
         }))
-    }
+    },
+    toggleMenu: () => {
+        set((state) => ({
+            isMenuOpen: !state.isMenuOpen
+        }))
+    },
 }));

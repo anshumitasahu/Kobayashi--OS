@@ -57,7 +57,6 @@ export default function Window({
         );
     };
 
-
     useEffect(() => {
         window.addEventListener("mousemove", handleMouseMove);
         window.addEventListener("mouseup", handleMouseUp);
@@ -67,6 +66,7 @@ export default function Window({
             window.removeEventListener("mouseup", handleMouseUp);
         };
     }, [isDragging, offset]);
+
     return (
         <div
             ref={windowRef}
@@ -113,7 +113,7 @@ export default function Window({
                     </button>
                 </div>
             </div>
-            <div className="flex-1 overflow-hidden">
+            <div className="flex-1 overflow-hidden ">
                 {children}
             </div>
         </div>

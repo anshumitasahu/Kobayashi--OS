@@ -6,7 +6,10 @@ export default function AppsBar({ openApp }) {
     const openedApps = useAppStore((state) => state.openedApps)
     const IconStyle = useAppStore((state) => state.IconStyle);
     const restore = useAppStore((state) => state.restore);
+    const isMenuOpen = useAppStore((state) => state.isMenuOpen)
     const openMenu = useAppStore((state) => state.openMenu);
+    const closeMenu = useAppStore((state) => state.closeMenu)
+    const toggleMenu = useAppStore((state) => state.toggleMenu);
     const apps = AppsMenu(IconStyle);
 
     return (
@@ -14,8 +17,9 @@ export default function AppsBar({ openApp }) {
             <div className="flex justify-center items-center gap-5 w-fit h-23 bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-white">
                 <div
                     className="cursor-pointer"
-                    onClick={openMenu}
-
+                    onClick={() => {
+                        toggleMenu()
+                    }}
                 >
                     <img src="/logo.svg" className="w-12 bg-white p-2 rounded-xl hover:-translate-y-1" />
                 </div>
@@ -24,7 +28,7 @@ export default function AppsBar({ openApp }) {
                         const minimized = openedApps.find((property) => property.name === app.name && property.windowState === "minimized")
                         const maximized = openedApps.find((property) => property.name === app.name && property.windowState === "maximized")
                         return (
-                            < div
+                            <div
                                 key={app.id}
                                 className="rounded-md hover:-translate-y-1 cursor-pointer"
                                 onClick={() => {
@@ -33,12 +37,12 @@ export default function AppsBar({ openApp }) {
                                         restore(existing.id);
                                     } else {
                                         openApp(app);
-                                        console.log("clicked iin appsbar:" + app)
+                                        console.log("clicked in appsbar:" + app)
                                     }
                                 }}
                             >
                                 <div className="flex flex-col items-center">
-                                    <img src={app.icon} className="w-13" />
+                                    <img src={app.icon} className="w-12" />
                                     {minimized && (
                                         <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
                                     )}
