@@ -21,6 +21,8 @@ export const useAppStore = create((set) => ({
     highestZindex: 1,
     Brightness: localStorage.getItem("Brightness") || 100,
     IconStyle: localStorage.getItem("IconStyle") || "Colloid",
+    isMenuOpen: false,
+    menuZIndex: 0,
     setBrightness: (Brightness) => {
         localStorage.setItem("Brightness", Brightness);
         set({ Brightness })
@@ -96,6 +98,17 @@ export const useAppStore = create((set) => ({
             openedApps: state.openedApps.map((app) =>
                 app.id === id ? { ...app, windowState: "maximized" } : app
             )
+        }))
+    },
+    openMenu: () => {
+        set((state) => ({
+            isMenuOpen: true,
+            menuZIndex: state.highestZindex + 1
+        }))
+    },
+    closeMenu: () => {
+        set((state) => ({
+            isMenuOpen: false
         }))
     }
 }));

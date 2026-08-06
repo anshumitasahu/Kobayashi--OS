@@ -1,4 +1,3 @@
-import { div } from "motion/react-client";
 import { AppsMenu } from "../../lib/apps";
 import { useAppStore } from "../../store";
 
@@ -7,6 +6,7 @@ export default function AppsBar({ openApp }) {
     const openedApps = useAppStore((state) => state.openedApps)
     const IconStyle = useAppStore((state) => state.IconStyle);
     const restore = useAppStore((state) => state.restore);
+    const openMenu = useAppStore((state) => state.openMenu);
     const apps = AppsMenu(IconStyle);
 
     return (
@@ -14,7 +14,8 @@ export default function AppsBar({ openApp }) {
             <div className="flex justify-center items-center gap-5 w-fit h-23 bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-white">
                 <div
                     className="cursor-pointer"
-                    onClick={() => alert("menu not implememnted")}
+                    onClick={openMenu}
+
                 >
                     <img src="/logo.svg" className="w-12 bg-white p-2 rounded-xl hover:-translate-y-1" />
                 </div>
@@ -32,6 +33,7 @@ export default function AppsBar({ openApp }) {
                                         restore(existing.id);
                                     } else {
                                         openApp(app);
+                                        console.log("clicked iin appsbar:" + app)
                                     }
                                 }}
                             >

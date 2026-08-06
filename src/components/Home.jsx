@@ -5,6 +5,7 @@ import Window from "./Window";
 import { AppsMenu } from "../lib/apps";
 import { v4 as uuidv4 } from 'uuid';
 import { useAppStore } from '../store.jsx';
+import MenuApps from "./home/AppLogic/MenuApp.jsx";
 
 export default function Home() {
     const desktopRef = useRef();
@@ -14,6 +15,7 @@ export default function Home() {
     const closeApp = useAppStore((state) => state.closeApp);
     const Wallpaper = useAppStore((state) => state.Wallpaper);
     const Brightness = useAppStore((state) => state.Brightness);
+    const isMenuOpen = useAppStore((state) => state.isMenuOpen)
 
     return (
         <div
@@ -27,26 +29,29 @@ export default function Home() {
             </div>
             <TopBar />
             <div ref={desktopRef} className="relative flex-1 overflow-hidden">
-                {openedApps.map((app) => (
-                    <Window
-                        x={app.x}
-                        y={app.y}
-                        id={app.id}
-                        key={app.id}
-                        icon={app.icon}
-                        title={app.name}
-                        width={app.width}
-                        height={app.height}
-                        zIndex={app.zIndex}
-                        desktopRef={desktopRef}
-                        windowState={app.windowState}
-                        closeApp={() => closeApp(app.id)}
-                    >
-                        {app.app}
-                    </Window>
-                ))}
+
+                {
+                    openedApps.map((app) => (
+                        <Window
+                            x={app.x}
+                            y={app.y}
+                            id={app.id}
+                            key={app.id}
+                            icon={app.icon}
+                            title={app.name}
+                            width={app.width}
+                            height={app.height}
+                            zIndex={app.zIndex}
+                            desktopRef={desktopRef}
+                            windowState={app.windowState}
+                            closeApp={() => closeApp(app.id)}
+                        >
+                            {app.app}
+                        </Window>
+                    ))
+                }
             </div>
-            <AppsBar openApp={openApp} />
+            {isMenuOpen ? <MenuApps openApp={openApp} /> : <AppsBar openApp={openApp} />}
         </div >
     );
 }
