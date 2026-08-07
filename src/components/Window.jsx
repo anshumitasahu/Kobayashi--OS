@@ -71,7 +71,7 @@ export default function Window({
         <div
             ref={windowRef}
             onMouseDown={() => bringToFront(id)}
-            className={`flex flex-col flex-1 bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg`}
+            className={`flex flex-col flex-1 bg-white/50 backdrop-blur-2xl text-black p-2 rounded-lg resize overflow-auto`}
             style={{
                 transform: windowState === "minimized" ? "scale(0)" : "scale(1)",
                 position: "absolute",

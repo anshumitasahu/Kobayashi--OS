@@ -6,6 +6,14 @@ import Display from "../../components/home/AppLogic/Settings/Display";
 export const SettingsIndex = [
     {
         id: 1,
+        name: "Display",
+        description: "used for the customization of display",
+        icon: MonitorIcon,
+        setting: <Display />,
+        color: "#A78BFA"
+    },
+    {
+        id: 2,
         name: "Appearance",
         description: "used for the customization of desktop",
         icon: PaletteIcon,
@@ -13,19 +21,11 @@ export const SettingsIndex = [
         color: "#F472B6"
     },
     {
-        id: 2,
+        id: 3,
         name: "About Us",
         description: "used for the info of the owner of the os",
         icon: UserIcon,
         setting: <AboutUs />,
         color: "#34D399"
     },
-    {
-        id: 3,
-        name: "Display",
-        description: "used for the customization of display",
-        icon: MonitorIcon,
-        setting: <Display />,
-        color: "#A78BFA"
-    }
 ];

@@ -1,3 +1,4 @@
+import { div } from "motion/react-client";
 import { useAppStore } from "../../../../store"
 import ColloidBtns from "./IconBtns/ColloidBtns";
 import DeepinBtns from "./IconBtns/DeepinBtns";
@@ -40,8 +41,8 @@ export default function Display() {
             <h1 className="text-sm mt-2 mb-4 font-semibold">
                 Display
             </h1>
-            <div className="border-b border-black/20 pb-4 mb-4">
-                <h2 className="mb-3 mt-1 text-xs text-gray-600">
+            <div className="pb-4 mb-4">
+                <h2 className="mb-6 mt-1 text-xs text-black">
                     Brightness
                 </h2>
                 <div className="flex gap-2">
@@ -51,30 +52,33 @@ export default function Display() {
                         max="100"
                         value={Brightness}
                         onChange={(e) => setBrightness(Number(e.target.value))}
+                        className="w-full bg-primary"
                     />
                     <p className="text-gray-700">{Brightness}%</p>
                 </div>
             </div>
             <div className="mb-4">
-                <h2 className="mb-3 mt-1 text-xs text-gray-600">
+                <h2 className="mb-6 mt-1 text-xs text-black">
                     Icons Style
                 </h2>
                 <div className="grid grid-cols-5 gap-2">
                     {IconStyles.map((styles) => (
 
-                        <button
-                            key={styles.name}
-                            onClick={() =>
-                                setIconStyle(styles.name)
-                            }
-                            className="font-bold rounded-md flex flex-col justify-center items-center text-white p-2 hover:cursor-pointer hover:scale-103 transition"
-                            style={{
-                                backgroundColor: IconStyle === styles.name ? '#fc6d96' : '#bd97f7'
-                            }}
-                        >
+                        <div className="flex flex-col text-[10px] gap-2 items-center text-slate-500">
+                            <button
+                                key={styles.name}
+                                onClick={() =>
+                                    setIconStyle(styles.name)
+                                }
+                                className="font-bold rounded-md flex flex-col justify-center items-center p-2 hover:cursor-pointer hover:scale-103 transition "
+                                style={{
+                                    backgroundColor: IconStyle === styles.name ? 'rgb(234, 220, 255)' : '#f2f2f2'
+                                }}
+                            >
+                                {styles.element}
+                            </button>
                             {styles.name}
-                            {styles.element}
-                        </button>
+                        </div>
                     ))}
                 </div>
             </div>
