@@ -1,5 +1,7 @@
+import { useEffect, useState } from "react";
 import { AppsMenu } from "../../lib/apps";
 import { useAppStore } from "../../store";
+import { style } from "motion/react-client";
 
 export default function AppsBar({ openApp }) {
 
@@ -10,11 +12,35 @@ export default function AppsBar({ openApp }) {
     const openMenu = useAppStore((state) => state.openMenu);
     const closeMenu = useAppStore((state) => state.closeMenu)
     const toggleMenu = useAppStore((state) => state.toggleMenu);
+    const maximized = openedApps.find((app) => app.windowState === "maximized");
     const apps = AppsMenu(IconStyle);
 
+    const [isMouseOver, setIsMouseOver] = useState(false)
+
+    useEffect(() => {
+        const maximized = openedApps.find((app) => app.windowState === "maximized");
+        if (maximized) { console.log(`${maximized.name} is maximized`); } else { console.log("nothing is maximized"); }
+    }, [openedApps]);
     return (
-        <div className="w-full flex justify-center items-center absolute bottom-0 z-1000">
-            <div className="flex justify-center items-center gap-5 w-fit h-23 bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-white">
+        <div
+            className="w-full flex justify-center items-center absolute bottom-0 z-1000"
+            style={{
+                height: maximized ? (isMouseOver ? "90px" : "5px") : "90px",
+                overflow: "hidden",
+                transition: "height 0.2s ease"
+            }}
+            onMouseEnter={() => {
+                if (maximized) {
+                    setIsMouseOver(true);
+                }
+            }}
+            onMouseLeave={() => {
+                setIsMouseOver(false);
+            }}
+        >
+            <div
+                className="flex justify-center items-center gap-5 w-fit h-23 bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-white"
+            >
                 <div
                     className="cursor-pointer"
                     onClick={() => {
@@ -41,8 +67,13 @@ export default function AppsBar({ openApp }) {
                                     }
                                 }}
                             >
-                                <div className="flex flex-col items-center">
-                                    <img src={app.icon} className="w-12" />
+                                <div
+                                    className="flex flex-col items-center"
+                                >
+                                    <img
+                                        src={app.icon}
+                                        className="w-12"
+                                    />
                                     {minimized && (
                                         <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
                                     )}

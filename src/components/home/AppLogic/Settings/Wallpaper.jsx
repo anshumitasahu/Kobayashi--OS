@@ -15,21 +15,21 @@ export default function Wallpaper() {
     ]
 
     return (
-        <div className="overflow-scroll h-full px-2 bg-white/70 rounded-md">
-            <h1 className="text-sm mt-2 mb-4 font-semibold">
-                Appearance
-            </h1>
+        <div className="overflow-scroll h-full p-4 bg-white rounded-md">
             <div className="mb-3">
-                <h2 className="mb-3 mt-1 text-xs text-gray-600">
+                <h2 className="mb-4 text-xs text-black">
                     Wallpaper
                 </h2>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-4">
                     {wallpapers.map((wallpaper) => (
-                        <img
-                            src={wallpaper}
+                        <div className="aspect-video group overflow-hidden"
                             key={wallpaper}
                             onClick={() => setWallpaper(wallpaper)}
-                            className="rounded hover:scale-103 transition aspect-5/3 hover:cursor-pointer" />
+                        >
+                            <img
+                                src={wallpaper}
+                                className="rounded group-hover:scale-110 transition object-cover hover:cursor-pointer w-full h-full" />
+                        </div>
                     ))}
                 </div>
             </div>

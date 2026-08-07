@@ -38,9 +38,6 @@ export default function Display() {
 
     return (
         <div className="bg-white h-full w-full overflow-scroll rounded p-3">
-            <h1 className="text-sm mt-2 mb-4 font-semibold">
-                Display
-            </h1>
             <div className="pb-4 mb-4">
                 <h2 className="mb-6 mt-1 text-xs text-black">
                     Brightness

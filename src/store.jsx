@@ -2,14 +2,13 @@ import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
 import Wallpaper from './components/home/AppLogic/Settings/Wallpaper';
 import Welcome from './components/home/AppLogic/Welcome';
+import { SettingsIndex } from './lib/settingsStore/settingsIndex';
 
 export const useAppStore = create((set) => ({
     openedApps: [{
         id: uuidv4(),
         name: "Welcome",
         app: <Welcome />,
-        width: 620,
-        height: 200,
         icon: "/logo.svg",
         zIndex: 1,
         x: 350,
@@ -17,7 +16,7 @@ export const useAppStore = create((set) => ({
         windowState: "normal"
     }],
     Wallpaper: localStorage.getItem("Wallpaper") || "./bg2.png",
-    openedSetting: <Wallpaper />,
+    openedSetting: SettingsIndex[0],
     highestZindex: 1,
     Brightness: localStorage.getItem("Brightness") || 100,
     IconStyle: localStorage.getItem("IconStyle") || "Colloid",
@@ -69,7 +68,7 @@ export const useAppStore = create((set) => ({
         })
     },
     openSetting: (setting) => {
-        set({ openedSetting: setting.setting })
+        set({ openedSetting: setting })
     },
     minimize: (id) => {
         set((state) => ({
