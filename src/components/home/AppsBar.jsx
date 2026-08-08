@@ -17,10 +17,6 @@ export default function AppsBar({ openApp }) {
 
     const [isMouseOver, setIsMouseOver] = useState(false)
 
-    useEffect(() => {
-        const maximized = openedApps.find((app) => app.windowState === "maximized");
-        if (maximized) { console.log(`${maximized.name} is maximized`); } else { console.log("nothing is maximized"); }
-    }, [openedApps]);
     return (
         <div
             className="w-full flex justify-center items-center absolute bottom-0 z-1000"
@@ -63,7 +59,6 @@ export default function AppsBar({ openApp }) {
                                         restore(existing.id);
                                     } else {
                                         openApp(app);
-                                        console.log("clicked in appsbar:" + app)
                                     }
                                 }}
                             >
