@@ -12,49 +12,57 @@ export default function Gallery() {
         },
     ];
 
-    const [selectImage, setSelectImage] = useState(false);
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [nextImage, setNextImage] = useState(0);
 
-    console.log(
-        selectImage ? "image is selected" : "image is not selected"
-    );
+    const handleImageClick = (images, index) => {
+        setSelectedImage(images);
+        setNextImage(index);
+    };
+
+    const handleNextImage = () => {
+        if (!selectedImage) return;
+
+        setNextImage(
+            (prevIndex) => (prevIndex + 1) % selectedImage.length
+        );
+    };
 
     return (
         <div className="w-full h-full overflow-scroll">
             <div className="flex flex-col gap-3">
-                {Images.map((image) => (
-                    <div key={image.date}>
-                        <h3>{image.date}</h3>
+                {Images.map((imgs) => (
+                    <div key={imgs.date}>
+                        <h3>{imgs.date}</h3>
 
                         <div className="flex flex-wrap gap-4 items-center">
-                            {image.images.map((img, index) => (
+                            {imgs.images.map((img, index) => (
                                 <img
                                     key={index}
                                     src={img}
                                     alt={`image ${index + 1} is not available`}
-                                    className="aspect-video object-cover w-55"
-                                    onClick={() => {
-                                        console.log("image is clicked");
-                                        setSelectImage((boolean) => !boolean);
-                                    }}
-                                    style={{
-                                        width: selectImage
-                                            ? "100%"
-                                            : "220px",
-                                    }}
+                                    className="aspect-video object-cover w-55 cursor-pointer"
+                                    onClick={() => handleImageClick(imgs.images, index)}
                                 />
                             ))}
                         </div>
-
-                        <button>Next</button>
                     </div>
                 ))}
             </div>
 
-            <img
-                src="./hero.jpg"
-                alt=""
-                className="w-full h-full mt-4"
-            />
+            {selectedImage && (
+                <div className="mt-4">
+                    <img
+                        src={selectedImage[nextImage]}
+                        alt="Selected"
+                        className="w-full max-h-150 object-contain"
+                    />
+
+                    <button onClick={handleNextImage}>
+                        Next
+                    </button>
+                </div>
+            )}
         </div>
     );
 }
