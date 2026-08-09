@@ -67,3 +67,7 @@
   z-index: 100;
   pointer-events: none; /* Optional: allows clicks to pass through the overlay to buttons underneath */
 }
+
+button {
+  cursor: pointer;
+}

@@ -28,7 +28,10 @@ export default function MenuApps({ openApp }) {
                         }).map((app) => (
                             < div
                                 key={app.id}
-                                className="rounded-md hover:-translate-y-1 cursor-pointer"
+                                className="rounded-md hover:-translate-y-0.5 cursor-pointer"
+                                style={{
+                                    transition: "all 0.3s"
+                                }}
                                 onClick={() => {
                                     openApp(app);
                                     closeMenu()

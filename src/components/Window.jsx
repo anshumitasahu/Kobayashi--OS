@@ -80,7 +80,8 @@ export default function Window({
                 width: windowState === "maximized" ? "100%" : `${width}px`,
                 height: windowState === "maximized" ? "100%" : `${height}px`,
                 left: windowState === "maximized" ? 0 : `${x}px`,
-                top: windowState === "maximized" ? "0" : `${y}px`
+                top: windowState === "maximized" ? "0" : `${y}px`,
+                transition: windowState === "minimized" ? "1s" : "0.5s"
             }}
         >
             <div className="flex justify-between items-center cursor-move pb-2"

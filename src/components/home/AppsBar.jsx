@@ -43,7 +43,13 @@ export default function AppsBar({ openApp }) {
                         toggleMenu()
                     }}
                 >
-                    <img src="/logo.svg" className="w-12 bg-white p-2 rounded-xl hover:-translate-y-1" />
+                    <img
+                        src="/logo.svg"
+                        className="w-12 bg-white p-2 rounded-xl hover:-translate-y-1"
+                        style={{
+                            transition: "all 0.1s"
+                        }}
+                    />
                 </div>
                 {
                     apps.map((app) => {
@@ -53,6 +59,9 @@ export default function AppsBar({ openApp }) {
                             <div
                                 key={app.id}
                                 className="rounded-md hover:-translate-y-1 cursor-pointer"
+                                style={{
+                                    transition: "all 0.3s"
+                                }}
                                 onClick={() => {
                                     const existing = openedApps.find((property) => property.name === app.name && property.windowState !== "normal");
                                     if (existing) {
