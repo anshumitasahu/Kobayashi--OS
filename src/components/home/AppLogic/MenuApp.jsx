@@ -8,6 +8,8 @@ export default function MenuApps({ openApp }) {
     const IconStyle = useAppStore((state) => state.IconStyle);
     const closeMenu = useAppStore((state) => state.closeMenu)
     const [search, setSearch] = useState("");
+    const restore = useAppStore((state) => state.restore);
+    const maximized = openedApps.find((app) => app.windowState === "maximized");
     const apps = AppsInMenu(IconStyle);
 
     return (
@@ -25,28 +27,46 @@ export default function MenuApps({ openApp }) {
                     {
                         apps.filter((app) => {
                             return search.toLowerCase() === '' ? app : app.name.toLowerCase().includes(search);
-                        }).map((app) => (
-                            < div
-                                key={app.id}
-                                className="rounded-md hover:-translate-y-0.5 cursor-pointer"
-                                style={{
-                                    transition: "all 0.3s"
-                                }}
-                                onClick={() => {
-                                    openApp(app);
-                                    closeMenu()
-                                }}
-                            >
-                                <div className="flex flex-col items-center">
-                                    <img src={app.icon} className="w-16" />
+                        }).map((app) => {
+                            const minimized = openedApps.find((property) => property.name === app.name && property.windowState === "minimized")
+                            const maximized = openedApps.find((property) => property.name === app.name && property.windowState === "maximized");
+                            return (
+                                < div
+                                    key={app.id}
+                                    className="rounded-md hover:-translate-y-0.5 cursor-pointer"
+                                    style={{
+                                        transition: "all 0.3s"
+                                    }}
+                                    onClick={() => {
+                                        const existing = openedApps.find((property) => property.name === app.name && property.windowState !== "normal");
+                                        if (existing) {
+                                            restore(existing.id);
+                                            closeMenu()
+                                        } else {
+                                            openApp(app);
+                                            closeMenu()
+                                        }
+                                    }}
+                                >
+                                    <div className="flex flex-col items-center">
+                                        <img src={app.icon} className="w-16" />
+                                        {minimized && (
+                                            <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
+                                        )}
+                                        {maximized && (
+                                            <div className="w-1 h-1 bg-green-400 rounded-full"></div>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                        ))
+                            )
+                        })
                     }
                 </div>
             </div>
             <div>
-                <AppsBar openApp={openApp} />
+                <AppsBar
+                    openApp={openApp}
+                />
             </div>
         </div >
     )

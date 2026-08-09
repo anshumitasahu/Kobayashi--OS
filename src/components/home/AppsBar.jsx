@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AppsMenu } from "../../lib/apps";
 import { useAppStore } from "../../store";
-import { style } from "motion/react-client";
+import { div, style } from "motion/react-client";
 
 export default function AppsBar({ openApp }) {
 
@@ -89,6 +89,38 @@ export default function AppsBar({ openApp }) {
                         )
                     })
                 }
+                {openedApps.filter((app) => {
+                    const existingApp = apps.find((exist) => exist.name === app.name);
+                    return !existingApp;
+                }).map((app) => (
+                    <div>
+                        <div
+                            key={app.id}
+                            className="rounded-md hover:-translate-y-1 cursor-pointer"
+                            style={{
+                                transition: "all 0.3s"
+                            }}
+                            onClick={() => {
+                                restore(app.id)
+                            }}
+                        >
+                            <div className="flex flex-col items-center">
+                                <img
+                                    src={app.icon}
+                                    className="w-12"
+                                />
+
+                                {app.windowState === "minimized" && (
+                                    <div className="w-1 h-1 bg-amber-400 rounded-full" />
+                                )}
+
+                                {app.windowState === "maximized" && (
+                                    <div className="w-1 h-1 bg-green-400 rounded-full" />
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                ))}
             </div>
         </div >
     );

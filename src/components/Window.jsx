@@ -23,7 +23,6 @@ export default function Window({
     const setWindowPosition = useAppStore((state) => state.setWindowPosition);
     const maximize = useAppStore((state) => state.maximize);
     const restore = useAppStore((state) => state.restore);
-
     const handleMouseDown = (e) => {
         setIsDragging(true);
 
@@ -81,7 +80,8 @@ export default function Window({
                 height: windowState === "maximized" ? "100%" : `${height}px`,
                 left: windowState === "maximized" ? 0 : `${x}px`,
                 top: windowState === "maximized" ? "0" : `${y}px`,
-                transition: windowState === "minimized" ? "1s" : "0.5s"
+                transition: windowState === "minimized" ? "0.2s" : "0.2s",
+                transition: windowState === "maximized" ? "0.2s" : "0.2s",
             }}
         >
             <div className="flex justify-between items-center cursor-move pb-2"
