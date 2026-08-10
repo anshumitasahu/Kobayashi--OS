@@ -4,6 +4,7 @@ import Settings from "../../components/home/AppLogic/Settings";
 import Gallery from "../../components/home/AppLogic/Gallery";
 import Browser from "../../components/home/AppLogic/Browser";
 import Notes from "../../components/home/AppLogic/Notes";
+import Camera from "../../components/home/AppLogic/Camera";
 import { MenuIconApperance } from "./MenuAppsIcons";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
@@ -35,11 +36,13 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         height: 400,
     },
     {
+        id: 4,
         name: "Gallery",
         description: "use to slide image carsouel",
         icon: MenuIconApperance[iconStyle].Gallery,
         app: <Gallery />,
-        id: 4
+        width: 500,
+        height: 400,
     },
     {
         id: 5,
@@ -58,5 +61,12 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <Notes />,
         width: 400,
         height: 300,
+    },
+    {
+        id: 7,
+        name: "Camera",
+        description: "used to click photos",
+        icon: MenuIconApperance[iconStyle].Camera,
+        app: <Camera />
     }
 ]

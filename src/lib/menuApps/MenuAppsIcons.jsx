@@ -5,7 +5,8 @@ export const MenuIconApperance = {
         Settings: "./colloid/settings.svg",
         Gallery: "./colloid/gallery.svg",
         Browser: "./colloid/browser.svg",
-        Notes: "./colloid/notes.svg"
+        Notes: "./colloid/notes.svg",
+        Camera: "./colloid/camera.svg",
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
@@ -13,7 +14,8 @@ export const MenuIconApperance = {
         Settings: "./Deepin/settings.svg",
         Gallery: "./Deepin/gallery.svg",
         Browser: "./Deepin/browser.svg",
-        Notes: "./Deepin/notes.svg"
+        Notes: "./Deepin/notes.svg",
+        Camera: "./Deepin/camera.svg",
     },
     Fluent: {
         Calculator: "./Fluent/calc.svg",
@@ -21,7 +23,8 @@ export const MenuIconApperance = {
         Settings: "./Fluent/settings.svg",
         Gallery: "./Fluent/gallery.svg",
         Browser: "./Fluent/browser.svg",
-        Notes: "./Fluent/notes.svg"
+        Notes: "./Fluent/notes.svg",
+        Camera: "./Fluent/camera.svg",
     },
     MacTahoe: {
         Calculator: "./MacTahoe/calc.svg",
@@ -29,7 +32,8 @@ export const MenuIconApperance = {
         Settings: "./MacTahoe/settings.svg",
         Gallery: "./MacTahoe/gallery.svg",
         Browser: "./MacTahoe/browser.svg",
-        Notes: "./MacTahoe/notes.svg"
+        Notes: "./MacTahoe/notes.svg",
+        Camera: "./MacTahoe/camera.svg",
     },
     WhiteSur: {
         Calculator: "./WhiteSur/calc.svg",
@@ -37,6 +41,7 @@ export const MenuIconApperance = {
         Settings: "./WhiteSur/settings.svg",
         Gallery: "./WhiteSur/gallery.svg",
         Browser: "./WhiteSur/browser.svg",
-        Notes: "./WhiteSur/notes.svg"
+        Notes: "./WhiteSur/notes.svg",
+        Camera: "./WhiteSur/camera.svg",
     }
 }
