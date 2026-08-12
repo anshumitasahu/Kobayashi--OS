@@ -67,6 +67,208 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         name: "Camera",
         description: "used to click photos",
         icon: MenuIconApperance[iconStyle].Camera,
-        app: <Camera />
+        app: <Camera />,
+        width: 484,
+        height: 350,
     }
 ]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useEffect, useRef, useState } from "react";
+
+// export default function Camera() {
+//     const videoRef = useRef(null);
+//     const canvasRef = useRef(null);
+//     const [capturedPhoto, setCapturedPhoto] = useState(null);
+
+//     useEffect(() => {
+//         let mediaStream = null;
+
+//         async function startCamera() {
+//             try {
+//                 mediaStream = await navigator.mediaDevices.getUserMedia({
+//                     video: {
+//                         width: 1280,
+//                         height: 720,
+//                     },
+//                 });
+
+//                 if (videoRef.current) {
+//                     videoRef.current.srcObject = mediaStream;
+//                 }
+//             } catch (error) {
+//                 console.error("Camera error:", error);
+//             }
+//         }
+
+//         startCamera();
+
+//         return () => {
+//             if (mediaStream) {
+//                 mediaStream.getTracks().forEach((track) => {
+//                     track.stop();
+//                 });
+//             }
+//         };
+//     }, []);
+
+//     const openDatabase = () => {
+//         return new Promise((resolve, reject) => {
+//             const request = indexedDB.open("cameraDB", 1);
+
+//             request.onupgradeneeded = (event) => {
+//                 const db = event.target.result;
+
+//                 if (!db.objectStoreNames.contains("photos")) {
+//                     db.createObjectStore("photos", {
+//                         keyPath: "id",
+//                         autoIncrement: true,
+//                     });
+//                 }
+//             };
+
+//             request.onsuccess = (event) => {
+//                 resolve(event.target.result);
+//             };
+
+//             request.onerror = (event) => {
+//                 reject(event.target.error);
+//             };
+//         });
+//     };
+
+//     const capturePhoto = async () => {
+//         try {
+//             const video = videoRef.current;
+//             const canvas = canvasRef.current;
+
+//             if (!video || !canvas) {
+//                 throw new Error("Video or canvas is not available");
+//             }
+
+//             const ctx = canvas.getContext("2d");
+
+//             canvas.width = 1280;
+//             canvas.height = 720;
+
+//             ctx.drawImage(
+//                 video,
+//                 0,
+//                 0,
+//                 canvas.width,
+//                 canvas.height
+//             );
+
+//             const blob = await new Promise((resolve, reject) => {
+//                 canvas.toBlob(
+//                     (blob) => {
+//                         if (blob) {
+//                             resolve(blob);
+//                         } else {
+//                             reject(new Error("Failed to create image blob"));
+//                         }
+//                     },
+//                     "image/png"
+//                 );
+//             });
+
+//             // Show captured image
+//             const imageUrl = URL.createObjectURL(blob);
+//             setCapturedPhoto(imageUrl);
+
+//             // Open IndexedDB
+//             const db = await openDatabase();
+
+//             // Save image
+//             const transaction = db.transaction("photos", "readwrite");
+//             const store = transaction.objectStore("photos");
+
+//             const request = store.add({
+//                 image: blob,
+//                 createdAt: new Date(),
+//             });
+
+//             request.onsuccess = () => {
+//                 console.log("Photo saved successfully");
+//             };
+
+//             request.onerror = (event) => {
+//                 console.error(
+//                     "Failed to save photo:",
+//                     event.target.error
+//                 );
+//             };
+
+//             transaction.onerror = (event) => {
+//                 console.error(
+//                     "Transaction error:",
+//                     event.target.error
+//                 );
+//             };
+//         } catch (error) {
+//             console.error("Capture error:", error);
+//         }
+//     };
+
+//     return (
+//         <div className="w-full h-full overflow-scroll">
+//             <video
+//                 ref={videoRef}
+//                 className="w-full aspect-video"
+//                 autoPlay
+//                 playsInline
+//             />
+
+//             <button onClick={capturePhoto}>
+//                 Capture
+//             </button>
+
+//             <canvas
+//                 ref={canvasRef}
+//                 className="hidden"
+//             />
+
+//             {capturedPhoto && (
+//                 <div>
+//                     <img
+//                         src={capturedPhoto}
+//                         alt="Captured"
+//                         className="w-full"
+//                     />
+//                 </div>
+//             )}
+//         </div>
+//     );
+// }
