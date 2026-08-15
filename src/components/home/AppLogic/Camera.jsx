@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import IndexedDB from "../../../DB/IndexedDB";
 
 export default function Camera() {
     const videoRef = useRef(null);

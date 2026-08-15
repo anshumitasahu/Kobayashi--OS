@@ -77,7 +77,7 @@ export default function Gallery() {
                         onClick={handleBackToImage}
                         className="w-full text-left justify-between items-center absolute top-0 flex  cursor-pointer bg-linear-to-b from-white/70 to-transparent px-2 py-2  group-hover:"
                     >
-                        <ArrowLeftIcon size={16} className="text-neutral-600"/>
+                        <ArrowLeftIcon size={16} className="text-neutral-600" />
                         <span className="text-neutral-500 text-xs">{selectedImage[nextImage].replace("./", "")}</span>
                     </button>
                     <div className="h-full">
