@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import IndexedDB from "../../../DB/IndexedDB";
 
 export default function Camera() {
     const videoRef = useRef(null);
@@ -70,7 +71,7 @@ export default function Camera() {
         const context = canvas.getContext("2d");
 
         canvas.width = 1280;
-        canvas.height = 720;
+        canvas.height = 600;
 
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
@@ -107,20 +108,28 @@ export default function Camera() {
     };
 
     return (
-        <div className="w-full h-full overflow-scroll">
-            <video ref={videoRef} className="w-full aspect-video" autoPlay playsInline />
+        <div className="w-full h-full overflow-scroll bg-white rounded-md px-6 py-3">
+            <video
+                ref={videoRef}
+                className="aspect-video rounded-md"
+                autoPlay
+                playsInline
+            />
 
-            <button onClick={capturePhoto} disabled={!stream || !dbReady} className="text-black rounded disabled:opacity-50" >
-                Capture
-            </button>
-
-            <canvas ref={canvasRef} className="hidden" />
-
-            {capturedPhoto && (
-                <div>
-                    <img src={capturedPhoto} alt="Captured" className="w-full" />
+            <div className="w-full flex justify-between mt-2 items-center">
+                <div className="p-1 border-3 border-amber-300 rounded-full">
+                    <button onClick={capturePhoto} disabled={!stream || !dbReady} className="text-black rounded-full disabled:opacity-50 w-13 h-13 bg-neutral-200 p-3" >
+                    </button>
                 </div>
-            )}
+
+                <canvas ref={canvasRef} className="hidden" />
+
+                {capturedPhoto && (
+                    <div>
+                        <img src={capturedPhoto} alt="Captured" className="w-23 h-13 rounded-md" />
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
