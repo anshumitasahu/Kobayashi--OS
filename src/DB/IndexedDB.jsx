@@ -1,4 +1,4 @@
-const DB_NAME = "cameraDBTest";
+const DB_NAME = "cameraDB";
 const STORE_NAME = "photos";
 
 const openDB = () => {

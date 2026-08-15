@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { savePhoto } from "../../../DB/IndexedDB";
 
 export default function Camera() {
     const videoRef = useRef(null);
@@ -9,7 +10,7 @@ export default function Camera() {
     const [dbReady, setDbReady] = useState(false);
 
     useEffect(() => {
-        const request = indexedDB.open("cameraDBTest", 1);
+        const request = indexedDB.open("cameraDB", 1);
         request.onupgradeneeded = (event) => {
             const db = event.target.result;
 
@@ -74,33 +75,16 @@ export default function Camera() {
 
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        canvas.toBlob((blob) => {
+        canvas.toBlob(async (blob) => {
             if (!blob) {
                 console.error("Failed to create image blob");
                 return;
             }
 
+            await savePhoto(blob)
+
             const imageUrl = URL.createObjectURL(blob);
             setCapturedPhoto(imageUrl);
-
-            const transaction = dbRef.current.transaction("photos", "readwrite");
-            const store = transaction.objectStore("photos");
-
-            const request = store.add({
-                image: blob,
-                createdAt: new Date(),
-            });
-
-            // request.onsuccess = () => {
-            //     console.log("Photo saved to IndexedDB");
-            // };
-
-            request.onerror = (event) => {
-                console.error(
-                    "Failed to save photo:",
-                    event.target.error
-                );
-            };
         },
             "image/png"
         );
