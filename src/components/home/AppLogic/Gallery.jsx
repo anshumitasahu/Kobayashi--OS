@@ -85,7 +85,7 @@ export default function Gallery() {
 
                     <button
                         onClick={handleBackToImage}
-                        className="absolute z-10 top-0 left-0 bg-white/70 rounded-full p-2"
+                        className="w-full text-left justify-between items-center absolute top-0 flex  cursor-pointer bg-linear-to-b from-white/70 to-transparent px-2 py-2"
                     >
                         <ArrowLeftIcon
                             size={20}
@@ -98,7 +98,7 @@ export default function Gallery() {
                             selectedImage[nextImage].image
                         )}
                         alt="Selected"
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-cover"
                     />
 
                     {selectedImage.length > 1 && (
