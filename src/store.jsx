@@ -22,6 +22,11 @@ export const useAppStore = create((set) => ({
     IconStyle: localStorage.getItem("IconStyle") || "Colloid",
     isMenuOpen: false,
     menuZIndex: 0,
+    gallerySelectedPhotoId: null,
+    setGallerySelectedPhotoId: (id) =>
+        set({ gallerySelectedPhotoId: id, }),
+    clearGallerySelectedPhotoId: () =>
+        set({ gallerySelectedPhotoId: null, }),
     setBrightness: (Brightness) => {
         localStorage.setItem("Brightness", Brightness);
         set({ Brightness })

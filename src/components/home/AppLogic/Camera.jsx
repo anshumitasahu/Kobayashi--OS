@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { useAppStore } from "../../../store";
 import { savePhoto, getPhotos } from "../../../DB/IndexedDB";
+import { AppsInMenu } from "../../../lib/menuApps/menuAppIndex"
 
 export default function Camera() {
     const videoRef = useRef(null);
@@ -9,10 +11,17 @@ export default function Camera() {
     const [stream, setStream] = useState(null);
     const [capturedPhoto, setCapturedPhoto] = useState(null);
     const [lastPhoto, setLastPhoto] = useState(null);
+    const [lastPhotoId, setLastPhotoId] = useState(null);
     const [dbReady, setDbReady] = useState(false);
+
+    const openApp = useAppStore((state) => state.openApp);
+    const setGallerySelectedPhotoId = useAppStore(
+        (state) => state.setGallerySelectedPhotoId
+    );
 
     useEffect(() => {
         const request = indexedDB.open("cameraDB", 1);
+
         request.onupgradeneeded = (event) => {
             const db = event.target.result;
 
@@ -23,10 +32,12 @@ export default function Camera() {
                 });
             }
         };
+
         request.onsuccess = (event) => {
             dbRef.current = event.target.result;
             setDbReady(true);
         };
+
         request.onerror = (event) => {
             console.error("IndexedDB ERROR:", event.target.error);
         };
@@ -38,18 +49,17 @@ export default function Camera() {
         const loadLastPhoto = async () => {
             try {
                 const photos = await getPhotos();
-
                 if (photos.length === 0) {
                     setLastPhoto(null);
+                    setLastPhotoId(null);
                     return;
                 }
+                const last = photos[photos.length - 1];
+                if (last?.image) {
+                    const url = URL.createObjectURL(last.image);
 
-                const lastPhoto = photos[photos.length - 1];
-
-                if (lastPhoto?.image) {
-                    const url = URL.createObjectURL(lastPhoto.image);
                     setLastPhoto(url);
-
+                    setLastPhotoId(last.id);
                     return () => URL.revokeObjectURL(url);
                 }
             } catch (error) {
@@ -81,15 +91,13 @@ export default function Camera() {
 
         return () => {
             if (streaming) {
-                streaming.getTracks().forEach((track) => track.stop())
+                streaming.getTracks().forEach((track) => track.stop());
             }
         };
     }, []);
 
     const capturePhoto = () => {
-        if (!videoRef.current || !canvasRef.current) {
-            return;
-        }
+        if (!videoRef.current || !canvasRef.current) return;
 
         if (!dbRef.current) {
             console.error("IndexedDB is not ready");
@@ -103,7 +111,13 @@ export default function Camera() {
         canvas.width = 1280;
         canvas.height = 720;
 
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        context.drawImage(
+            video,
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
 
         canvas.toBlob(async (blob) => {
             if (!blob) {
@@ -112,19 +126,40 @@ export default function Camera() {
             }
 
             try {
-                await savePhoto(blob);
+              
+                const photoId = await savePhoto(blob);
+
                 const imageUrl = URL.createObjectURL(blob);
+
                 setCapturedPhoto(imageUrl);
                 setLastPhoto(imageUrl);
-                console.log("Photo saved:", blob);
+                setLastPhotoId(photoId);
+
+                console.log("Photo saved:", photoId);
             } catch (error) {
                 console.error("Failed to save photo:", error);
             }
         }, "image/png");
     };
 
+    const openLastPhoto = () => {
+        if (!lastPhotoId) {
+            console.log("No last photo ID");
+            return;
+        }
+        const apps = AppsInMenu();
+        const galleryApp = apps.find((app) => app.name === "Gallery");
+        if (!galleryApp) {
+            console.error("Gallery app not found");
+            return;
+        }
+        setGallerySelectedPhotoId(lastPhotoId);
+        openApp(galleryApp);
+    };
+
     return (
         <div className="w-full h-full overflow-scroll bg-white rounded-md px-6 py-3">
+
             <video
                 ref={videoRef}
                 className="aspect-video rounded-md"
@@ -133,21 +168,35 @@ export default function Camera() {
             />
 
             <div className="w-full flex justify-between mt-2 items-center">
+
                 <div className="p-1 border-3 border-amber-300 rounded-full">
-                    <button onClick={capturePhoto} disabled={!stream || !dbReady} className="text-black rounded-full disabled:opacity-50 w-13 h-13 bg-neutral-200 p-3" />
+                    <button
+                        onClick={capturePhoto}
+                        disabled={!stream || !dbReady}
+                        className="text-black rounded-full disabled:opacity-50 w-13 h-13 bg-neutral-200 p-3"
+                    />
                 </div>
 
-                <canvas ref={canvasRef} className="hidden" />
+                <canvas
+                    ref={canvasRef}
+                    className="hidden"
+                />
 
                 <div>
                     {lastPhoto && (
-                        <img
-                            src={lastPhoto}
-                            alt="Last captured"
-                            className="w-23 h-13 rounded-md object-cover"
-                        />
+                        <button
+                            onClick={openLastPhoto}
+                            className="cursor-pointer"
+                        >
+                            <img
+                                src={lastPhoto}
+                                alt="Last captured"
+                                className="w-23 h-13 rounded-md object-cover"
+                            />
+                        </button>
                     )}
                 </div>
+
             </div>
         </div>
     );

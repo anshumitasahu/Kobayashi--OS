@@ -1,23 +1,45 @@
 import { useEffect, useState } from "react";
 import { ArrowLeftIcon, CaretRightIcon, CaretLeftIcon } from "@phosphor-icons/react";
 import { getPhotos } from "../../../DB/IndexedDB";
+import { useAppStore } from "../../../store";
 
 export default function Gallery() {
     const [images, setImages] = useState([]);
     const [selectedImage, setSelectedImage] = useState(null);
     const [nextImage, setNextImage] = useState(0);
 
+    const gallerySelectedPhotoId = useAppStore((state) => state.gallerySelectedPhotoId);
+    const clearGallerySelectedPhotoId = useAppStore((state) => state.clearGallerySelectedPhotoId);
+
     useEffect(() => {
-        getPhotos().then((photos) => {
-            setImages(photos);
-        });
-    }, []);
+        const loadPhotos = async () => {
+            try {
+                const photos = await getPhotos();
+                setImages(photos);
+                if (gallerySelectedPhotoId !== null) {
+                    const index = photos.findIndex((photo) => photo.id === gallerySelectedPhotoId);
+
+                    if (index !== -1) {
+                        setSelectedImage(photos);
+                        setNextImage(index);
+                    }
+                    clearGallerySelectedPhotoId();
+                }
+            } catch (error) {
+                console.error("Failed to load photos:", error);
+            }
+        };
+
+        loadPhotos();
+    }, [
+        gallerySelectedPhotoId,
+        clearGallerySelectedPhotoId,
+    ]);
 
     const handleImageClick = (image) => {
-        setSelectedImage(images);
-
         const index = images.findIndex((item) => item.id === image.id);
 
+        setSelectedImage(images);
         setNextImage(index);
     };
 
@@ -30,34 +52,29 @@ export default function Gallery() {
     const handlePrevImage = () => {
         if (!selectedImage) return;
 
-        setNextImage((prevIndex) => ((prevIndex - 1) + selectedImage.length) % selectedImage.length);
+        setNextImage((prevIndex) => (prevIndex - 1 + selectedImage.length) % selectedImage.length);
     };
 
     const handleBackToImage = () => {
         setSelectedImage(null);
     };
 
-    console.log(new Date().toLocaleDateString())
-
     return (
         <div className="w-full h-full overflow-scroll bg-white rounded-lg p-4">
             {!selectedImage && (
                 <div>
-                    <p className="text-xs text-neutral-500 mt-1">
+                    <p className="text-xs text-neutral-500 mt-1 mb-2">
                         {new Date().toLocaleDateString()}
                     </p>
                     <div className="grid grid-cols-3 gap-2">
                         {images.map((item) => (
-                            <div key={item.id}>
-                                <img
-                                    src={URL.createObjectURL(item.image)}
-                                    alt="Captured"
-                                    className="aspect-video object-cover w-full cursor-pointer rounded-lg"
-                                    onClick={() => handleImageClick(item)}
-                                />
-
-
-                            </div>
+                            <img
+                                key={item.id}
+                                src={URL.createObjectURL(item.image)}
+                                alt="Captured"
+                                className="aspect-video object-cover w-full cursor-pointer rounded-lg"
+                                onClick={() => handleImageClick(item)}
+                            />
                         ))}
                     </div>
                 </div>
@@ -68,9 +85,12 @@ export default function Gallery() {
 
                     <button
                         onClick={handleBackToImage}
-                        className="w-full text-left justify-between items-center absolute top-0 flex  cursor-pointer bg-linear-to-b from-white/70 to-transparent px-2 py-2"
+                        className="absolute z-10 top-0 left-0 bg-white/70 rounded-full p-2"
                     >
-                        <ArrowLeftIcon size={16} className="text-neutral-600" />
+                        <ArrowLeftIcon
+                            size={20}
+                            className="text-neutral-600"
+                        />
                     </button>
 
                     <img
@@ -78,22 +98,26 @@ export default function Gallery() {
                             selectedImage[nextImage].image
                         )}
                         alt="Selected"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                     />
 
-                    <button
-                        onClick={handlePrevImage}
-                        className="absolute left-2 top-1/2 bg-white/50 rounded-full p-1"
-                    >
-                        <CaretLeftIcon size={28} />
-                    </button>
+                    {selectedImage.length > 1 && (
+                        <>
+                            <button
+                                onClick={handlePrevImage}
+                                className="absolute left-2 top-1/2 -translate-y-1/2 bg-white/50 rounded-full p-1"
+                            >
+                                <CaretLeftIcon size={28} />
+                            </button>
 
-                    <button
-                        onClick={handleNextImage}
-                        className="absolute right-2 top-1/2 bg-white/50 rounded-full p-1"
-                    >
-                        <CaretRightIcon size={28} />
-                    </button>
+                            <button
+                                onClick={handleNextImage}
+                                className="absolute right-2 top-1/2 -translate-y-1/2 bg-white/50 rounded-full p-1"
+                            >
+                                <CaretRightIcon size={28} />
+                            </button>
+                        </>
+                    )}
                 </div>
             )}
         </div>
