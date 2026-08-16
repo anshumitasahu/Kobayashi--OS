@@ -22,37 +22,15 @@ const openDB = () => {
 
 export const savePhoto = async (blob) => {
     const db = await openDB();
+    const transaction = db.transaction(STORE_NAME, "readwrite");
+    const store = transaction.objectStore(STORE_NAME);
 
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(STORE_NAME, "readwrite");
-        const store = transaction.objectStore(STORE_NAME);
-
-        const request = store.add({
-            image: blob,
-            type: "photo",
-            date: new Date(),
-        });
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
+    store.add({
+        image: blob,
+        date: new Date(),
     })
 };
 
-export const saveVideo = async (blob) => {
-    const db = await openDB();
-
-    return new Promise((resolve, reject) => {
-        const transaction = db.transaction(STORE_NAME, "readwrite");
-        const store = transaction.objectStore(STORE_NAME);
-
-        const request = store.add({
-            image: blob,
-            type: "video",
-            date: new Date(),
-        });
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
-    })
-};
 
 export const getPhotos = async () => {
     const db = await openDB();

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { ArrowLeftIcon, CaretRightIcon, CaretLeftIcon } from "@phosphor-icons/react";
 import { getPhotos } from "../../../DB/IndexedDB";
-import { div } from "motion/react-client";
 
 export default function Gallery() {
     const [images, setImages] = useState([]);

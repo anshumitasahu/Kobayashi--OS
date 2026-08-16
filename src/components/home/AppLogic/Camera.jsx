@@ -1,12 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { savePhoto } from "../../../DB/IndexedDB";
+import { savePhoto, getPhotos } from "../../../DB/IndexedDB";
 
 export default function Camera() {
     const videoRef = useRef(null);
     const dbRef = useRef(null);
     const canvasRef = useRef(null);
+
     const [stream, setStream] = useState(null);
     const [capturedPhoto, setCapturedPhoto] = useState(null);
+    const [lastPhoto, setLastPhoto] = useState(null);
     const [dbReady, setDbReady] = useState(false);
 
     useEffect(() => {
@@ -31,10 +33,41 @@ export default function Camera() {
     }, []);
 
     useEffect(() => {
+        if (!dbReady) return;
+
+        const loadLastPhoto = async () => {
+            try {
+                const photos = await getPhotos();
+
+                if (photos.length === 0) {
+                    setLastPhoto(null);
+                    return;
+                }
+
+                const lastPhoto = photos[photos.length - 1];
+
+                if (lastPhoto?.image) {
+                    const url = URL.createObjectURL(lastPhoto.image);
+                    setLastPhoto(url);
+
+                    return () => URL.revokeObjectURL(url);
+                }
+            } catch (error) {
+                console.error("Failed to load last photo:", error);
+            }
+        };
+
+        loadLastPhoto();
+    }, [dbReady]);
+
+    useEffect(() => {
         let streaming = null;
         async function startCamera() {
             try {
-                streaming = await navigator.mediaDevices.getUserMedia({ video: { width: 1280, height: 720, } });
+                streaming = await navigator.mediaDevices.getUserMedia({
+                    video: { width: 1280, height: 720, },
+                });
+
                 if (videoRef.current) {
                     videoRef.current.srcObject = streaming;
                     setStream(streaming);
@@ -46,12 +79,9 @@ export default function Camera() {
 
         startCamera();
 
-
         return () => {
             if (streaming) {
-                streaming.getTracks().forEach((track) => {
-                    track.stop();
-                });
+                streaming.getTracks().forEach((track) => track.stop())
             }
         };
     }, []);
@@ -71,7 +101,7 @@ export default function Camera() {
         const context = canvas.getContext("2d");
 
         canvas.width = 1280;
-        canvas.height = 600;
+        canvas.height = 720;
 
         context.drawImage(video, 0, 0, canvas.width, canvas.height);
 
@@ -81,13 +111,16 @@ export default function Camera() {
                 return;
             }
 
-            await savePhoto(blob)
-
-            const imageUrl = URL.createObjectURL(blob);
-            setCapturedPhoto(imageUrl);
-        },
-            "image/png"
-        );
+            try {
+                await savePhoto(blob);
+                const imageUrl = URL.createObjectURL(blob);
+                setCapturedPhoto(imageUrl);
+                setLastPhoto(imageUrl);
+                console.log("Photo saved:", blob);
+            } catch (error) {
+                console.error("Failed to save photo:", error);
+            }
+        }, "image/png");
     };
 
     return (
@@ -101,17 +134,20 @@ export default function Camera() {
 
             <div className="w-full flex justify-between mt-2 items-center">
                 <div className="p-1 border-3 border-amber-300 rounded-full">
-                    <button onClick={capturePhoto} disabled={!stream || !dbReady} className="text-black rounded-full disabled:opacity-50 w-13 h-13 bg-neutral-200 p-3" >
-                    </button>
+                    <button onClick={capturePhoto} disabled={!stream || !dbReady} className="text-black rounded-full disabled:opacity-50 w-13 h-13 bg-neutral-200 p-3" />
                 </div>
 
                 <canvas ref={canvasRef} className="hidden" />
 
-                {capturedPhoto && (
-                    <div>
-                        <img src={capturedPhoto} alt="Captured" className="w-23 h-13 rounded-md" />
-                    </div>
-                )}
+                <div>
+                    {lastPhoto && (
+                        <img
+                            src={lastPhoto}
+                            alt="Last captured"
+                            className="w-23 h-13 rounded-md object-cover"
+                        />
+                    )}
+                </div>
             </div>
         </div>
     );
