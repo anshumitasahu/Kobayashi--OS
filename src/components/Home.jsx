@@ -5,6 +5,7 @@ import Window from "./Window";
 import { AppsMenu } from "../lib/apps";
 import { useAppStore } from '../store.jsx';
 import MenuApps from "./home/AppLogic/MenuApp.jsx";
+import Calender from "./home/Widgets/Calender.jsx";
 
 export default function Home() {
     const desktopRef = useRef();
@@ -27,6 +28,12 @@ export default function Home() {
                 <img src={Wallpaper} alt="" className="h-full w-full object-cover" />
             </div>
             <TopBar />
+            <div>
+                Clock
+            </div>
+            <div className="w-fit bg-white/40 fixed top-70 right-3">
+                <Calender />
+            </div>
             <div ref={desktopRef} className="relative flex-1 overflow-hidden">
 
                 {

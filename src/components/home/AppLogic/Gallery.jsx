@@ -94,9 +94,7 @@ export default function Gallery() {
                     </button>
 
                     <img
-                        src={URL.createObjectURL(
-                            selectedImage[nextImage].image
-                        )}
+                        src={URL.createObjectURL(selectedImage[nextImage].image)}
                         alt="Selected"
                         className="w-full h-full object-cover"
                     />
