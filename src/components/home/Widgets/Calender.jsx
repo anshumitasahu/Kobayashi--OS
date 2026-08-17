@@ -21,14 +21,16 @@ export default function Calender() {
     })
 
     const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-    console.log(startingDay)
     return (
         <div>
-            <div className="bg-white/30 w-full">
-                <p >{year}-{monthName}</p>
-                <div className="grid grid-cols-7 gap-5  p-2">
+            <div className="bg-white/30 w-full px-2 py-1 rounded-md backdrop-blur-lg">
+                <p className="text-center text-md font-semibold">{year}-{monthName}</p>
+                <div className="grid grid-cols-7 gap-2 p-2">
                     {weekDays.map((day, index) => (
-                        <div key={index}>
+                        <div
+                            key={index}
+                            className="text-sm font-semibold"
+                        >
                             {day}
                         </div>
                     ))}
@@ -37,10 +39,10 @@ export default function Calender() {
 
                         return (
                             <div
-                                key={day}
-                                className="rounded-sm p-1"
+                                key={index}
+                                className="rounded-sm p-2 text-xs"
                                 style={{
-                                    backgroundColor: isToday ? "#DEDAF4" : null
+                                    backgroundColor: isToday ? "#beb9e2" : null
                                 }}
                             >
                                 {day}
