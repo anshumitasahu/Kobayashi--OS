@@ -1,4 +1,4 @@
-export default function Calender() {
+export default function Calendar() {
     const today = new Date();
 
     const year = today.getFullYear();

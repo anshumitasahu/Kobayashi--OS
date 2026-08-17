@@ -3,6 +3,8 @@ import { v4 as uuidv4 } from 'uuid';
 import Wallpaper from './components/home/AppLogic/Settings/Wallpaper';
 import Welcome from './components/home/AppLogic/Welcome';
 import { SettingsIndex } from './lib/settingsStore/settingsIndex';
+import Calendar from './components/home/Widgets/Calendar';
+import { CalendarIcon } from '@phosphor-icons/react';
 
 export const useAppStore = create((set) => ({
     openedApps: [{
@@ -23,6 +25,13 @@ export const useAppStore = create((set) => ({
     isMenuOpen: false,
     menuZIndex: 0,
     gallerySelectedPhotoId: null,
+    openedWidgets: [{
+        id: 1,
+        name: "Calender",
+        widgets: <Calendar />,
+        icon: <CalendarIcon />
+    }],
+    isWidgetsMenuOpen: false,
     setGallerySelectedPhotoId: (id) =>
         set({ gallerySelectedPhotoId: id, }),
     clearGallerySelectedPhotoId: () =>
@@ -128,4 +137,10 @@ export const useAppStore = create((set) => ({
             isMenuOpen: !state.isMenuOpen
         }))
     },
+    toggleWidgetMenu: () => {
+        set((state) => ({
+            isWidgetsMenuOpen: !state.isWidgetsMenuOpen
+        }))
+    },
+    
 }));
