@@ -15,6 +15,7 @@ export default function Home() {
     const Wallpaper = useAppStore((state) => state.Wallpaper);
     const Brightness = useAppStore((state) => state.Brightness);
     const isMenuOpen = useAppStore((state) => state.isMenuOpen)
+    const openedWidgets = useAppStore((state) => state.openedWidgets);
 
     return (
         <div
@@ -27,10 +28,16 @@ export default function Home() {
                 <img src={Wallpaper} alt="" className="h-full w-full object-cover" />
             </div>
             <TopBar />
-            {/* <div className="fixed top-60 right-3">
-                <Clock />
-                <Calendar />
-            </div> */}
+            <div className="fixed top-20 right-3 z-40">
+                {openedWidgets.map((widget) => {
+                    const Widget = widget.component;
+                    return (
+                        <div key={widget.id} className="mb-4">
+                            <Widget />
+                        </div>
+                    );
+                })}
+            </div>
             <div ref={desktopRef} className="relative flex-1 overflow-hidden">
 
                 {

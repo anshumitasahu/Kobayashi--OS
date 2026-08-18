@@ -1,18 +1,18 @@
 import { CalendarIcon, ClockIcon } from "@phosphor-icons/react";
-import Calender from "../components/home/Widgets/Calendar";
+import Calendar from "../components/home/Widgets/Calendar";
 import Clock from "../components/home/Widgets/Clock";
 
 export const WidgetsStore = [
     {
         id: 1,
         name: "Calendar",
-        widget: <Calender />,
+        component: Calendar,
         icon: CalendarIcon,
     },
     {
         id: 2,
         name: "Clock",
-        widget: <Clock />,
+        component: Clock,
         icon: ClockIcon,
-    }
-]
+    },
+];

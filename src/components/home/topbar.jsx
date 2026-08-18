@@ -1,13 +1,15 @@
-import { CalendarIcon, ClockIcon, ListIcon } from "@phosphor-icons/react";
+import { ListIcon } from "@phosphor-icons/react";
 import { useEffect, useState } from "react";
 import { useAppStore } from "../../store";
 import { WidgetsStore } from "../../lib/WidgetsStore";
 
 export default function TopBar() {
     const [now, setNow] = useState(new Date())
+
     const openedWidgets = useAppStore((state) => state.openedWidgets);
     const isWidgetsMenuOpen = useAppStore((state) => state.isWidgetsMenuOpen);
     const toggleWidgetMenu = useAppStore((state) => state.toggleWidgetMenu);
+    const toggleWidget = useAppStore((state) => state.toggleWidget);
 
 
     useEffect(() => {
@@ -31,29 +33,41 @@ export default function TopBar() {
         year: "numeric"
     })
     return (
-        <div>
+        <div className="relative z-50">
             <div className="bg-white/50 backdrop-blur-sm h-8 p-2 px-4 flex justify-between w-full border-b border-white text-xs text-gray-700">
                 <div>
                     Kobayashi OS
                 </div>
+
                 <div className="flex gap-10">
-                    <div>{time} {date}</div>
-                    <ListIcon onClick={() => toggleWidgetMenu()} />
+                    <div>
+                        {time} {date}
+                    </div>
+
+                    <ListIcon
+                        className="cursor-pointer"
+                        onClick={toggleWidgetMenu}
+                    />
                 </div>
             </div>
+
             {isWidgetsMenuOpen && (
-                <>
-                    <div className="top-8.4 right-2 absolute bg-white px-2 py-1 text-sm/7 text-neutral-600 rounded-b-md">
-                        {WidgetsStore.map((widget) => (
+                <div className="absolute top-8 right-2 z-50 bg-white px-2 py-1 text-sm text-neutral-600 rounded-b-md shadow-lg">
+                    {WidgetsStore.map((widget) => {
+                        const Icon = widget.icon;
+
+                        return (
                             <div
                                 key={widget.id}
-                                className="flex gap-3 items-center"
+                                onClick={() => toggleWidget(widget)}
+                                className="flex gap-3 items-center cursor-pointer px-2 hover:bg-gray-100"
                             >
-                                <widget.icon />
+                                <Icon />
                                 <p>{widget.name}</p>
                             </div>
-                        ))}
-                    </div></>
+                        );
+                    })}
+                </div>
             )}
         </div>
     );

@@ -93,9 +93,8 @@ export default function AppsBar({ openApp }) {
                     const existingApp = apps.find((exist) => exist.name === app.name);
                     return !existingApp;
                 }).map((app) => (
-                    <div>
+                    <div key={app.id}>
                         <div
-                            key={app.id}
                             className="rounded-md hover:-translate-y-1 cursor-pointer"
                             style={{
                                 transition: "all 0.3s"

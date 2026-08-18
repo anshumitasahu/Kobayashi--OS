@@ -20,7 +20,6 @@ export default function Clock() {
     const minutes = time.getMinutes();
     const seconds = time.getSeconds();
 
-    console.log(hours, minutes, seconds)
     return (
         <div>
             {now}

@@ -25,12 +25,7 @@ export const useAppStore = create((set) => ({
     isMenuOpen: false,
     menuZIndex: 0,
     gallerySelectedPhotoId: null,
-    openedWidgets: [{
-        id: 1,
-        name: "Calender",
-        widgets: <Calendar />,
-        icon: <CalendarIcon />
-    }],
+    openedWidgets: [],
     isWidgetsMenuOpen: false,
     setGallerySelectedPhotoId: (id) =>
         set({ gallerySelectedPhotoId: id, }),
@@ -142,5 +137,27 @@ export const useAppStore = create((set) => ({
             isWidgetsMenuOpen: !state.isWidgetsMenuOpen
         }))
     },
-    
+    toggleWidget: (widget) => {
+        set((state) => {
+            const alreadyOpen = state.openedWidgets.some(
+                (opened) => opened.id === widget.id
+            );
+
+            if (alreadyOpen) {
+                return {
+                    openedWidgets: state.openedWidgets.filter(
+                        (opened) => opened.id !== widget.id
+                    ),
+                    isWidgetsMenuOpen: false,
+                };
+            }
+            return {
+                openedWidgets: [
+                    ...state.openedWidgets,
+                    widget,
+                ],
+                isWidgetsMenuOpen: false,
+            };
+        });
+    },
 }));
