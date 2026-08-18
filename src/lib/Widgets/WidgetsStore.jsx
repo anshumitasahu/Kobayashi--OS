@@ -9,11 +9,15 @@ export const WidgetsStore = (iconStyle = "Colloid") => [
         name: "Calendar",
         component: Calendar,
         icon: WidgetsIconApperance[iconStyle].Calendar,
+        height: 308,
+        width: 300,
     },
     {
         id: 2,
         name: "Clock",
         component: Clock,
         icon: WidgetsIconApperance[iconStyle].Clock,
+        height: 220,
+        width: 180,
     },
 ];

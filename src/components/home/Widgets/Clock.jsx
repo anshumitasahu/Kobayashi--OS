@@ -25,7 +25,7 @@ export default function Clock() {
     const secondAngle = seconds * 6;
 
     return (
-        <div>
+        <div className="h-full flex items-center p-2">
             <div className="rounded-full w-40 h-40 bg-amber-100 relative ">
                 <div
                     className="bg-black w-1 h-10 absolute bottom-[50%] left-[50%] origin-bottom rounded-[50%] -ml-0.75"
