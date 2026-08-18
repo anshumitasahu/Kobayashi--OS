@@ -33,25 +33,41 @@ export default function Home() {
             </div>
             <TopBar />
             <div>
-                {isWidgetsMenuOpen && (
-                    <div className="absolute top-8 right-2 z-50 bg-white/20 p-2 text-sm/6 text-neutral-600 rounded-b-md shadow-lg">
-                        {WidgetsStore.map((widget) => {
-                            const Icon = widget.icon;
+                <div
+                    className={`
+            absolute top-10 right-0 z-50
+            bg-white/20 p-2 text-sm/6 text-neutral-600
+            rounded-b-md shadow-lg
+            transition-all duration-500 ease-in-out
+            origin-top-right
+            ${isWidgetsMenuOpen
+                            ? "opacity-100 translate-y-0 scale-100 visible"
+                            : "opacity-0 -translate-y-3 scale-95 invisible pointer-events-none"
+                        }
+        `}
+                >
+                    {WidgetsStore.map((widget) => {
+                        const Icon = widget.icon;
+                        const Widget = widget.component;
 
-                            return (
-                                <div
-                                    key={widget.id}
-                                    onClick={() => toggleWidget(widget)}
-                                    className="flex gap-3 items-center cursor-pointer px-2 hover:bg-gray-100/70"
-                                >
+                        return (
+                            <div
+                                key={widget.id}
+                                onClick={() => toggleWidget(widget)}
+                                className="flex flex-col gap-5 items-center cursor-pointer px-2 mb-6 w-70"
+                            >
+                                <div className="flex gap-4 items-center">
                                     <Icon />
                                     <p>{widget.name}</p>
                                 </div>
-                            );
-                        })}
-                    </div>
-                )}
+
+                                <Widget />
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
+
             <div className="fixed top-20 right-3 z-40">
                 {openedWidgets.map((widget) => {
                     const Widget = widget.component;
