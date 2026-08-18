@@ -5,7 +5,8 @@ import Window from "./Window";
 import { AppsMenu } from "../lib/apps";
 import { useAppStore } from '../store.jsx';
 import MenuApps from "./home/AppLogic/MenuApp.jsx";
-import { WidgetsStore } from "../lib/Widgets/WidgetsStore.jsx"
+import { WidgetsStore } from "../lib/Widgets/WidgetsStore.jsx";
+import WidgetsWindow from "./WidgetsWindow.jsx";
 
 export default function Home() {
     const desktopRef = useRef();
@@ -18,7 +19,8 @@ export default function Home() {
     const isMenuOpen = useAppStore((state) => state.isMenuOpen)
     const openedWidgets = useAppStore((state) => state.openedWidgets);
     const isWidgetsMenuOpen = useAppStore((state) => state.isWidgetsMenuOpen);
-    const toggleWidget = useAppStore((state) => state.toggleWidget);
+    const openWidget = useAppStore((state) => state.openWidget);
+    const closeWidget = useAppStore((state) => state.closeWidget);
     const IconStyle = useAppStore((state) => state.IconStyle)
 
     const Widgets = WidgetsStore(IconStyle)
@@ -55,11 +57,11 @@ export default function Home() {
                         return (
                             <div
                                 key={widget.id}
-                                onClick={() => toggleWidget(widget)}
+                                onClick={() => openWidget(widget)}
                                 className="flex flex-col gap-5 items-center cursor-pointer px-2 mb-6 w-70"
                             >
                                 <div className="flex gap-4 items-center">
-                                    <img src={Icon} alt={widget.name} className="w-8"/>
+                                    <img src={Icon} alt={widget.name} className="w-8" />
                                     <p>{widget.name}</p>
                                 </div>
 
@@ -69,18 +71,30 @@ export default function Home() {
                     })}
                 </div>
             </div>
-
-            <div className="fixed top-20 right-3 z-40">
-                {openedWidgets.map((widget) => {
-                    const Widget = widget.component;
-                    return (
-                        <div key={widget.id} className="mb-4">
-                            <Widget />
-                        </div>
-                    );
-                })}
-            </div>
             <div ref={desktopRef} className="relative flex-1 overflow-hidden">
+                {
+                    openedWidgets.map((widget) => {
+                        const Widget = widget.component;
+
+                        return (
+                            <WidgetsWindow
+                                key={widget.id}
+                                id={widget.id}
+                                title={widget.name}
+                                icon={widget.icon}
+                                x={widget.x}
+                                y={widget.y}
+                                width={widget.width}
+                                height={widget.height}
+                                zIndex={widget.zIndex}
+                                desktopRef={desktopRef}
+                                closeWidget={closeWidget}
+                            >
+                                <Widget />
+                            </WidgetsWindow>
+                        );
+                    })
+                }
 
                 {
                     openedApps.map((app) => (

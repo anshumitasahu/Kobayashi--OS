@@ -137,7 +137,7 @@ export const useAppStore = create((set) => ({
             isWidgetsMenuOpen: !state.isWidgetsMenuOpen
         }))
     },
-    toggleWidget: (widget) => {
+    openWidget: (widget) => {
         set((state) => {
             const alreadyOpen = state.openedWidgets.some(
                 (opened) => opened.id === widget.id
@@ -148,16 +148,58 @@ export const useAppStore = create((set) => ({
                     openedWidgets: state.openedWidgets.filter(
                         (opened) => opened.id !== widget.id
                     ),
-                    isWidgetsMenuOpen: false,
                 };
             }
+
+            const position = state.openedWidgets.length * 30;
+
             return {
                 openedWidgets: [
                     ...state.openedWidgets,
-                    widget,
+                    {
+                        ...widget,
+                        x: 50 + position,
+                        y: 50 + position,
+                        width: widget.width ?? 300,
+                        height: widget.height ?? 200,
+                        zIndex: state.highestZindex + 1,
+                    },
                 ],
-                isWidgetsMenuOpen: false,
+                highestZindex: state.highestZindex + 1,
             };
         });
+    },
+
+    closeWidget: (id) => {
+        set((state) => ({
+            openedWidgets: state.openedWidgets.filter(
+                (widget) => widget.id !== id
+            ),
+        }));
+    },
+
+    setWidgetPosition: (id, newX, newY) => {
+        set((state) => ({
+            openedWidgets: state.openedWidgets.map((widget) => widget.id === id ? { ...widget, x: newX, y: newY, } : widget
+            ),
+        }));
+    },
+    bringToFrontWidget: (id) => {
+        set(state => {
+            const newZ = state.highestZindex + 1;
+
+            return {
+                highestZindex: newZ,
+                openedWidgets: state.openedWidgets.map((widget) => {
+                    if (widget.id === id) {
+                        return {
+                            ...widget, zIndex: newZ
+                        }
+                    } else {
+                        return widget
+                    }
+                })
+            }
+        })
     },
 }));

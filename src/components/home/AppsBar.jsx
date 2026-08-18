@@ -122,7 +122,14 @@ export default function AppsBar({ openApp }) {
                     </div>
                 ))}
                 <div>
-                    <img src="./LogoDevDock.png" alt="" className="w-12 rounded-3xl" onClick={toggleWidgetMenu} />
+                    <img
+                        src="./widgets.png"
+                        className="w-12 bg-white rounded-md hover:-translate-y-1"
+                        style={{
+                            transition: "all 0.3s"
+                        }}
+                        onClick={toggleWidgetMenu}
+                    />
                 </div>
             </div>
         </div >
