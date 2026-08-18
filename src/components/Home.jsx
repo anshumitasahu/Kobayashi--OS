@@ -5,7 +5,7 @@ import Window from "./Window";
 import { AppsMenu } from "../lib/apps";
 import { useAppStore } from '../store.jsx';
 import MenuApps from "./home/AppLogic/MenuApp.jsx";
-import { WidgetsStore } from "../lib/WidgetsStore.jsx";
+import { WidgetsStore } from "../lib/Widgets/WidgetsStore.jsx"
 
 export default function Home() {
     const desktopRef = useRef();
@@ -19,7 +19,9 @@ export default function Home() {
     const openedWidgets = useAppStore((state) => state.openedWidgets);
     const isWidgetsMenuOpen = useAppStore((state) => state.isWidgetsMenuOpen);
     const toggleWidget = useAppStore((state) => state.toggleWidget);
+    const IconStyle = useAppStore((state) => state.IconStyle)
 
+    const Widgets = WidgetsStore(IconStyle)
 
     return (
         <div
@@ -46,7 +48,7 @@ export default function Home() {
                         }
         `}
                 >
-                    {WidgetsStore.map((widget) => {
+                    {Widgets.map((widget) => {
                         const Icon = widget.icon;
                         const Widget = widget.component;
 
@@ -57,7 +59,7 @@ export default function Home() {
                                 className="flex flex-col gap-5 items-center cursor-pointer px-2 mb-6 w-70"
                             >
                                 <div className="flex gap-4 items-center">
-                                    <Icon />
+                                    <img src={Icon} alt={widget.name} className="w-8"/>
                                     <p>{widget.name}</p>
                                 </div>
 

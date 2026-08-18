@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { AppsMenu } from "../../lib/apps";
 import { useAppStore } from "../../store";
-import { div, style } from "motion/react-client";
 
 export default function AppsBar({ openApp }) {
 
