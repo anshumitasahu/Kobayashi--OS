@@ -25,8 +25,8 @@ export default function Clock() {
     const secondAngle = seconds * 6;
 
     return (
-        <div className="h-full flex items-center p-2">
-            <div className="rounded-full w-40 h-40 bg-amber-100 relative ">
+        <div className="h-full flex items-center p-1">
+            <div className="rounded-full w-40 h-40 bg-[#eee7e0] relative ">
                 <div
                     className="bg-black w-1 h-10 absolute bottom-[50%] left-[50%] origin-bottom rounded-[50%] -ml-0.75"
                     style={{
@@ -46,7 +46,7 @@ export default function Clock() {
                     }}
                 />
                 <div
-                    className="bg-black w-2 h-2 absolute top-[50%] left-[50%] origin-bottom rounded-full -ml-0.75"
+                    className="bg-[#292827] w-2 h-2 absolute top-[50%] left-[50%] origin-bottom rounded-full -ml-0.75"
                     style={{
                         transform: 'translate(-50%, -50%)'
                     }}

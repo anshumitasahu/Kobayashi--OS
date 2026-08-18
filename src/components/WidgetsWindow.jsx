@@ -10,10 +10,10 @@ export default function WidgetsWindow({
     zIndex = 50,
     icon,
     windowState = "normal",
-    x = 0,
-    y = 0,
-    width = 300,
-    height = 200,
+    x,
+    y,
+    width,
+    height,
 }) {
     const windowRef = useRef(null);
 
@@ -82,7 +82,7 @@ export default function WidgetsWindow({
     return (
         <div
             ref={windowRef}
-            className="absolute bg-white/80 backdrop-blur-xl rounded-xl shadow-xl overflow-hidden"
+            className="absolute bg-white/80 backdrop-blur-xl rounded-xl overflow-hidden p-1"
             style={{
                 left: `${x}px`,
                 top: `${y}px`,
@@ -91,7 +91,6 @@ export default function WidgetsWindow({
                 zIndex,
             }}
         >
-            {/* Header */}
             <div
                 onMouseDown={handleMouseDown}
                 className="flex items-center justify-between px-3 py-2 cursor-grab active:cursor-grabbing select-none bg-white/40"
@@ -105,7 +104,7 @@ export default function WidgetsWindow({
                         />
                     )}
 
-                    <span className="font-medium">
+                    <span className="text-xs text-neutral-500">
                         {title}
                     </span>
                 </div>
@@ -114,10 +113,8 @@ export default function WidgetsWindow({
                     type="button"
                     onMouseDown={(e) => e.stopPropagation()}
                     onClick={() => closeWidget?.(id)}
-                    className="flex items-center justify-center w-6 h-6 rounded-full hover:bg-red-500 hover:text-white transition-colors"
-                >
-                    ×
-                </button>
+                    className="flex items-center justify-center w-3 h-3 rounded-full bg-red-300 hover:text-white transition-colors"
+                />
             </div>
 
             <div className="flex-1 overflow-hidden">

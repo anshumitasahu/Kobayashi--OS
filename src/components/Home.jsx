@@ -39,14 +39,10 @@ export default function Home() {
             <div>
                 <div
                     className={`
-            absolute top-10 right-0 z-50
-            bg-white/20 p-2 text-sm/6 text-neutral-600
-            rounded-b-md shadow-lg
-            transition-all duration-500 ease-in-out
-            origin-top-right
+            absolute top-20 right-0 z-50 bg-white/40 p-2 text-sm/6 text-neutral-600 rounded-lg shadow-lg transition-all duration-500 ease-in-out origin-top-right backdrop-blur-sm
             ${isWidgetsMenuOpen
                             ? "opacity-100 translate-y-0 scale-100 visible"
-                            : "opacity-0 -translate-y-3 scale-95 invisible pointer-events-none"
+                            : "opacity-0 translate-y-3 scale-95 invisible pointer-events-none"
                         }
         `}
                 >
