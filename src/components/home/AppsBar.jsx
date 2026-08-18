@@ -12,6 +12,8 @@ export default function AppsBar({ openApp }) {
     const openMenu = useAppStore((state) => state.openMenu);
     const closeMenu = useAppStore((state) => state.closeMenu)
     const toggleMenu = useAppStore((state) => state.toggleMenu);
+    const toggleWidgetMenu = useAppStore((state) => state.toggleWidgetMenu)
+
     const maximized = openedApps.find((app) => app.windowState === "maximized");
     const apps = AppsMenu(IconStyle);
 
@@ -120,6 +122,9 @@ export default function AppsBar({ openApp }) {
                         </div>
                     </div>
                 ))}
+                <div>
+                    <img src="./LogoDevDock.png" alt="" className="w-12 rounded-3xl" onClick={toggleWidgetMenu} />
+                </div>
             </div>
         </div >
     );
