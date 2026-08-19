@@ -21,7 +21,6 @@ export default function WidgetsWindow({
     const [offset, setOffset] = useState({ x: 0, y: 0 });
 
     const setWidgetPosition = useAppStore((state) => state.setWidgetPosition);
-    const bringToFrontWidget = useAppStore((state) => state.bringToFrontWidget);
     const isWidgetsMenuOpen = useAppStore((state) => state.isWidgetsMenuOpen);
 
     const handleMouseDown = (e) => {
@@ -34,7 +33,6 @@ export default function WidgetsWindow({
             y: e.clientY - y,
         });
 
-        bringToFrontWidget(id)
     };
 
     const handleMouseUp = () => {

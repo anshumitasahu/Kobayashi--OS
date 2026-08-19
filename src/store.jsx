@@ -227,21 +227,4 @@ export const useAppStore = create((set) => ({
             };
         });
     },
-    bringToFrontWidget: (id) => {
-        set(state => {
-            const newZ = state.highestZindex + 1;
-            return {
-                highestZindex: newZ,
-                openedWidgets: state.openedWidgets.map((widget) => {
-                    if (widget.id === id) {
-                        return {
-                            ...widget, zIndex: newZ
-                        }
-                    } else {
-                        return widget
-                    }
-                })
-            }
-        })
-    },
 }));
