@@ -171,9 +171,10 @@ export const useAppStore = create((set) => ({
         }))
     },
     toggleWidgetMenu: () => {
-        set((state) => ({
-            isWidgetsMenuOpen: !state.isWidgetsMenuOpen
-        }))
+        set((state) => {
+            console.log(state.isWidgetsMenuOpen)
+            return { isWidgetsMenuOpen: !state.isWidgetsMenuOpen }
+        })
     },
     openWidget: (widget) => {
         set((state) => {

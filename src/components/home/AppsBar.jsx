@@ -128,7 +128,10 @@ export default function AppsBar({ openApp }) {
                         style={{
                             transition: "all 0.3s"
                         }}
-                        onClick={toggleWidgetMenu}
+                        onClick={() => { 
+                            console.log("jhkjhkjh")
+                            toggleWidgetMenu()
+                        }}
                     />
                 </div>
             </div>
