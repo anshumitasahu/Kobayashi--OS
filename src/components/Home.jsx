@@ -12,6 +12,7 @@ export default function Home() {
     const desktopRef = useRef();
 
     const [clickComponent, setClickComponent] = useState(false);
+    const [position, setPosition] = useState({ x: 0, y: 0 });
 
     const openedApps = useAppStore((state) => state.openedApps);
     const openApp = useAppStore((state) => state.openApp);
@@ -29,7 +30,8 @@ export default function Home() {
 
     const handleRightClick = (event) => {
         event.preventDefault();
-        setClickComponent(true);
+        clickComponent ? setClickComponent(false) : setClickComponent(true);
+        setPosition({ x: event.clientX, y: event.clientY })
     };
 
     return (
@@ -47,7 +49,13 @@ export default function Home() {
             <TopBar />
 
             {clickComponent && (
-                <div className="absolute top-30 left-40 z-100 shadow-xl">
+                <div className="absolute top-30 left-40 z-100 shadow-xl"
+                    style={{
+                        transition: "all 4s",
+                        top: position.y,
+                        left: position.x
+                    }}
+                >
                     <RightClick />
                 </div>
             )}
