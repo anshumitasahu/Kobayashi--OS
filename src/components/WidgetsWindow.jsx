@@ -25,14 +25,11 @@ export default function WidgetsWindow({
 
     const handleMouseDown = (e) => {
         if (e.button !== 0) return;
-
         setIsDragging(true);
-
         setOffset({
             x: e.clientX - x,
             y: e.clientY - y,
         });
-
     };
 
     const handleMouseUp = () => {
