@@ -26,7 +26,7 @@ export default function Clock() {
 
     return (
         <div className="h-full flex items-center p-1">
-            <div className="rounded-full border-2 border-[#dacfc5] p-1">
+            <div className="rounded-full border-3 border-[#bea998] p-1.5">
                 <div className="rounded-full w-40 h-40 bg-[#eee7e0] relative ">
                     <div
                         className="bg-black w-1 h-10 absolute bottom-[50%] left-[50%] origin-bottom rounded-[50%] -ml-0.75"
