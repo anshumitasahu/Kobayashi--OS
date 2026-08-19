@@ -169,7 +169,6 @@ export const useAppStore = create((set) => ({
             };
         });
     },
-
     closeWidget: (id) => {
         set((state) => ({
             openedWidgets: state.openedWidgets.filter(
@@ -177,7 +176,6 @@ export const useAppStore = create((set) => ({
             ),
         }));
     },
-
     setWidgetPosition: (id, newX, newY) => {
         set((state) => ({
             openedWidgets: state.openedWidgets.map((widget) => widget.id === id ? { ...widget, x: newX, y: newY, } : widget
@@ -187,7 +185,6 @@ export const useAppStore = create((set) => ({
     bringToFrontWidget: (id) => {
         set(state => {
             const newZ = state.highestZindex + 1;
-
             return {
                 highestZindex: newZ,
                 openedWidgets: state.openedWidgets.map((widget) => {

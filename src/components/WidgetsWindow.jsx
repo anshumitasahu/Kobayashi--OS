@@ -22,6 +22,9 @@ export default function WidgetsWindow({
 
     const setWidgetPosition = useAppStore((state) => state.setWidgetPosition);
     const bringToFrontWidget = useAppStore((state) => state.bringToFrontWidget);
+    const isWidgetsMenuOpen = useAppStore((state) => state.isWidgetsMenuOpen);
+
+    console.log(isWidgetsMenuOpen)
 
 
     const handleMouseDown = (e) => {
@@ -65,6 +68,8 @@ export default function WidgetsWindow({
             Math.max(0, Math.min(newX, maxX)),
             Math.max(0, Math.min(newY, maxY))
         );
+
+        isWidgetsMenuOpen ? setIsDragging(true) : setIsDragging(false)
     };
 
     useEffect(() => {
