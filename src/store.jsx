@@ -5,6 +5,44 @@ import Welcome from './components/home/AppLogic/Welcome';
 import { SettingsIndex } from './lib/settingsStore/settingsIndex';
 import Calendar from './components/home/Widgets/Calendar';
 import { CalendarIcon } from '@phosphor-icons/react';
+import { WidgetsStore } from './lib/Widgets/WidgetsStore';
+
+
+
+const getSavedWidgets = () => {
+    try {
+        const saved = JSON.parse(localStorage.getItem("openedWidgets")) || [];
+
+        const definitions = WidgetsStore();
+
+        return saved
+            .map((savedWidget) => {
+                const definition = definitions.find((widget) => widget.id === savedWidget.id);
+                if (!definition) return null;
+                return {
+                    ...definition,
+                    ...savedWidget,
+                };
+            })
+            .filter(Boolean);
+    } catch {
+        return [];
+    }
+};
+
+
+const saveWidgets = (widgets) => {
+    const data = widgets.map((widget) => ({
+        id: widget.id,
+        x: widget.x,
+        y: widget.y,
+        width: widget.width,
+        height: widget.height,
+    }));
+
+    localStorage.setItem("openedWidgets", JSON.stringify(data));
+};
+
 
 export const useAppStore = create((set) => ({
     openedApps: [{
@@ -25,7 +63,7 @@ export const useAppStore = create((set) => ({
     isMenuOpen: false,
     menuZIndex: 0,
     gallerySelectedPhotoId: null,
-    openedWidgets: [],
+    openedWidgets: getSavedWidgets(),
     isWidgetsMenuOpen: false,
     setGallerySelectedPhotoId: (id) =>
         set({ gallerySelectedPhotoId: id, }),
@@ -139,48 +177,57 @@ export const useAppStore = create((set) => ({
     },
     openWidget: (widget) => {
         set((state) => {
-            const alreadyOpen = state.openedWidgets.some(
-                (opened) => opened.id === widget.id
-            );
+            const alreadyOpen = state.openedWidgets.some((opened) => opened.id === widget.id);
 
             if (alreadyOpen) {
+                const updatedWidgets = state.openedWidgets.filter((opened) => opened.id !== widget.id);
+                saveWidgets(updatedWidgets);
+
                 return {
-                    openedWidgets: state.openedWidgets.filter(
-                        (opened) => opened.id !== widget.id
-                    ),
+                    openedWidgets: updatedWidgets,
                 };
             }
 
             const position = state.openedWidgets.length * 30;
 
+            const newWidget = {
+                ...widget,
+                x: widget.x ?? 50 + position,
+                y: widget.y ?? 50 + position,
+                width: widget.width ?? 300,
+                height: widget.height ?? 200,
+                zIndex: state.highestZindex + 1,
+            };
+
+            const updatedWidgets = [...state.openedWidgets, newWidget,];
+            saveWidgets(updatedWidgets);
+
             return {
-                openedWidgets: [
-                    ...state.openedWidgets,
-                    {
-                        ...widget,
-                        x: 50 + position,
-                        y: 50 + position,
-                        width: widget.width ?? 300,
-                        height: widget.height ?? 200,
-                        zIndex: state.highestZindex + 1,
-                    },
-                ],
+                openedWidgets: updatedWidgets,
                 highestZindex: state.highestZindex + 1,
             };
         });
     },
     closeWidget: (id) => {
-        set((state) => ({
-            openedWidgets: state.openedWidgets.filter(
-                (widget) => widget.id !== id
-            ),
-        }));
+        set((state) => {
+            const updatedWidgets = state.openedWidgets.filter((widget) => widget.id !== id);
+            saveWidgets(updatedWidgets);
+
+            return {
+                openedWidgets: updatedWidgets,
+            };
+        });
     },
     setWidgetPosition: (id, newX, newY) => {
-        set((state) => ({
-            openedWidgets: state.openedWidgets.map((widget) => widget.id === id ? { ...widget, x: newX, y: newY, } : widget
-            ),
-        }));
+        set((state) => {
+            const updatedWidgets = state.openedWidgets.map((widget) => widget.id === id ? { ...widget, x: newX, y: newY, } : widget
+            );
+            saveWidgets(updatedWidgets);
+
+            return {
+                openedWidgets: updatedWidgets,
+            };
+        });
     },
     bringToFrontWidget: (id) => {
         set(state => {
