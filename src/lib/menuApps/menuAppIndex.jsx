@@ -6,6 +6,7 @@ import Browser from "../../components/home/AppLogic/Browser";
 import Notes from "../../components/home/AppLogic/Notes";
 import Camera from "../../components/home/AppLogic/Camera";
 import { MenuIconApperance } from "./MenuAppsIcons";
+import MusicPlayer from "../../components/home/AppLogic/MusicPlayer";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -70,5 +71,14 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <Camera />,
         width: 650,
         height: 480,
+    },
+    {
+       id: 8,
+        name: "Music Player",
+        description: "used to listen Music",
+        icon: MenuIconApperance[iconStyle].MusicPlayer,
+        app: <MusicPlayer />,
+        width: 200,
+        height: 400, 
     }
 ]
