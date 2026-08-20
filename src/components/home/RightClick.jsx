@@ -2,7 +2,7 @@ import { useAppStore } from "../../store";
 import { SettingsIndex } from "../../lib/settingsStore/settingsIndex";
 import { AppsMenu } from "../../lib/apps";
 
-export default function RightClick() {
+export default function RightClick({ onClose }) {
     const toggleWidgetMenu = useAppStore((state) => state.toggleWidgetMenu);
     const openSetting = useAppStore((state) => state.openSetting);
     const openApp = useAppStore((state) => state.openApp);
@@ -15,6 +15,7 @@ export default function RightClick() {
     );
 
     const openSettings = (setting) => {
+        onClose()
         openSetting(setting);
 
         const existingSetting = openedApps.find((app) => app.name === "Settings")
@@ -26,13 +27,18 @@ export default function RightClick() {
         openApp(settingsApp);
     };
 
+    const openWidgets = () => {
+        onClose();
+        toggleWidgetMenu()
+    }
+
     return (
         <div className="bg-white w-fit rounded-sm">
             <ul className="text-neutral-600 text-sm cursor-default">
 
                 <li
                     className="px-4 py-2 hover:bg-gray-100 rounded-sm"
-                    onClick={toggleWidgetMenu}
+                    onClick={openWidgets}
                 >
                     Change Widgets
                 </li>

@@ -63,7 +63,7 @@ export default function Home() {
             <div>
                 <div
                     className={`
-            absolute top-8 right-0 z-50 bg-white/40 p-2 text-sm/6 text-neutral-600 rounded-lg shadow-lg transition-all duration-2000 ease-in-out origin-top-right backdrop-blur-sm h-full overflow-scroll
+            absolute top-8 right-0 z-50 bg-white/40 p-2 text-sm/6 text-neutral-600 rounded-lg shadow-lg transition-all duration-1000 ease-in-out origin-top-right backdrop-blur-sm h-full overflow-scroll
             ${isWidgetsMenuOpen
                             ? "opacity-100 translate-x-0 visible"
                             : "opacity-0 translate-x-100 invisible pointer-events-none"

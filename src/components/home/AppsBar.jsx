@@ -52,7 +52,7 @@ export default function AppsBar({ openApp }) {
                         }}
                     />
                 </div>
-                 <div>
+                <div className="cursor-pointer">
                     <img
                         src="./widgets-1.jpg"
                         className="w-12 bg-white rounded-xl hover:-translate-y-1"
