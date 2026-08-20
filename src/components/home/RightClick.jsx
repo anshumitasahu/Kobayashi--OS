@@ -7,13 +7,22 @@ export default function RightClick() {
     const openSetting = useAppStore((state) => state.openSetting);
     const openApp = useAppStore((state) => state.openApp);
     const IconStyle = useAppStore((state) => state.IconStyle);
+    const openedApps = useAppStore((state) => state.openedApps)
+    const bringToFront = useAppStore((state) => state.bringToFront)
 
     const settingsApp = AppsMenu(IconStyle).find(
         (app) => app.name === "Settings"
     );
-    
+
     const openSettings = (setting) => {
         openSetting(setting);
+
+        const existingSetting = openedApps.find((app) => app.name === "Settings")
+
+        if (existingSetting) {
+            bringToFront(existingSetting.id);
+            return;
+        }
         openApp(settingsApp);
     };
 
