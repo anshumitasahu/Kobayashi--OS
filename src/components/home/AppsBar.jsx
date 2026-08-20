@@ -54,7 +54,7 @@ export default function AppsBar({ openApp }) {
                 </div>
                 <div className="cursor-pointer">
                     <img
-                        src="./widgets-1.jpg"
+                        src="./widgets.png"
                         className="w-12 bg-white rounded-xl hover:-translate-y-1"
                         style={{
                             transition: "all 0.3s"
