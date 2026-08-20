@@ -52,6 +52,18 @@ export default function AppsBar({ openApp }) {
                         }}
                     />
                 </div>
+                 <div>
+                    <img
+                        src="./widgets-1.jpg"
+                        className="w-12 bg-white rounded-xl hover:-translate-y-1"
+                        style={{
+                            transition: "all 0.3s"
+                        }}
+                        onClick={() => {
+                            toggleWidgetMenu()
+                        }}
+                    />
+                </div>
                 {
                     apps.map((app) => {
                         const minimized = openedApps.find((property) => property.name === app.name && property.windowState === "minimized")
@@ -121,19 +133,6 @@ export default function AppsBar({ openApp }) {
                         </div>
                     </div>
                 ))}
-                <div>
-                    <img
-                        src="./widgets.png"
-                        className="w-12 bg-white rounded-md hover:-translate-y-1"
-                        style={{
-                            transition: "all 0.3s"
-                        }}
-                        onClick={() => { 
-                            console.log("jhkjhkjh")
-                            toggleWidgetMenu()
-                        }}
-                    />
-                </div>
             </div>
         </div >
     );
