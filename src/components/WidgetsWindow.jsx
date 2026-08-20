@@ -79,7 +79,7 @@ export default function WidgetsWindow({
     return (
         <div
             ref={windowRef}
-            className="absolute bg-white/80 backdrop-blur-xl rounded-xl p-1 overflow-hidden"
+            className="absolute bg-white/10 backdrop-blur-xl rounded-xl p-1 overflow-hidden"
             style={{
                 left: `${x}px`,
                 top: `${y}px`,
@@ -91,7 +91,7 @@ export default function WidgetsWindow({
         >
             <div
                 onMouseDown={handleMouseDown}
-                className="flex items-center justify-between px-3 py-2 cursor-grab active:cursor-grabbing select-none bg-white/40"
+                className="flex items-center justify-between px-3 py-2 cursor-grab active:cursor-grabbing select-none"
                 style={{
                     display: isWidgetsMenuOpen ? "flex" : "none"
                 }}
