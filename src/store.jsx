@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { v4 as uuidv4 } from 'uuid';
+import Display from './components/home/AppLogic/Settings/Display';
 import Wallpaper from './components/home/AppLogic/Settings/Wallpaper';
 import Welcome from './components/home/AppLogic/Welcome';
 import { SettingsIndex } from './lib/settingsStore/settingsIndex';

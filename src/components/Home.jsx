@@ -56,7 +56,7 @@ export default function Home() {
                         left: position.x
                     }}
                 >
-                    <RightClick />
+                    <RightClick onClose={() => setClickComponent(false)} />
                 </div>
             )}
 
