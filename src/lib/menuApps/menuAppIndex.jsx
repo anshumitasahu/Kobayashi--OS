@@ -8,6 +8,7 @@ import Camera from "../../components/home/AppLogic/Camera";
 import { MenuIconApperance } from "./MenuAppsIcons";
 import MusicPlayer from "../../components/home/AppLogic/MusicPlayer";
 import YouTube from "../../components/home/AppLogic/YouTube";
+import Games from "../../components/home/AppLogic/Games";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -90,5 +91,14 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <YouTube />,
         width: 550,
         height: 550,
+    },
+    {
+        id: 10,
+        name: "Games",
+        description: "used to play games",
+        icon: MenuIconApperance[iconStyle].Games,
+        app: <Games />,
+        width: 550,
+        height: 700,
     },
 ]

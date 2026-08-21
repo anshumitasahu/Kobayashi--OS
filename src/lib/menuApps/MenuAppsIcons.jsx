@@ -9,6 +9,7 @@ export const MenuIconApperance = {
         Camera: "./colloid/camera.svg",
         MusicPlayer: "./colloid/music.svg",
         YouTube: "./colloid/youtube.svg",
+        Games: "./colloid/games.svg",
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
@@ -20,6 +21,7 @@ export const MenuIconApperance = {
         Camera: "./Deepin/camera.svg",
         MusicPlayer: "./Deepin/music.svg",
         YouTube: "./Deepin/youtube.svg",
+        Games: "./Deepin/games.svg",
     },
     Fluent: {
         Calculator: "./Fluent/calc.svg",
@@ -31,6 +33,7 @@ export const MenuIconApperance = {
         Camera: "./Fluent/camera.svg",
         MusicPlayer: "./Fluent/music.svg",
         YouTube: "./Fluent/youtube.svg",
+        Games: "./Fluent/games.svg",
     },
     MacTahoe: {
         Calculator: "./MacTahoe/calc.svg",
@@ -42,6 +45,7 @@ export const MenuIconApperance = {
         Camera: "./MacTahoe/camera.svg",
         MusicPlayer: "./MacTahoe/music.svg",
         YouTube: "./MacTahoe/youtube.svg",
+        Games: "./MacTahoe/games.svg",
     },
     WhiteSur: {
         Calculator: "./WhiteSur/calc.svg",
@@ -53,5 +57,6 @@ export const MenuIconApperance = {
         Camera: "./WhiteSur/camera.svg",
         MusicPlayer: "./WhiteSur/music.svg",
         YouTube: "./WhiteSur/youtube.svg",
+        Games: "./WhiteSur/games.svg",
     }
 }
