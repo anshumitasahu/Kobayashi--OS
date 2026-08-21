@@ -11,6 +11,7 @@ export const MenuIconApperance = {
         YouTube: "./colloid/youtube.svg",
         Games: "./colloid/games.svg",
         FileManager: "./colloid/file-manager.svg",
+        Shorts: "./colloid/DoomScroll.svg",
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
@@ -24,6 +25,7 @@ export const MenuIconApperance = {
         YouTube: "./Deepin/youtube.svg",
         Games: "./Deepin/games.svg",
         FileManager: "./Deepin/file-manager.svg",
+        Shorts: "./Deepin/DoomScroll.svg",
     },
     Fluent: {
         Calculator: "./Fluent/calc.svg",
@@ -37,6 +39,7 @@ export const MenuIconApperance = {
         YouTube: "./Fluent/youtube.svg",
         Games: "./Fluent/games.svg",
         FileManager: "./Fluent/file-manager.svg",
+        Shorts: "./Fluent/DoomScroll.svg",
     },
     MacTahoe: {
         Calculator: "./MacTahoe/calc.svg",
@@ -50,6 +53,7 @@ export const MenuIconApperance = {
         YouTube: "./MacTahoe/youtube.svg",
         Games: "./MacTahoe/games.svg",
         FileManager: "./MacTahoe/file-manager.svg",
+        Shorts: "./MacTahoe/DoomScroll.svg",
     },
     WhiteSur: {
         Calculator: "./WhiteSur/calc.svg",
@@ -63,5 +67,6 @@ export const MenuIconApperance = {
         YouTube: "./WhiteSur/youtube.svg",
         Games: "./WhiteSur/games.svg",
         FileManager: "./WhiteSur/file-manager.svg",
+        Shorts: "./WhiteSur/DoomScroll.svg",
     }
 }

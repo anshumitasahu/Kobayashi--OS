@@ -10,6 +10,7 @@ import MusicPlayer from "../../components/home/AppLogic/MusicPlayer";
 import YouTube from "../../components/home/AppLogic/YouTube";
 import Games from "../../components/home/AppLogic/Games";
 import FileManager from "../../components/home/AppLogic/FileManager";
+import Shorts from "../../components/home/AppLogic/Shorts";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -109,6 +110,15 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         icon: MenuIconApperance[iconStyle].FileManager,
         app: <FileManager />,
         width: 550,
+        height: 500,
+    },
+    {
+        id: 12,
+        name: "Shorts",
+        description: "used to doomscroll",
+        icon: MenuIconApperance[iconStyle].Shorts,
+        app: <Shorts />,
+        width: 350,
         height: 500,
     },
 ]
