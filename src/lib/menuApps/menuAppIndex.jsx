@@ -9,6 +9,7 @@ import { MenuIconApperance } from "./MenuAppsIcons";
 import MusicPlayer from "../../components/home/AppLogic/MusicPlayer";
 import YouTube from "../../components/home/AppLogic/YouTube";
 import Games from "../../components/home/AppLogic/Games";
+import FileManager from "../../components/home/AppLogic/FileManager";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -100,5 +101,14 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <Games />,
         width: 550,
         height: 700,
+    },
+    {
+        id: 11,
+        name: "File Manager",
+        description: "used to manage files in the system",
+        icon: MenuIconApperance[iconStyle].FileManager,
+        app: <FileManager />,
+        width: 550,
+        height: 500,
     },
 ]
