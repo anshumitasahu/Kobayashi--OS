@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useAppStore } from "../../../store";
 import { savePhoto, getPhotos } from "../../../DB/IndexedDB";
-import { AppsInMenu } from "../../../lib/menuApps/menuAppIndex"
+import { AppsInMenu } from "../../../lib/menuApps/menuAppIndex";
 
-export default function Camera() {
+export default function Camera({ autoCapture = false }) {
     const videoRef = useRef(null);
     const dbRef = useRef(null);
     const canvasRef = useRef(null);
@@ -43,24 +43,27 @@ export default function Camera() {
         };
     }, []);
 
+    // Load last photo
     useEffect(() => {
         if (!dbReady) return;
 
         const loadLastPhoto = async () => {
             try {
                 const photos = await getPhotos();
+
                 if (photos.length === 0) {
                     setLastPhoto(null);
                     setLastPhotoId(null);
                     return;
                 }
+
                 const last = photos[photos.length - 1];
+
                 if (last?.image) {
                     const url = URL.createObjectURL(last.image);
 
                     setLastPhoto(url);
                     setLastPhotoId(last.id);
-                    return () => URL.revokeObjectURL(url);
                 }
             } catch (error) {
                 console.error("Failed to load last photo:", error);
@@ -70,12 +73,17 @@ export default function Camera() {
         loadLastPhoto();
     }, [dbReady]);
 
+    // Start camera
     useEffect(() => {
         let streaming = null;
+
         async function startCamera() {
             try {
                 streaming = await navigator.mediaDevices.getUserMedia({
-                    video: { width: 1280, height: 720, },
+                    video: {
+                        width: 1280,
+                        height: 720,
+                    },
                 });
 
                 if (videoRef.current) {
@@ -96,6 +104,7 @@ export default function Camera() {
         };
     }, []);
 
+    // Capture photo
     const capturePhoto = () => {
         if (!videoRef.current || !canvasRef.current) return;
 
@@ -126,7 +135,6 @@ export default function Camera() {
             }
 
             try {
-              
                 const photoId = await savePhoto(blob);
 
                 const imageUrl = URL.createObjectURL(blob);
@@ -142,17 +150,37 @@ export default function Camera() {
         }, "image/png");
     };
 
+    // Automatically take picture when requested
+    useEffect(() => {
+        if (!autoCapture) return;
+        if (!stream) return;
+        if (!dbReady) return;
+
+        const timer = setTimeout(() => {
+            capturePhoto();
+        }, 500);
+
+        return () => clearTimeout(timer);
+    }, [autoCapture, stream, dbReady]);
+
+    // Open last photo
     const openLastPhoto = () => {
         if (!lastPhotoId) {
             console.log("No last photo ID");
             return;
         }
+
         const apps = AppsInMenu();
-        const galleryApp = apps.find((app) => app.name === "Gallery");
+
+        const galleryApp = apps.find(
+            (app) => app.name === "Gallery"
+        );
+
         if (!galleryApp) {
             console.error("Gallery app not found");
             return;
         }
+
         setGallerySelectedPhotoId(lastPhotoId);
         openApp(galleryApp);
     };

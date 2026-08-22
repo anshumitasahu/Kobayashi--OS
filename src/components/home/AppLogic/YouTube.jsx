@@ -34,6 +34,7 @@ export default function YouTube() {
                         <p>Kobayashi OS Demo of v-1</p>
                     </div>
                 </div>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/-u3vE84Wo_U?si=Ze3gPeY7zQe8pH4h" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
                 <div className="flex gap-3">
                     <video src="./kobayashi-os-demo-1.mp4" controls className="w-70" />

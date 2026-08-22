@@ -5,10 +5,20 @@ import Gallery from "../../components/home/AppLogic/Gallery";
 import Browser from "../../components/home/AppLogic/Browser";
 import { IconsApperance } from "../apps/icons";
 import Notes from "../../components/home/AppLogic/Notes";
+import ChatBot from "../../components/home/AppLogic/ChatBot";
 
 export const AppsMenu = (iconStyle = "Colloid") => [
     {
         id: 1,
+        name: "ChatBot",
+        description: "use as Ai",
+        icon: "./chatBot.png",
+        app: <ChatBot />,
+        width: 400,
+        height: 300,
+    },
+    {
+        id: 2,
         name: "Calculator",
         description: "use to calucate stuffs",
         icon: IconsApperance[iconStyle].Calculator,
@@ -17,7 +27,7 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         height: 500
     },
     {
-        id: 2,
+        id: 3,
         name: "Settings",
         description: "use to customize the desktop",
         icon: IconsApperance[iconStyle].Settings,
@@ -26,7 +36,7 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         height: 400,
     },
     {
-        id: 3,
+        id: 4,
         name: "Browser",
         description: "use as a search engine",
         icon: IconsApperance[iconStyle].Browser,
@@ -35,7 +45,7 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         height: 500,
     },
     {
-        id: 4,
+        id: 5,
         name: "Notes",
         description: "use to store thoughts and random text",
         icon: IconsApperance[iconStyle].Notes,

@@ -11,7 +11,7 @@ export const MenuIconApperance = {
         YouTube: "./colloid/youtube.svg",
         Games: "./colloid/games.svg",
         FileManager: "./colloid/file-manager.svg",
-        Shorts: "./colloid/DoomScroll.svg",
+        Shorts: "./colloid/DoomsScroll.svg",
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
