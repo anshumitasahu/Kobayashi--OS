@@ -82,8 +82,8 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         description: "used to listen Music",
         icon: MenuIconApperance[iconStyle].MusicPlayer,
         app: <MusicPlayer />,
-        width: 250,
-        height: 450,
+        width: 300,
+        height: 481,
     },
     {
         id: 9,

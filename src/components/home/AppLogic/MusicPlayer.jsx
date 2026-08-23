@@ -89,64 +89,75 @@ export default function MusicPlayer({ autoPlay = false }) {
     };
 
     return (
-        <div className="bg-pink-50/60 border border-pink-100 shadow-sm w-full h-full p-4 rounded-2xl">
-            <div className="flex flex-col items-center">
-                <img
-                    src={currentSong.ThumbNail}
-                    className="w-full h-52 object-cover rounded-xl shadow-xs"
-                    alt={currentSong.name}
+        <div
+            className="relative  shadow-sm w-full h-full p-4"
+            style={{
+                backgroundImage: `url(${currentSong.ThumbNail})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                borderRadius: "16px"
+            }}
+        >
+            <div class="absolute inset-0 bg-black/30 backdrop-blur-md flex flex-col items-center justify-center border border-pink-100 rounded-2xl">
+                <div className="flex flex-col items-center">
+                    <img
+                        src={currentSong.ThumbNail}
+                        className="w-55 h-52 object-cover rounded-xl shadow-xs"
+                        alt={currentSong.name}
+                    />
+
+                    <h2 className="mt-3 font-semibold text-white text-lg">{currentSong.name}</h2>
+
+                    <p className="text-xs text-rose-300 font-medium">{currentSong.artist}</p>
+                    <p className="text-xs text-neutral-300 font-medium text-center">{currentSong.description}</p>
+                </div>
+
+                <audio
+                    ref={audioRef}
+                    src={currentSong.Music}
+                    onTimeUpdate={handleTimeUpdate}
+                    onEnded={handleEnded}
                 />
 
-                <h2 className="mt-3 font-semibold text-rose-950 text-lg">{currentSong.name}</h2>
+                <div className="mt-5 flex flex-col gap-3">
+                    <input
+                        type="range"
+                        min="0"
+                        max="100"
+                        value={progress}
+                        onChange={handleSeek}
+                        className="accent-pink-300 h-1.5 bg-pink-100 rounded-lg cursor-pointer"
+                    />
 
-                <p className="text-xs text-rose-400 font-medium">{currentSong.description}</p>
-            </div>
+                    {/* Aesthetic Pastel Button Controls */}
+                    <div className="flex justify-center items-center gap-4 mt-2">
+                        <button
+                            onClick={handlePrevious}
+                            className="p-2.5 rounded-full bg-purple-100 text-primary hover:bg-purple-200 active:scale-95 transition-all duration-200 shadow-xs"
+                        >
+                            <SkipBackIcon size={24} weight="fill" />
+                        </button>
 
-            <audio
-                ref={audioRef}
-                src={currentSong.Music}
-                onTimeUpdate={handleTimeUpdate}
-                onEnded={handleEnded}
-            />
+                        <button
+                            onClick={handlePlay}
+                            className="p-3.5 rounded-full bg-rose-300 text-white hover:bg-rose-400 active:scale-95 transition-all duration-200 shadow-sm"
+                        >
+                            {isPlaying ? (
+                                <PauseIcon size={30} weight="fill" />
+                            ) : (
+                                <PlayIcon size={30} weight="fill" />
+                            )}
+                        </button>
 
-            <div className="mt-5 flex flex-col gap-3">
-                <input
-                    type="range"
-                    min="0"
-                    max="100"
-                    value={progress}
-                    onChange={handleSeek}
-                    className="accent-pink-300 h-1.5 bg-pink-100 rounded-lg cursor-pointer"
-                />
-
-                {/* Aesthetic Pastel Button Controls */}
-                <div className="flex justify-center items-center gap-4 mt-2">
-                    <button
-                        onClick={handlePrevious}
-                        className="p-2.5 rounded-full bg-purple-200 text-purple-600 hover:bg-purple-300 active:scale-95 transition-all duration-200 shadow-xs"
-                    >
-                        <SkipBackIcon size={24} weight="fill" />
-                    </button>
-
-                    <button
-                        onClick={handlePlay}
-                        className="p-3.5 rounded-full bg-rose-300 text-white hover:bg-rose-400 active:scale-95 transition-all duration-200 shadow-sm"
-                    >
-                        {isPlaying ? (
-                            <PauseIcon size={30} weight="fill" />
-                        ) : (
-                            <PlayIcon size={30} weight="fill" />
-                        )}
-                    </button>
-
-                    <button
-                        onClick={handleNext}
-                        className="p-2.5 rounded-full bg-purple-200 text-purple-600 hover:bg-purple-300 active:scale-95 transition-all duration-200 shadow-xs"
-                    >
-                        <SkipForwardIcon size={24} weight="fill" />
-                    </button>
+                        <button
+                            onClick={handleNext}
+                            className="p-2.5 rounded-full bg-purple-100 text-primary hover:bg-purple-200 active:scale-95 transition-all duration-200 shadow-xs"
+                        >
+                            <SkipForwardIcon size={24} weight="fill" />
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
