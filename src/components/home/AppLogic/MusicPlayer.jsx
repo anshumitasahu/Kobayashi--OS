@@ -90,7 +90,7 @@ export default function MusicPlayer({ autoPlay = false }) {
 
     return (
         <div
-            className="relative  shadow-sm w-full h-full p-4"
+            className="relative shadow-sm w-full h-full p-4"
             style={{
                 backgroundImage: `url(${currentSong.ThumbNail})`,
                 backgroundSize: "cover",
@@ -98,7 +98,7 @@ export default function MusicPlayer({ autoPlay = false }) {
                 borderRadius: "16px"
             }}
         >
-            <div class="absolute inset-0 bg-black/30 backdrop-blur-md flex flex-col items-center justify-center border border-pink-100 rounded-2xl">
+            <div class="absolute inset-0 bg-black/10 backdrop-blur-md flex flex-col items-center justify-center border border-pink-100 rounded-2xl">
                 <div className="flex flex-col items-center">
                     <img
                         src={currentSong.ThumbNail}
@@ -108,8 +108,7 @@ export default function MusicPlayer({ autoPlay = false }) {
 
                     <h2 className="mt-3 font-semibold text-white text-lg">{currentSong.name}</h2>
 
-                    <p className="text-xs text-rose-300 font-medium">{currentSong.artist}</p>
-                    <p className="text-xs text-neutral-300 font-medium text-center">{currentSong.description}</p>
+                    <p className="text-xs text-white/80 bg-neutral-600/30 py-1 px-2 rounded-4xl font-medium">{currentSong.artist}</p>
                 </div>
 
                 <audio
@@ -129,11 +128,10 @@ export default function MusicPlayer({ autoPlay = false }) {
                         className="accent-pink-300 h-1.5 bg-pink-100 rounded-lg cursor-pointer"
                     />
 
-                    {/* Aesthetic Pastel Button Controls */}
                     <div className="flex justify-center items-center gap-4 mt-2">
                         <button
                             onClick={handlePrevious}
-                            className="p-2.5 rounded-full bg-purple-100 text-primary hover:bg-purple-200 active:scale-95 transition-all duration-200 shadow-xs"
+                            className="p-2.5 rounded-full text-white hover:bg-black/10 active:scale-95 transition-all duration-200 shadow-xs"
                         >
                             <SkipBackIcon size={24} weight="fill" />
                         </button>
@@ -151,11 +149,12 @@ export default function MusicPlayer({ autoPlay = false }) {
 
                         <button
                             onClick={handleNext}
-                            className="p-2.5 rounded-full bg-purple-100 text-primary hover:bg-purple-200 active:scale-95 transition-all duration-200 shadow-xs"
+                            className="p-2.5 rounded-full text-white hover:bg-black/10 active:scale-95 transition-all duration-200 shadow-xs"
                         >
                             <SkipForwardIcon size={24} weight="fill" />
                         </button>
                     </div>
+                    <p className="text-xs bg-black/20 py-1 px-2 rounded-sm text-neutral-200 font-medium text-center">{currentSong.description}</p>
                 </div>
             </div>
         </div >

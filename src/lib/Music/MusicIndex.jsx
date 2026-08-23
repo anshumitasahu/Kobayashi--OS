@@ -19,7 +19,7 @@ export const MusicIndex = [
         id: 3,
         name: "Suzume",
         artist: "RADWIMPS",
-        description: "An emotional song from Suzume.",
+        description: "An emotional song from Suzume",
         ThumbNail: "./Music/Suzume.jpg",
         Music: "./Music/Suzume.mp3"
     },
