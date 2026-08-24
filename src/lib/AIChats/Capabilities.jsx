@@ -8,7 +8,10 @@ export function openAppByName(name) {
     const openApp = useAppStore.getState().openApp;
     const apps = AppsInMenu();
 
-    const app = apps.find((item) => item.name.toLowerCase() === name.toLowerCase())
+    const app = apps.find(
+        (item) =>
+            item.name.toLowerCase() === name.toLowerCase()
+    );
 
     if (!app) {
         console.error(`App "${name}" not found`);
@@ -17,7 +20,6 @@ export function openAppByName(name) {
     openApp(app);
     return true;
 }
-
 
 export function handleSearchWeb(query) {
     const openApp = useAppStore.getState().openApp;
@@ -32,7 +34,10 @@ export function handleSearchWeb(query) {
         height: 500,
     });
 
-    return true;
+    return {
+        success: true,
+        message: `Opened browser and searched for "${query}"`
+    };
 }
 
 export function handleOpenCalculator() {
@@ -95,7 +100,11 @@ export function handleTakePicture() {
         width: 650,
         height: 480,
     });
-    return true;
+
+    return {
+        success: true,
+        message: "Picture taken"
+    };
 }
 
 export function handlePlayMusic() {
@@ -110,7 +119,10 @@ export function handlePlayMusic() {
         height: 450,
     });
 
-    return true;
+    return {
+        success: true,
+        message: "Music player opened and music started"
+    };
 }
 
 export function handleBrightness() {
@@ -118,38 +130,66 @@ export function handleBrightness() {
 }
 
 export function handleIncreaseBrightness() {
-    const { Brightness, setBrightness } = useAppStore.getState();
+    const {
+        Brightness,
+        setBrightness
+    } = useAppStore.getState();
 
     const newBrightness = Math.min(
         Brightness + 10,
         100
     );
     setBrightness(newBrightness);
-    return newBrightness;
+
+    return {
+        success: true,
+        brightness: newBrightness
+    };
 }
 
 export function handleDecreaseBrightness() {
-    const { Brightness, setBrightness } = useAppStore.getState();
+    const {
+        Brightness,
+        setBrightness
+    } = useAppStore.getState();
+
     const newBrightness = Math.max(
         Brightness - 10,
         20
     );
     setBrightness(newBrightness);
-    return newBrightness;
+
+    return {
+        success: true,
+        brightness: newBrightness
+    };
 }
 
-export function handleWallpaper(
-    wallpaper = "./bg1.jpg"
-) {
-    const setWallpaper = useAppStore.getState().setWallpaper;
+export function handleWallpaperFromUrl(url) {
+    if (!url) {
+        throw new Error("No wallpaper URL was provided");
+    }
 
-    setWallpaper(wallpaper);
-    return wallpaper;
+    const setWallpaper =
+        useAppStore.getState().setWallpaper;
+
+    setWallpaper(url);
+
+    return {
+        success: true,
+        wallpaper: url,
+        message: "Wallpaper changed successfully"
+    };
 }
 
 export function handleWidgets() {
-    const toggleWidgetMenu = useAppStore.getState().toggleWidgetMenu;
+    const toggleWidgetMenu =
+        useAppStore.getState().toggleWidgetMenu;
 
     toggleWidgetMenu();
-    return true;
+
+    return {
+        success: true,
+        message: "Widget menu toggled"
+    };
 }
