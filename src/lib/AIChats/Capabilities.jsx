@@ -165,13 +165,33 @@ export function handleDecreaseBrightness() {
     };
 }
 
+export function handleWallpaper() {
+    const setWallpaper =
+        useAppStore.getState().setWallpaper;
+    const wallpapers = [
+        "bg2.png",
+        "bg.png",
+        "bg-6.jpg",
+        "bg-n.png",
+        "bg-1.png",
+        "bg-new.jpeg"
+    ]
+    const randomWallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)]
+
+    setWallpaper(randomWallpaper)
+    console.log("wallpaper random One: ", randomWallpaper)
+    return {
+        success: true,
+        wallpaper: randomWallpaper,
+        message: "Wallpaper changed successfully"
+    }
+}
+
 export function handleWallpaperFromUrl(url) {
     if (!url) {
         throw new Error("No wallpaper URL was provided");
     }
-
-    const setWallpaper =
-        useAppStore.getState().setWallpaper;
+    const setWallpaper = useAppStore.getState().setWallpaper;
 
     setWallpaper(url);
 

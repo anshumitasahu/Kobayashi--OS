@@ -89,7 +89,7 @@ export default function AppsBar({ openApp }) {
                                 >
                                     <img
                                         src={app.icon}
-                                        className="w-12"
+                                        className="w-12 rounded-lg"
                                     />
                                     {minimized && (
                                         <div className="w-1 h-1 bg-amber-400 rounded-full"></div>

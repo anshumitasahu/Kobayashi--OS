@@ -8,9 +8,9 @@ import Camera from "../../components/home/AppLogic/Camera";
 import { MenuIconApperance } from "./MenuAppsIcons";
 import MusicPlayer from "../../components/home/AppLogic/MusicPlayer";
 import YouTube from "../../components/home/AppLogic/YouTube";
-import Games from "../../components/home/AppLogic/Games";
 import FileManager from "../../components/home/AppLogic/FileManager";
 import Shorts from "../../components/home/AppLogic/Shorts";
+import Chess from "../../components/home/AppLogic/Chess";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -96,10 +96,10 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
     },
     {
         id: 10,
-        name: "Games",
-        description: "used to play games",
-        icon: MenuIconApperance[iconStyle].Games,
-        app: <Games />,
+        name: "Chess",
+        description: "used to play Chess",
+        icon: "./chess.png",
+        app: <Chess />,
         width: 550,
         height: 700,
     },

@@ -115,7 +115,7 @@ export const ChatsCommand = [
     {
         command: "play music",
         description:
-            "Open the music player and start playing music.",
+            "Open the music player and start playing music any random music.",
         function: "handlePlayMusic",
         params: [],
     },
@@ -153,11 +153,19 @@ export const ChatsCommand = [
     },
 
     {
-        command: "set wallpaper",
+        command: "find a wallpaper",
         description:
             "Set the desktop wallpaper using an image URL.",
         function: "handleWallpaperFromUrl",
         params: ["url"],
     },
+
+    {
+        command: "set wallpaper",
+        description:
+            "Set a random wallpaer of the available ones to the desktop.",
+        function: "handleWallpaper",
+        params: [],
+    }
 
 ];

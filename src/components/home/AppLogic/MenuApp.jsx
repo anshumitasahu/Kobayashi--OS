@@ -49,7 +49,7 @@ export default function MenuApps({ openApp }) {
                                     }}
                                 >
                                     <div className="flex flex-col items-center">
-                                        <img src={app.icon} className="w-16" />
+                                        <img src={app.icon} className="w-15 rounded-xl" />
                                         {minimized && (
                                             <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
                                         )}
