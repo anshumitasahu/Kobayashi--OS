@@ -11,7 +11,7 @@ import YouTube from "../../components/home/AppLogic/YouTube";
 import FileManager from "../../components/home/AppLogic/FileManager";
 import Shorts from "../../components/home/AppLogic/Shorts";
 import Chess from "../../components/home/AppLogic/Chess";
-import Paint from "../../components/home/AppLogic/Paint";
+import Kanvas from "../../components/home/AppLogic/Kanvas";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -127,8 +127,8 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         name: "Paint",
         description: "used to paint",
         icon: MenuIconApperance[iconStyle].Paint,
-        app: <Paint />,
-        width: 250,
-        height: 400,
+        app: <Kanvas />,
+        width: 576,
+        height: 350,
     },
 ]
