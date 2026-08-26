@@ -12,6 +12,7 @@ export const MenuIconApperance = {
         Games: "./colloid/games.svg",
         FileManager: "./colloid/file-manager.svg",
         Shorts: "./colloid/DoomsScroll.svg",
+        Paint: "./colloid/paint.svg",
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
@@ -25,7 +26,8 @@ export const MenuIconApperance = {
         YouTube: "./Deepin/youtube.svg",
         Games: "./Deepin/games.svg",
         FileManager: "./Deepin/file-manager.svg",
-        Shorts: "./Deepin/DoomScroll.svg",
+        Shorts: "./Deepin/DoomsScroll.svg",
+        Paint: "./Deepin/paint.svg",
     },
     Fluent: {
         Calculator: "./Fluent/calc.svg",
@@ -40,6 +42,7 @@ export const MenuIconApperance = {
         Games: "./Fluent/games.svg",
         FileManager: "./Fluent/file-manager.svg",
         Shorts: "./Fluent/DoomScroll.svg",
+        Paint: "./Fluent/paint.svg",
     },
     MacTahoe: {
         Calculator: "./MacTahoe/calc.svg",
@@ -54,6 +57,7 @@ export const MenuIconApperance = {
         Games: "./MacTahoe/games.svg",
         FileManager: "./MacTahoe/file-manager.svg",
         Shorts: "./MacTahoe/DoomScroll.svg",
+        Paint: "./MacTahoe/paint.svg"
     },
     WhiteSur: {
         Calculator: "./WhiteSur/calc.svg",
@@ -68,5 +72,6 @@ export const MenuIconApperance = {
         Games: "./WhiteSur/games.svg",
         FileManager: "./WhiteSur/file-manager.svg",
         Shorts: "./WhiteSur/DoomScroll.svg",
+        Paint: "./WhiteSur/paint.svg"
     }
 }
