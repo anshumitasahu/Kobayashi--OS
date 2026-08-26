@@ -34,9 +34,14 @@ export default function Home() {
         setPosition({ x: event.clientX, y: event.clientY })
     };
 
+    const handleLeftClick = () => {
+        setClickComponent(false);
+    }
+
     return (
         <div
             onContextMenu={handleRightClick}
+            onClick={handleLeftClick}
             className="flex flex-col w-screen h-screen text-black"
             style={{
                 filter: `brightness(${Brightness}%)`
