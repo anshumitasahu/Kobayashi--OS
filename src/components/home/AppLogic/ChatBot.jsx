@@ -54,6 +54,17 @@ const FunctionRegistry = {
     handleWidgets,
 };
 
+function speech(text) {
+    const msg = new SpeechSynthesisUtterance(text);
+
+    // 🔻 Lower pitch & slow a bit
+    msg.pitch = 1.2;   // (0 to 2) → lower = deeper voice
+    msg.rate = 0.9;    // slightly slower
+
+    window.speechSynthesis.speak(msg);
+    console.log("speaking", text);
+}
+
 
 async function processCommand(commandData) {
     const { command, params = {} } = commandData;
@@ -74,7 +85,7 @@ async function processCommand(commandData) {
         );
     }
 
-    const args = commandDefinition.params.map(
+    const args = (commandDefinition.params || []).map(
         (paramName) => params[paramName]
     );
 
@@ -217,16 +228,30 @@ Your job is to understand the user's request and decide whether:
 
 ${JSON.stringify(ChatsCommand, null, 2)}
 
-# COMMAND RULES
+# OS COMMAND RESPONSE
 
-If the user wants an OS action and one of the available commands matches their intention:
-
-Return ONLY JSON:
+If the user wants an OS action and one of the available commands matches their intention, return:
 
 {
-    "type": "command",
-    "command": "EXACT_COMMAND_NAME",
-    "params": {}
+  "type": "command",
+  "command": "EXACT_COMMAND_NAME",
+  "params": {}
+}
+
+For multiple OS actions, return:
+
+{
+  "type": "commands",
+  "commands": [
+    {
+      "command": "EXACT_COMMAND_NAME",
+      "params": {}
+    },
+    {
+      "command": "EXACT_COMMAND_NAME",
+      "params": {}
+    }
+  ]
 }
 
 The command MUST exactly match one of the available commands.
@@ -236,6 +261,8 @@ Never invent commands.
 Never invent functions.
 
 Never invent parameters.
+
+If a command requires parameters, use only the parameters defined by that command.
 
 # NORMAL CONVERSATION
 
@@ -272,6 +299,8 @@ Do not explain your JSON.
 Do not return JavaScript.
 
 Do not claim an action was performed.
+
+If you cant do something , if something is out of your capability the just say "Would you like me to search for <query> for you ?"
 
 # CHAT HISTORY
 
@@ -343,6 +372,7 @@ ${JSON.stringify(messageHistory, null, 2)}
             if (aiResponse.type === "text") {
                 const answer = aiResponse.text || "I don't have an answer for that.";
                 setOutput(answer);
+                speech(answer);
                 setMessageHistory((prev) => [
                     ...prev,
                     {
@@ -355,6 +385,13 @@ ${JSON.stringify(messageHistory, null, 2)}
                         content: text,
                     },
                 ]);
+                return;
+            }
+            if (aiResponse.type === "commands") {
+                for (const command of aiResponse.commands) {
+                    await processCommand(command);
+                }
+                setOutput("Done and dusted!!");
                 return;
             }
             if (aiResponse.type !== "command") {
@@ -375,8 +412,12 @@ ${JSON.stringify(messageHistory, null, 2)}
                 if (result === true) {
                     setOutput(`Executed: ${aiResponse.command}`);
                 } else if (result !== undefined && result !== null) {
-                    setOutput(String(result));
-                } else {setOutput(`Executed: ${aiResponse.command}`);
+                    result.message 
+                    ? setOutput(result.message) && speech(result)
+                    : setOutput(`${result}`);
+                    
+                } else {
+                    setOutput(`Executed: ${aiResponse.command}`);
                 }
                 setMessageHistory((prev) => [
                     ...prev,
@@ -395,7 +436,6 @@ ${JSON.stringify(messageHistory, null, 2)}
             }
         } catch (error) {
             console.error("AI Error:", error);
-            setOutput(error?.message || "Something went wrong while contacting the AI.");
             handleSearchWeb(userInput);
         } finally {
             setLoading(false);
