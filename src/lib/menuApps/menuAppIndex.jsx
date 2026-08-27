@@ -12,6 +12,7 @@ import FileManager from "../../components/home/AppLogic/FileManager";
 import Shorts from "../../components/home/AppLogic/Shorts";
 import Chess from "../../components/home/AppLogic/Chess";
 import Kanvas from "../../components/home/AppLogic/Kanvas";
+import Terminal from "../../components/home/AppLogic/Terminal";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -131,4 +132,13 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         width: 576,
         height: 500,
     },
+    {
+        id: 14,
+        name: "Terminal",
+        description: "used to write code",
+        icon: MenuIconApperance[iconStyle].Terminal,
+        app: <Terminal />,
+        width: 450,
+        height: 400,
+    }
 ]

@@ -1,0 +1,23 @@
+import { Editor } from "@monaco-editor/react";
+
+export default function Terminal() {
+    return (
+        <div className="bg-white w-full h-full rounded-lg">
+            <Editor
+                theme="vs-light"
+                height="100%"
+                defaultLanguaue="javascript"
+                defaultValue="//your code here.."
+                options={{
+                    automaticLayout: true,
+                    minimap: {
+                        enabled: false,
+                    },
+                    fontSize: 14,
+                    tabSize: 2,
+                    wordWrap: "on",
+                }}
+            />
+        </div>
+    )
+}
