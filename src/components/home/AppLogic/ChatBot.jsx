@@ -70,8 +70,9 @@ async function processCommand(commandData) {
     const { command, params = {} } = commandData;
 
     const commandDefinition = ChatsCommand.find(
-        (item) => item.command === command
+        (item) => item.command === command || item.function === command
     );
+
 
     if (!commandDefinition) {
         throw new Error(`Unknown command: ${command}`);
@@ -412,10 +413,10 @@ ${JSON.stringify(messageHistory, null, 2)}
                 if (result === true) {
                     setOutput(`Executed: ${aiResponse.command}`);
                 } else if (result !== undefined && result !== null) {
-                    result.message 
-                    ? setOutput(result.message) && speech(result)
-                    : setOutput(`${result}`);
-                    
+                    result.message
+                        ? setOutput(result.message) && speech(result)
+                        : setOutput(`${result}`);
+
                 } else {
                     setOutput(`Executed: ${aiResponse.command}`);
                 }
