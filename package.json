@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^44.3.0",
+    "@ckeditor/ckeditor5-react": "^11.2.0",
     "@fortune-sheet/react": "^1.0.4",
     "@google/genai": "^2.18.0",
     "@monaco-editor/react": "^4.7.0",

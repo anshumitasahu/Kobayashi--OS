@@ -15,6 +15,7 @@ import Kanvas from "../../components/home/AppLogic/Kanvas";
 import Terminal from "../../components/home/AppLogic/Terminal";
 import TripleTileMaster from "../../components/home/AppLogic/TripleTileMaster";
 import KobaSheets from "../../components/home/AppLogic/KobaSheets";
+import Word from "../../components/home/AppLogic/Word";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -160,5 +161,14 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <KobaSheets />,
         width: 500,
         height: 500,
-    }
+    },
+    {
+        id: 17,
+        name: "Koba Word",
+        description: "used to deal with words and docx",
+        icon: "logo.svg",
+        app: <Word />,
+        width: 400,
+        height: 500,
+    },
 ]
