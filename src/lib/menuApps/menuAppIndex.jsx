@@ -14,6 +14,7 @@ import Chess from "../../components/home/AppLogic/Chess";
 import Kanvas from "../../components/home/AppLogic/Kanvas";
 import Terminal from "../../components/home/AppLogic/Terminal";
 import TripleTileMaster from "../../components/home/AppLogic/TripleTileMaster";
+import KobaSheets from "../../components/home/AppLogic/KobaSheets";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -150,5 +151,14 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <TripleTileMaster />,
         width: 321,
         height: 566,
+    },
+    {
+        id: 16,
+        name: "KobaSheets",
+        description: "used to deal with spreadsheets",
+        icon: "kobasheet.png",
+        app: <KobaSheets />,
+        width: 500,
+        height: 500,
     }
 ]
