@@ -13,6 +13,7 @@ import Shorts from "../../components/home/AppLogic/Shorts";
 import Chess from "../../components/home/AppLogic/Chess";
 import Kanvas from "../../components/home/AppLogic/Kanvas";
 import Terminal from "../../components/home/AppLogic/Terminal";
+import TripleTileMaster from "../../components/home/AppLogic/TripleTileMaster";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -134,11 +135,20 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
     },
     {
         id: 14,
-        name: "Terminal",
+        name: "Code Editor",
         description: "used to write code",
         icon: MenuIconApperance[iconStyle].Terminal,
         app: <Terminal />,
         width: 450,
         height: 400,
+    },
+    {
+        id: 15,
+        name: "Triple Tile Master",
+        description: "used tp play game triple tile",
+        icon: "triple_tile_master.png",
+        app: <TripleTileMaster />,
+        width: 321,
+        height: 566,
     }
 ]
