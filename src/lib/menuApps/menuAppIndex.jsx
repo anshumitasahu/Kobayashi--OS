@@ -18,6 +18,7 @@ import KobaSheets from "../../components/home/AppLogic/KobaSheets";
 import Word from "../../components/home/AppLogic/Word";
 import JsonLab from "../../components/home/AppLogic/JSONLab";
 import DevScope from "../../components/home/AppLogic/DevScope";
+import DragonAnhillation from "../../components/home/AppLogic/DragonGame";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -189,6 +190,15 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         icon: "Logo-T-C.png",
         app: <DevScope />,
         width: 500,
-        height: 500
+        height: 500,
+    },
+    {
+        id: 20,
+        name: "Dragon Annihilation",
+        description: "used play game called Dragon Annihilation",
+        icon: "Lo.png",
+        app: <DragonAnhillation />,
+        width: 485,
+        height: 655,
     }
 ]
