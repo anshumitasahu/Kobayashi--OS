@@ -23,7 +23,7 @@ export default function MenuApps({ openApp }) {
                         onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
-                <div className="flex gap-5">
+                <div className="grid grid-cols-10 gap-5">
                     {
                         apps.filter((app) => {
                             return search.toLowerCase() === '' ? app : app.name.toLowerCase().includes(search);
@@ -49,7 +49,7 @@ export default function MenuApps({ openApp }) {
                                     }}
                                 >
                                     <div className="flex flex-col items-center">
-                                        <img src={app.icon} className="w-15 rounded-xl" />
+                                        <img src={app.icon} className="w-16 rounded-xl" />
                                         {minimized && (
                                             <div className="w-1 h-1 bg-amber-400 rounded-full"></div>
                                         )}

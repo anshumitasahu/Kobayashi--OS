@@ -19,6 +19,7 @@ import Word from "../../components/home/AppLogic/Word";
 import JsonLab from "../../components/home/AppLogic/JSONLab";
 import DevScope from "../../components/home/AppLogic/DevScope";
 import DragonAnhillation from "../../components/home/AppLogic/DragonGame";
+import MergeMania from "../../components/home/AppLogic/MergeGame";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -160,7 +161,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 16,
         name: "KobaSheets",
         description: "used to deal with spreadsheets",
-        icon: "kobasheet.png",
+        icon: "KobaSheets.png",
         app: <KobaSheets />,
         width: 500,
         height: 500,
@@ -169,7 +170,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 17,
         name: "Koba Word",
         description: "used to deal with words and docx",
-        icon: "logo.svg",
+        icon: "TextEditor.png",
         app: <Word />,
         width: 400,
         height: 500,
@@ -196,9 +197,18 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 20,
         name: "Dragon Annihilation",
         description: "used play game called Dragon Annihilation",
-        icon: "Lo.png",
+        icon: "DragonGame.png",
         app: <DragonAnhillation />,
         width: 485,
         height: 655,
-    }
+    },
+    {
+        id: 21,
+        name: "Merge Mania",
+        description: "used to play game called merge mania",
+        icon: "merge-mania.png",
+        app: <MergeMania />,
+        width: 460,
+        height: 600,
+    },
 ]
