@@ -19,7 +19,9 @@ import Word from "../../components/home/AppLogic/Word";
 import JsonLab from "../../components/home/AppLogic/JSONLab";
 import DevScope from "../../components/home/AppLogic/DevScope";
 import DragonAnhillation from "../../components/home/AppLogic/DragonGame";
-import MergeMania from "../../components/home/AppLogic/MergeGame";
+import MergeMania from "../../components/home/AppLogic/Mergemania";
+import TypingTest from "../../components/home/AppLogic/TypingTest";
+import HackClub from "../../components/home/AppLogic/HackClub";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -210,5 +212,23 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <MergeMania />,
         width: 460,
         height: 600,
+    },
+    {
+        id: 22,
+        name: "TypingTest.com",
+        description: "used to test your typing speed",
+        icon: "typingtest.png",
+        app: <TypingTest />,
+        width: 400,
+        height: 500,
+    },
+    {
+        id: 23,
+        name: "HackClub",
+        description: "used to explore the hackclub website",
+        icon: "HackClub.png",
+        app: <HackClub />,
+        width: 500,
+        height: 500,
     },
 ]
