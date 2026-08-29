@@ -16,6 +16,8 @@ import Terminal from "../../components/home/AppLogic/Terminal";
 import TripleTileMaster from "../../components/home/AppLogic/TripleTileMaster";
 import KobaSheets from "../../components/home/AppLogic/KobaSheets";
 import Word from "../../components/home/AppLogic/Word";
+import JsonLab from "../../components/home/AppLogic/JSONLab";
+import DevScope from "../../components/home/AppLogic/DevScope";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -171,4 +173,22 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         width: 400,
         height: 500,
     },
+    {
+        id: 18,
+        name: "JSON Lab",
+        description: "used to deal with JSON",
+        icon: "Lo.png",
+        app: <JsonLab />,
+        width: 782,
+        height: 569,
+    },
+    {
+        id: 19,
+        name: "DevScope",
+        description: "used as a github profile analyzer",
+        icon: "Logo-T-C.png",
+        app: <DevScope />,
+        width: 500,
+        height: 500
+    }
 ]
