@@ -14,6 +14,8 @@ export const MenuIconApperance = {
         Shorts: "./colloid/DoomsScroll.svg",
         Paint: "./colloid/paint.svg",
         Terminal: "./colloid/terminal.svg",
+        Chess: "./colloid/chess.svg",
+        Word: "./colloid/word.svg",
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
@@ -30,6 +32,8 @@ export const MenuIconApperance = {
         Shorts: "./Deepin/DoomsScroll.svg",
         Paint: "./Deepin/paint.svg",
         Terminal: "./Deepin/terminal.svg",
+        Chess: "./Deepin/chess.svg",
+        Word: "./Deepin/word.svg",
     },
     Fluent: {
         Calculator: "./Fluent/calc.svg",
@@ -46,6 +50,8 @@ export const MenuIconApperance = {
         Shorts: "./Fluent/DoomScroll.svg",
         Paint: "./Fluent/paint.svg",
         Terminal: "./Fluent/terminal.svg",
+        Chess: "./Fluent/chess.svg",
+        Word: "./Fluent/word.svg",
     },
     MacTahoe: {
         Calculator: "./MacTahoe/calc.svg",
@@ -62,6 +68,8 @@ export const MenuIconApperance = {
         Shorts: "./MacTahoe/DoomScroll.svg",
         Paint: "./MacTahoe/paint.svg",
         Terminal: "./MacTahoe/terminal.svg",
+        Chess: "./MacTahoe/chess.svg",
+        Word: "./MacTahoe/word.svg",
     },
     WhiteSur: {
         Calculator: "./WhiteSur/calc.svg",
@@ -78,5 +86,7 @@ export const MenuIconApperance = {
         Shorts: "./WhiteSur/DoomScroll.svg",
         Paint: "./WhiteSur/paint.svg",
         Terminal: "./WhiteSur/terminal.svg",
+        Chess: "./WhiteSur/chess.svg",
+        Word: "./WhiteSur/word.svg",
     }
 }

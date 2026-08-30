@@ -22,6 +22,7 @@ import DragonAnhillation from "../../components/home/AppLogic/DragonGame";
 import MergeMania from "../../components/home/AppLogic/Mergemania";
 import TypingTest from "../../components/home/AppLogic/TypingTest";
 import HackClub from "../../components/home/AppLogic/HackClub";
+import MoneyTrail from "../../components/home/AppLogic/ExpenseTracker";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -109,7 +110,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 10,
         name: "Chess",
         description: "used to play Chess",
-        icon: "./chess.png",
+        icon: MenuIconApperance[iconStyle].Chess,
         app: <Chess />,
         width: 550,
         height: 700,
@@ -172,7 +173,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 17,
         name: "Koba Word",
         description: "used to deal with words and docx",
-        icon: "TextEditor.png",
+        icon: MenuIconApperance[iconStyle].Word,
         app: <Word />,
         width: 400,
         height: 500,
@@ -230,5 +231,14 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <HackClub />,
         width: 500,
         height: 500,
+    },
+    {
+        id: 24,
+        name: "MoneyTrail",
+        description: "used track expense",
+        icon: "logo.svg",
+        app: <MoneyTrail />,
+        width: 700,
+        height: 600,
     },
 ]
