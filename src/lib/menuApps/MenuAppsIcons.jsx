@@ -16,6 +16,7 @@ export const MenuIconApperance = {
         Terminal: "./colloid/terminal.svg",
         Chess: "./colloid/chess.svg",
         Word: "./colloid/word.svg",
+        Weather: "./colloid/weather.svg",
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
@@ -34,6 +35,7 @@ export const MenuIconApperance = {
         Terminal: "./Deepin/terminal.svg",
         Chess: "./Deepin/chess.svg",
         Word: "./Deepin/word.svg",
+        Weather: "./Deepin/weather.svg",
     },
     Fluent: {
         Calculator: "./Fluent/calc.svg",
@@ -52,6 +54,7 @@ export const MenuIconApperance = {
         Terminal: "./Fluent/terminal.svg",
         Chess: "./Fluent/chess.svg",
         Word: "./Fluent/word.svg",
+        Weather: "./Fluent/weather.svg",
     },
     MacTahoe: {
         Calculator: "./MacTahoe/calc.svg",
@@ -70,6 +73,7 @@ export const MenuIconApperance = {
         Terminal: "./MacTahoe/terminal.svg",
         Chess: "./MacTahoe/chess.svg",
         Word: "./MacTahoe/word.svg",
+        Weather: "./MacTahoe/weather.svg",
     },
     WhiteSur: {
         Calculator: "./WhiteSur/calc.svg",
@@ -88,5 +92,6 @@ export const MenuIconApperance = {
         Terminal: "./WhiteSur/terminal.svg",
         Chess: "./WhiteSur/chess.svg",
         Word: "./WhiteSur/word.svg",
+        Weather: "./WhiteSur/weather.svg",
     }
 }

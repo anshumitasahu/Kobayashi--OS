@@ -23,6 +23,7 @@ import MergeMania from "../../components/home/AppLogic/Mergemania";
 import TypingTest from "../../components/home/AppLogic/TypingTest";
 import HackClub from "../../components/home/AppLogic/HackClub";
 import MoneyTrail from "../../components/home/AppLogic/ExpenseTracker";
+import Weather from "../../components/home/AppLogic/Weather";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -199,7 +200,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
     {
         id: 20,
         name: "Dragon Annihilation",
-        description: "used play game called Dragon Annihilation",
+        description: "used to play game called Dragon Annihilation",
         icon: "DragonGame.png",
         app: <DragonAnhillation />,
         width: 485,
@@ -235,10 +236,19 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
     {
         id: 24,
         name: "MoneyTrail",
-        description: "used track expense",
+        description: "used to track expense",
         icon: "logo.svg",
         app: <MoneyTrail />,
         width: 700,
         height: 600,
+    },
+    {
+        id: 25,
+        name: "Weather",
+        description: "used to know about the weather",
+        icon: MenuIconApperance[iconStyle].Weather,
+        app: <Weather />,
+        width: 450,
+        height: 340,
     },
 ]
