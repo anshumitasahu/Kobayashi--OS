@@ -53,12 +53,15 @@ export default function Pomodoro() {
                 <span>{String(timeLeft % 60).padStart(2, "0")}</span>
             </div>
 
-            <div>
-                <button onClick={isRunning ? stopTimer : startTimer}>
-                    {isRunning ? "PAUSE" : timeLeft === 1500 ? "START" : "RESUME"}
+            <div className="flex gap-3">
+                <button
+                    onClick={isRunning ? stopTimer : startTimer}
+                    className="bg-rose-400"
+                >
+                    {isRunning ? "pause" : timeLeft === 1500 ? "start" : "resume"}
                 </button>
-                <button onClick={stopTimer}>STOP</button>
-                <button onClick={resetTimer}>RESET</button>
+                <button onClick={stopTimer}>stop</button>
+                <button onClick={resetTimer}>reset</button>
             </div>
         </div>
     );
