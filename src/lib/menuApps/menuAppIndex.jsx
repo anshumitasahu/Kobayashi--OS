@@ -24,6 +24,7 @@ import TypingTest from "../../components/home/AppLogic/TypingTest";
 import HackClub from "../../components/home/AppLogic/HackClub";
 import MoneyTrail from "../../components/home/AppLogic/ExpenseTracker";
 import Weather from "../../components/home/AppLogic/Weather";
+import Pomodoro from "../../components/home/AppLogic/Pomodoro";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -250,5 +251,14 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <Weather />,
         width: 450,
         height: 340,
+    },
+    {
+        id: 26,
+        name: "Pomodoro",
+        description: "used as a pomodoro",
+        icon: "logo.svg",
+        app: <Pomodoro />,
+        width: 300,
+        height: 300,
     },
 ]
