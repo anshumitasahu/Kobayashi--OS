@@ -249,8 +249,8 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         description: "used to know about the weather",
         icon: MenuIconApperance[iconStyle].Weather,
         app: <Weather />,
-        width: 450,
-        height: 340,
+        width: 540,
+        height: 440,
     },
     {
         id: 26,
