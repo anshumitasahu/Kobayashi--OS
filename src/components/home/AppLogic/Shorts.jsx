@@ -9,63 +9,99 @@ const videos = [
 ];
 export default function Shorts() {
     const iframesRef = useRef([]);
+    const containerRef = useRef(null);
+    const infiniteVideos = [
+        videos[videos.length - 1],
+        ...videos,
+        videos[0],
+    ];
 
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    const iframe = entry.target;
+        const container = containerRef.current;
+        if (!container) return;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                const iframe = entry.target;
+                if (entry.isIntersecting) {
+                    iframesRef.current.forEach((el) => {
+                        if (el && el !== iframe) {
+                            el.contentWindow?.postMessage(
+                                JSON.stringify({
+                                    event: "command",
+                                    func: "pauseVideo",
+                                    args: [],
+                                }),
+                                "*"
+                            );
+                        }
+                    });
 
-                    if (entry.isIntersecting) {
-                        iframesRef.current.forEach((el) => {
-                            if (el && el !== iframe) {
-                                el.contentWindow?.postMessage(
-                                    JSON.stringify({
-                                        event: "command",
-                                        func: "pauseVideo",
-                                        args: [],
-                                    }),
-                                    "*"
-                                );
-                            }
-                        });
-
-                        iframe.contentWindow?.postMessage(
-                            JSON.stringify({
-                                event: "command",
-                                func: "playVideo",
-                                args: [],
-                            }),
-                            "*"
-                        );
-                    } else {
-                        iframe.contentWindow?.postMessage(
-                            JSON.stringify({
-                                event: "command",
-                                func: "pauseVideo",
-                                args: [],
-                            }),
-                            "*"
-                        );
-                    }
-                });
-            },
+                    iframe.contentWindow?.postMessage(
+                        JSON.stringify({
+                            event: "command",
+                            func: "playVideo",
+                            args: [],
+                        }),
+                        "*"
+                    );
+                } else {
+                    iframe.contentWindow?.postMessage(
+                        JSON.stringify({
+                            event: "command",
+                            func: "pauseVideo",
+                            args: [],
+                        }),
+                        "*"
+                    );
+                }
+            });
+        },
             { threshold: 0.7 }
         );
 
         iframesRef.current.forEach((iframe) => {
             if (iframe) observer.observe(iframe);
         });
+        container.scrollTop = container.clientHeight;
 
-        return () => observer.disconnect();
+        const handleScroll = () => {
+            const height = container.clientHeight;
+            const index = Math.round(container.scrollTop / height);
+
+            if (index === infiniteVideos.length - 1) {
+                setTimeout(() => {
+                    container.style.scrollBehavior = "auto";
+                    container.scrollTop = height;
+                    container.style.scrollBehavior = "";
+                }, 50);
+            }
+            if (index === 0) {
+                setTimeout(() => {
+                    container.style.scrollBehavior = "auto";
+                    container.scrollTop =
+                        height * videos.length;
+                    container.style.scrollBehavior = "";
+                }, 50);
+            }
+        };
+
+        container.addEventListener("scroll", handleScroll);
+
+        return () => {
+            observer.disconnect();
+            container.removeEventListener("scroll", handleScroll);
+        };
     }, []);
 
     return (
-        <div className="w-full h-full overflow-y-scroll snap-y snap-mandatory">
-            {videos.map((videoId, index) => (
+        <div
+            ref={containerRef}
+            className="w-full h-full overflow-y-scroll snap-y snap-mandatory"
+        >
+            {infiniteVideos.map((videoId, index) => (
                 <div
-                    key={videoId}
-                    className="w-full h-full snap-start"
+                    key={`${videoId}-${index}`}
+                    className="w-full h-full snap-start snap-always"
                 >
                     <iframe
                         ref={(el) => {

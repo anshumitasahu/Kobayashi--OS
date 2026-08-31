@@ -25,6 +25,8 @@ import HackClub from "../../components/home/AppLogic/HackClub";
 import MoneyTrail from "../../components/home/AppLogic/ExpenseTracker";
 import Weather from "../../components/home/AppLogic/Weather";
 import Pomodoro from "../../components/home/AppLogic/Pomodoro";
+import AssassinHunt from "../../components/home/AppLogic/Assassin'sHunt";
+import MyColorPicker from "../../components/home/AppLogic/ColorPicker";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -261,4 +263,23 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         width: 300,
         height: 300,
     },
+    {
+        id: 27,
+        name: "Hunters",
+        description: "used to play game assasin hunt",
+        icon: "logo.svg",
+        app: <AssassinHunt />,
+        width: 300,
+        height: 300,
+    },
+    {
+        id: 28,
+        name: "Colour",
+        description: "used as a color picker",
+        icon: "logo.svg",
+        app: <MyColorPicker />,
+        width: 300,
+        height: 300,
+    },
+    
 ]
