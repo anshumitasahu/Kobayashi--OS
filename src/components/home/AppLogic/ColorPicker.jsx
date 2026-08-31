@@ -15,7 +15,7 @@ export default function MyColorPicker() {
     };
 
     return (
-        <div>
+        <div className="w-full h-full">
             <ColorPicker color={color} onChange={setColor} />
             <p>Selected color: {color.hex}</p>
             <button onClick={copyColor}>
