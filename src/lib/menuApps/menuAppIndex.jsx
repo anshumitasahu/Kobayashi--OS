@@ -27,6 +27,8 @@ import Weather from "../../components/home/AppLogic/Weather";
 import Pomodoro from "../../components/home/AppLogic/Pomodoro";
 import AssassinHunt from "../../components/home/AppLogic/Assassin'sHunt";
 import MyColorPicker from "../../components/home/AppLogic/ColorPicker";
+import Piano from "../../components/home/AppLogic/Piano";
+import Mahjong from "../../components/home/AppLogic/Majhong";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -281,5 +283,22 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         width: 300,
         height: 300,
     },
-    
+    {
+        id: 29,
+        name: "Piano",
+        description: "used to play piano",
+        icon: "logo.svg",
+        app: <Piano />,
+        width: 300,
+        height: 300,
+    },
+    {
+        id: 30,
+        name: "Mahjong",
+        description: "used to play mahjong",
+        icon: "lo.png",
+        app: <Mahjong />,
+        width: 400,
+        height: 700,
+    },
 ]

@@ -2,12 +2,12 @@ import { Editor } from "@monaco-editor/react";
 
 export default function Terminal() {
     return (
-        <div className="bg-white w-full h-full rounded-lg">
+        <div className="bg-[#1e1e1e] w-full h-full rounded-lg">
             <Editor
-                theme="vs-light"
+                theme="vs-dark"
                 height="100%"
-                defaultLanguaue="javascript"
-                defaultValue="//your code here.."
+                defaultLanguage="javascript"
+                defaultValue="// your code here.."
                 options={{
                     automaticLayout: true,
                     minimap: {
@@ -19,5 +19,5 @@ export default function Terminal() {
                 }}
             />
         </div>
-    )
+    );
 }
