@@ -29,6 +29,7 @@ import AssassinHunt from "../../components/home/AppLogic/Assassin'sHunt";
 import MyColorPicker from "../../components/home/AppLogic/ColorPicker";
 import Piano from "../../components/home/AppLogic/Piano";
 import Mahjong from "../../components/home/AppLogic/Majhong";
+import VS_Code from "../../components/home/AppLogic/VSCode";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -153,7 +154,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         name: "Code Editor",
         description: "used to write code",
         icon: MenuIconApperance[iconStyle].Terminal,
-        app: <Terminal />,
+        app: <VS_Code />,
         width: 450,
         height: 400,
     },
@@ -206,7 +207,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 20,
         name: "Dragon Annihilation",
         description: "used to play game called Dragon Annihilation",
-        icon: "DragonGame.png",
+        icon: "Dragon.png",
         app: <DragonAnhillation />,
         width: 485,
         height: 655,
@@ -269,7 +270,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 27,
         name: "Hunters",
         description: "used to play game assasin hunt",
-        icon: "logo.svg",
+        icon: "HunterGame.png",
         app: <AssassinHunt />,
         width: 476,
         height: 671,
@@ -287,7 +288,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 29,
         name: "Piano",
         description: "used to play piano",
-        icon: "logo.svg",
+        icon: "Piano.png",
         app: <Piano />,
         width: 176,
         height: 321,
@@ -300,5 +301,14 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <Mahjong />,
         width: 400,
         height: 700,
+    },
+    {
+        id: 31,
+        name: "Terminal",
+        description: "used as terminal for the os",
+        icon: MenuIconApperance[iconStyle].Terminal,
+        app: <Terminal />,
+        width: 400,
+        height: 500,
     },
 ]

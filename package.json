@@ -19,6 +19,7 @@
     "@tailwindcss/vite": "^4.3.2",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
+    "e2b": "^2.46.1",
     "express": "^5.2.1",
     "motion": "^12.43.0",
     "openai": "^7.5.0",
