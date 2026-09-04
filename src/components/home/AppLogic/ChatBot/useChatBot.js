@@ -164,6 +164,7 @@ export function useChatBot() {
 
     const handleAiError = (error, userInput) => {
         if (error?.code === "INVALID_JSON_RESPONSE") {
+            console.log({error})
             pushAssistant("Sorry, I couldn't understand that request.");
             return;
         }
@@ -198,6 +199,8 @@ export function useChatBot() {
                 ...toApiMessages(messageHistory),
                 { role: "user", content: userInput },
             ]);
+
+            console.log(aiResponse);
 
             await handleAiResponse(aiResponse, userInput);
         } catch (error) {

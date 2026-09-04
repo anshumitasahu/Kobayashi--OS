@@ -77,7 +77,7 @@ export function handleOpenTodo() {
 }
 
 export function handleOpenGames() {
-    return openAppByName("Games");
+    return openAppByName("Piano");
 }
 
 export function handleOpenFileManager() {
