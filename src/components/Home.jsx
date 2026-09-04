@@ -7,6 +7,7 @@ import { useAppStore } from '../store.jsx';
 import MenuApps from "./home/AppLogic/MenuApp.jsx";
 import WidgetsWindow from "./WidgetsWindow.jsx";
 import RightClick from "./home/RightClick.jsx";
+import { PlusIcon, TrashIcon } from "@phosphor-icons/react";
 
 export default function Home() {
     const desktopRef = useRef();
@@ -22,6 +23,7 @@ export default function Home() {
     const isMenuOpen = useAppStore((state) => state.isMenuOpen);
     const openedWidgets = useAppStore((state) => state.openedWidgets);
     const isWidgetsMenuOpen = useAppStore((state) => state.isWidgetsMenuOpen);
+    const toggleWidgetMenu = useAppStore((state) => state.toggleWidgetMenu);
     const openWidget = useAppStore((state) => state.openWidget);
     const closeWidget = useAppStore((state) => state.closeWidget);
     const IconStyle = useAppStore((state) => state.IconStyle);
@@ -68,34 +70,57 @@ export default function Home() {
             <div>
                 <div
                     className={`
-            absolute top-8 right-0 z-50 bg-white/40 p-2 text-sm/6 text-neutral-600 rounded-lg shadow-lg transition-all duration-600 ease-in-out origin-top-right backdrop-blur-sm h-full overflow-scroll
+            absolute top-8 right-0 z-50 flex flex-col bg-white/40 text-sm/6 text-neutral-600 rounded-lg shadow-lg transition-all duration-600 ease-in-out origin-top-right backdrop-blur-sm h-full overflow-hidden
             ${isWidgetsMenuOpen
                             ? "opacity-100 translate-x-0 visible"
                             : "opacity-0 translate-x-100 invisible pointer-events-none"
                         }
         `}
                 >
+                    <div className="flex items-center justify-between px-3 py-2 shrink-0 border-b border-white/40">
+                        <p className="text-sm font-semibold text-neutral-700">Widgets</p>
+                        <button
+                            onClick={toggleWidgetMenu}
+                            className="px-3 py-1 text-xs font-medium rounded-md bg-neutral-800 text-white hover:bg-neutral-700 transition-colors cursor-pointer"
+                        >
+                            Save
+                        </button>
+                    </div>
+                    <div className="flex-1 overflow-scroll p-2">
                     {Widgets.map((widget) => {
                         const Icon = widget.icon;
                         const Widget = widget.component;
+                        const isPresent = openedWidgets.some((opened) => opened.id === widget.id);
 
                         return (
                             <div
                                 key={widget.id}
-                                onClick={() => openWidget(widget)}
-                                className="flex flex-col gap-5 items-center cursor-pointer px-2 mb-6 w-70"
+                                className="flex flex-col items-center gap-2 mb-6 w-70"
                             >
-                                <div className="flex gap-4 items-center">
-                                    <img src={Icon} alt={widget.name} className="w-8" />
-                                    <p>{widget.name}</p>
+                                <div className="flex items-center gap-2 px-2 w-full">
+                                    <img src={Icon} alt={widget.name} className="w-5" />
+                                    <p className="text-xs font-medium flex-1 text-left">{widget.name}</p>
+                                    <button
+                                        onClick={() => isPresent ? closeWidget(widget.id) : openWidget(widget)}
+                                        title={isPresent ? `Remove ${widget.name}` : `Add ${widget.name}`}
+                                        className="p-1 rounded-md cursor-pointer hover:bg-white/60 transition-colors text-neutral-700"
+                                    >
+                                        {isPresent ? <TrashIcon size={14} /> : <PlusIcon size={14} />}
+                                    </button>
                                 </div>
 
-                                <div className="w-full h-44 overflow-hidden rounded-lg pointer-events-none">
-                                    <Widget />
+                                <div
+                                    onClick={() => { if (!isPresent) openWidget(widget); }}
+                                    className={`w-60 h-44 overflow-hidden rounded-lg shrink-0 ${isPresent ? "pointer-events-none" : "cursor-pointer"}`}
+                                >
+                                    <div className="pointer-events-none w-full h-full">
+                                        <Widget />
+                                    </div>
                                 </div>
                             </div>
                         );
                     })}
+                    </div>
                 </div>
             </div>
             <div ref={desktopRef} className="relative flex-1 overflow-hidden">
@@ -113,7 +138,8 @@ export default function Home() {
                                 y={widget.y}
                                 width={widget.width}
                                 height={widget.height}
-                                zIndex={widget.zIndex}
+                                minWidth={widget.minWidth}
+                                minHeight={widget.minHeight}
                                 desktopRef={desktopRef}
                                 closeWidget={closeWidget}
                             >

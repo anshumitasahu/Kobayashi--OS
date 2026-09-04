@@ -22,14 +22,14 @@ export default function Calendar() {
 
     const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     return (
-        <div className="w-full h-full p-1 rounded-md">
-            <div className="bg-[#f8f7ff] w-full px-2 py-1 rounded-md">
-                <p className="text-center text-md font-semibold text-neutral-600">{year}-{monthName}</p>
-                <div className="grid grid-cols-7 gap-2 p-2">
+        <div className="@container w-full h-full min-w-0 min-h-0 p-1 rounded-md">
+            <div className="bg-[#f8f7ff] w-full h-full min-h-0 px-[3cqw] py-[2cqw] rounded-md overflow-y-auto flex flex-col">
+                <p className="text-center font-semibold text-neutral-600 leading-tight text-[clamp(11px,5.5cqw,18px)]">{year}-{monthName}</p>
+                <div className="grid grid-cols-7 gap-[1.2cqw] p-[1.5cqw] content-start">
                     {weekDays.map((day, index) => (
                         <div
                             key={index}
-                            className="text-sm font-semibold text-neutral-600"
+                            className="font-semibold text-neutral-500 text-center truncate text-[clamp(7px,3.2cqw,12px)]"
                         >
                             {day}
                         </div>
@@ -40,7 +40,7 @@ export default function Calendar() {
                         return (
                             <div
                                 key={index}
-                                className="rounded-sm p-2 text-xs text-neutral-700"
+                                className="rounded-[0.8cqw] aspect-square flex items-center justify-center text-neutral-700 text-[clamp(7px,3.4cqw,13px)]"
                                 style={{
                                     backgroundColor: isToday ? "#beb9e2" : null
                                 }}

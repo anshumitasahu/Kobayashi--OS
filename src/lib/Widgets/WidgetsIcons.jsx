@@ -5,7 +5,8 @@ export const WidgetsIconApperance = {
         StickyNote: "./colloid/notes.svg",
         DigitalClock: "./colloid/clock.svg",
         WeatherGlass: "./colloid/weather.svg",
-        PhotoFrame: "./colloid/gallery.svg"
+        PhotoFrame: "./colloid/gallery.svg",
+        TodoToday: "./colloid/todo.svg"
     },
     Deepin: {
         Calendar: "./Deepin/calendar.svg",
@@ -13,7 +14,8 @@ export const WidgetsIconApperance = {
         StickyNote: "./Deepin/notes.svg",
         DigitalClock: "./Deepin/clock.svg",
         WeatherGlass: "./Deepin/weather.svg",
-        PhotoFrame: "./Deepin/gallery.svg"
+        PhotoFrame: "./Deepin/gallery.svg",
+        TodoToday: "./Deepin/todo.svg"
     },
     Fluent: {
         Calendar: "./Fluent/calendar.svg",
@@ -21,7 +23,8 @@ export const WidgetsIconApperance = {
         StickyNote: "./Fluent/notes.svg",
         DigitalClock: "./Fluent/clock.svg",
         WeatherGlass: "./Fluent/weather.svg",
-        PhotoFrame: "./Fluent/gallery.svg"
+        PhotoFrame: "./Fluent/gallery.svg",
+        TodoToday: "./Fluent/todo.svg"
     },
     MacTahoe: {
         Calendar: "./MacTahoe/calendar.svg",
@@ -29,7 +32,8 @@ export const WidgetsIconApperance = {
         StickyNote: "./MacTahoe/notes.svg",
         DigitalClock: "./MacTahoe/clock.svg",
         WeatherGlass: "./MacTahoe/weather.svg",
-        PhotoFrame: "./MacTahoe/gallery.svg"
+        PhotoFrame: "./MacTahoe/gallery.svg",
+        TodoToday: "./MacTahoe/todo.svg"
     },
     WhiteSur: {
         Calendar: "./WhiteSur/calendar.svg",
@@ -37,6 +41,7 @@ export const WidgetsIconApperance = {
         StickyNote: "./WhiteSur/notes.svg",
         DigitalClock: "./WhiteSur/clock.svg",
         WeatherGlass: "./WhiteSur/weather.svg",
-        PhotoFrame: "./WhiteSur/gallery.svg"
+        PhotoFrame: "./WhiteSur/gallery.svg",
+        TodoToday: "./WhiteSur/todo.svg"
     }
 }

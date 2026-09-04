@@ -50,39 +50,39 @@ export default function WeatherGlass() {
         : "./weather2.png";
 
     return (
-        <div className="relative w-full h-full rounded-xl overflow-hidden">
+        <div className="@container relative w-full h-full min-w-0 min-h-0 rounded-xl overflow-hidden">
             <img src="./weather2.png" alt="" className="absolute inset-0 w-full h-full object-cover" />
             <div className="absolute inset-0 bg-gradient-to-b from-sky-900/30 via-transparent to-slate-900/50" />
-            <div className="relative h-full flex flex-col justify-between p-3">
-                <div className="flex items-start justify-between">
-                    <span className="inline-flex items-center gap-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 px-2 py-0.5 text-[11px] font-medium text-white">
-                        <MapPinIcon size={11} />
-                        {data ? `${data.name}${data.sys?.country ? `, ${data.sys.country}` : ""}` : "Weather"}
+            <div className="relative h-full min-h-0 flex flex-col justify-between p-[3.5cqw]">
+                <div className="flex items-start justify-between gap-[2cqw]">
+                    <span className="inline-flex min-w-0 items-center gap-1 rounded-full bg-white/20 backdrop-blur-md border border-white/30 px-[2.5cqw] py-[1cqw] font-medium text-white text-[clamp(8px,3.4cqw,12px)]">
+                        <MapPinIcon size={11} className="shrink-0" />
+                        <span className="truncate">{data ? `${data.name}${data.sys?.country ? `, ${data.sys.country}` : ""}` : "Weather"}</span>
                     </span>
                     <button
                         onMouseDown={(e) => e.stopPropagation()}
                         onClick={refresh}
                         title="Refresh"
-                        className="rounded-full bg-white/20 backdrop-blur-md border border-white/30 p-1.5 text-white hover:bg-white/30 active:scale-95"
+                        className="shrink-0 rounded-full bg-white/20 backdrop-blur-md border border-white/30 p-[1.8cqw] text-white hover:bg-white/30 active:scale-95"
                     >
                         <ArrowClockwiseIcon size={12} className={loading ? "animate-spin" : ""} />
                     </button>
                 </div>
-                <div className="flex items-end justify-between">
-                    <div>
-                        <p className="text-4xl font-bold text-white drop-shadow-lg tabular-nums">
+                <div className="flex items-end justify-between gap-[2cqw] min-h-0">
+                    <div className="min-w-0">
+                        <p className="font-bold text-white drop-shadow-lg tabular-nums leading-none text-[clamp(22px,12cqw,44px)]">
                             {temp !== null ? `${temp}°` : "--°"}
                         </p>
-                        <p className="text-xs text-white/85 capitalize">
+                        <p className="text-white/85 capitalize truncate text-[clamp(8px,3.4cqw,13px)]">
                             {data ? data.weather?.[0]?.description : (apiKey ? "Open Weather app to load" : "Missing API key")}
                         </p>
                         {data && (
-                            <p className="text-[11px] text-white/70">
+                            <p className="text-white/70 truncate text-[clamp(7px,3cqw,12px)]">
                                 H:{Math.round(data.main.temp_max)}° L:{Math.round(data.main.temp_min)}° · 💧{data.main.humidity}%
                             </p>
                         )}
                     </div>
-                    <img src={icon} alt="" className="w-14 h-14 object-contain drop-shadow-lg" />
+                    <img src={icon} alt="" className="shrink-0 object-contain drop-shadow-lg w-[clamp(36px,17cqw,64px)] h-[clamp(36px,17cqw,64px)]" />
                 </div>
             </div>
         </div>

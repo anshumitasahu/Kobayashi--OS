@@ -45,3 +45,30 @@ export function readWeatherCache() {
         return null;
     }
 }
+
+export function readTodoTasks() {
+    try {
+        const parsed = JSON.parse(localStorage.getItem("mac-todo-tasks"));
+        if (Array.isArray(parsed)) return parsed;
+        const legacy = JSON.parse(localStorage.getItem("tasks"));
+        return Array.isArray(legacy) ? legacy : [];
+    } catch {
+        return [];
+    }
+}
+
+export function readTodoLists() {
+    try {
+        const parsed = JSON.parse(localStorage.getItem("mac-todo-lists"));
+        return Array.isArray(parsed) ? parsed : [];
+    } catch {
+        return [];
+    }
+}
+
+export function persistTodoTasks(tasks) {
+    try {
+        localStorage.setItem("mac-todo-tasks", JSON.stringify(tasks));
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    } catch { /* ignore */ }
+}

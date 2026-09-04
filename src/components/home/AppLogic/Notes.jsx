@@ -43,12 +43,12 @@ function StickyCard({ color, tilt = "none", pin, style, children, className = ""
         >
             <span
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-0 right-0 h-[26px] w-[26px]"
+                className="pointer-events-none absolute bottom-0 right-0 h-6.5 w-6.5"
                 style={{ backgroundColor: "rgba(0,0,0,0.10)", clipPath: "polygon(100% 0, 0 100%, 100% 100%)" }}
             />
             <span
                 aria-hidden="true"
-                className="pointer-events-none absolute bottom-0 right-0 h-[26px] w-[26px]"
+                className="pointer-events-none absolute bottom-0 right-0 h-6.5 w-6.5"
                 style={{ backgroundColor: "rgba(255,255,255,0.65)", clipPath: "polygon(100% 5px, 5px 100%, 100% 100%)" }}
             />
             {pin}

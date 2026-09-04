@@ -198,7 +198,7 @@ export const useAppStore = create((set) => ({
                 y: widget.y ?? 50 + position,
                 width: widget.width ?? 280,
                 height: widget.height ?? 260,
-                zIndex: state.highestZindex + 1,
+                zIndex: 0,
             };
 
             const updatedWidgets = [...state.openedWidgets, newWidget,];
@@ -206,7 +206,6 @@ export const useAppStore = create((set) => ({
 
             return {
                 openedWidgets: updatedWidgets,
-                highestZindex: state.highestZindex + 1,
             };
         });
     },
@@ -223,6 +222,17 @@ export const useAppStore = create((set) => ({
     setWidgetPosition: (id, newX, newY) => {
         set((state) => {
             const updatedWidgets = state.openedWidgets.map((widget) => widget.id === id ? { ...widget, x: newX, y: newY, } : widget
+            );
+            saveWidgets(updatedWidgets);
+
+            return {
+                openedWidgets: updatedWidgets,
+            };
+        });
+    },
+    setWidgetSize: (id, newWidth, newHeight) => {
+        set((state) => {
+            const updatedWidgets = state.openedWidgets.map((widget) => widget.id === id ? { ...widget, width: newWidth, height: newHeight, } : widget
             );
             saveWidgets(updatedWidgets);
 

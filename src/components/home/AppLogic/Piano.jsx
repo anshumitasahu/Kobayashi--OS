@@ -10,17 +10,92 @@ import 'react-piano/dist/styles.css';
 import { MusicNoteIcon } from '@phosphor-icons/react';
 import { getAllSongs, saveSong, deleteSongById, getMeta, setMeta } from '../../../DB/pianoDB';
 
-const synth = new Tone.PolySynth(Tone.Synth, {
-    oscillator: {
-        type: 'triangle',
+const TONE_PRESETS = [
+    {
+        id: 'grand',
+        label: 'Grand',
+        voice: Tone.Synth,
+        volume: -4,
+        options: {
+            oscillator: { type: 'triangle' },
+            envelope: { attack: 0.005, decay: 0.3, sustain: 0.2, release: 1.2 },
+        },
     },
-    envelope: {
-        attack: 0.005,
-        decay: 0.3,
-        sustain: 0.2,
-        release: 1.2,
+    {
+        id: 'bright',
+        label: 'Bright Pop',
+        voice: Tone.Synth,
+        volume: -10,
+        options: {
+            oscillator: { type: 'sawtooth' },
+            envelope: { attack: 0.003, decay: 0.2, sustain: 0.1, release: 0.8 },
+        },
     },
-}).toDestination();
+    {
+        id: 'electric',
+        label: 'Electric Piano',
+        voice: Tone.FMSynth,
+        volume: -6,
+        options: {
+            harmonicity: 3,
+            modulationIndex: 14,
+            oscillator: { type: 'sine' },
+            envelope: { attack: 0.01, decay: 0.4, sustain: 0.5, release: 1.5 },
+            modulation: { type: 'sine' },
+            modulationEnvelope: { attack: 0.01, decay: 0.5, sustain: 0.2, release: 1 },
+        },
+    },
+    {
+        id: 'organ',
+        label: 'Organ',
+        voice: Tone.Synth,
+        volume: -12,
+        options: {
+            oscillator: { type: 'square' },
+            envelope: { attack: 0.01, decay: 0.1, sustain: 1, release: 0.3 },
+        },
+    },
+    {
+        id: 'strings',
+        label: 'Strings',
+        voice: Tone.Synth,
+        volume: -10,
+        options: {
+            oscillator: { type: 'sawtooth' },
+            envelope: { attack: 0.4, decay: 0.2, sustain: 0.8, release: 1.5 },
+        },
+    },
+    {
+        id: 'bell',
+        label: 'Bell',
+        voice: Tone.FMSynth,
+        volume: -8,
+        options: {
+            harmonicity: 5,
+            modulationIndex: 20,
+            oscillator: { type: 'sine' },
+            envelope: { attack: 0.005, decay: 0.6, sustain: 0, release: 2 },
+            modulation: { type: 'sine' },
+            modulationEnvelope: { attack: 0.005, decay: 0.4, sustain: 0, release: 1 },
+        },
+    },
+];
+
+let activeSynth = null;
+
+function buildSynth(preset) {
+    if (activeSynth) {
+        try { activeSynth.releaseAll(); } catch { /* noop */ }
+        activeSynth.dispose();
+    }
+    activeSynth = new Tone.PolySynth(preset.voice, {
+        ...preset.options,
+        volume: preset.volume,
+    }).toDestination();
+    return activeSynth;
+}
+
+buildSynth(TONE_PRESETS[0]);
 
 const FIRST_NOTE = MidiNumbers.fromNote('c4');
 const LAST_NOTE = MidiNumbers.fromNote('f5');
@@ -145,6 +220,7 @@ const Piano = () => {
     const [loopFlash, setLoopFlash] = useState(false);
     const [query, setQuery] = useState('');
     const [filterCategory, setFilterCategory] = useState('All');
+    const [toneId, setToneId] = useState(TONE_PRESETS[0].id);
     const demoCancel = useRef(false);
     const isPlayingRef = useRef(false);
     const indexRef = useRef(0);
@@ -274,13 +350,20 @@ const Piano = () => {
         if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
     };
 
+    const changeTone = (id) => {
+        const preset = TONE_PRESETS.find((p) => p.id === id) || TONE_PRESETS[0];
+        buildSynth(preset);
+        setToneId(preset.id);
+        if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+    };
+
     const playNote = useCallback(async (midiNumber) => {
         await Tone.start();
-        synth.triggerAttack(Tone.Frequency(midiNumber, 'midi').toFrequency());
+        activeSynth.triggerAttack(Tone.Frequency(midiNumber, 'midi').toFrequency());
     }, []);
 
     const stopNote = useCallback((midiNumber) => {
-        synth.triggerRelease(Tone.Frequency(midiNumber, 'midi').toFrequency());
+        activeSynth.triggerRelease(Tone.Frequency(midiNumber, 'midi').toFrequency());
     }, []);
 
     const handleUserPlay = useCallback(
@@ -458,6 +541,16 @@ const Piano = () => {
                         {!dbReady && ' · saving…'}
                     </span>
                     <div className="ml-auto flex items-center gap-1">
+                        <select
+                            value={toneId}
+                            onChange={(e) => changeTone(e.target.value)}
+                            className={`${iconBtn} cursor-pointer outline-none max-w-28 bg-transparent`}
+                            title="Change tone"
+                        >
+                            {TONE_PRESETS.map((t) => (
+                                <option key={t.id} value={t.id}>{t.label}</option>
+                            ))}
+                        </select>
                         <button onMouseDown={keepFocus} onClick={playDemo} className={iconBtn} title={isPlayingDemo ? 'Stop demo' : 'Play demo'}>
                             <span className="text-xs mr-1">Demo</span>
                             {isPlayingDemo ? '■' : '▶'}
