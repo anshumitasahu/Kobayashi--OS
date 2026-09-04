@@ -83,8 +83,8 @@ export default function WidgetsWindow({
             style={{
                 left: `${x}px`,
                 top: `${y}px`,
-                width: `${width}px`,
-                height: `${height}px`,
+                width: width ? `${width}px` : "auto",
+                height: height ? `${height}px` : "auto",
                 zIndex,
                 backgroundColor: isWidgetsMenuOpen ? "#ffffffcc" : "#FFFFFF3D"
             }}

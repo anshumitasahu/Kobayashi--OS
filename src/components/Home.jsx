@@ -90,7 +90,9 @@ export default function Home() {
                                     <p>{widget.name}</p>
                                 </div>
 
-                                <Widget />
+                                <div className="w-full h-44 overflow-hidden rounded-lg pointer-events-none">
+                                    <Widget />
+                                </div>
                             </div>
                         );
                     })}

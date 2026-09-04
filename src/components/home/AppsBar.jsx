@@ -13,16 +13,19 @@ export default function AppsBar({ openApp }) {
     const toggleMenu = useAppStore((state) => state.toggleMenu);
     const toggleWidgetMenu = useAppStore((state) => state.toggleWidgetMenu)
 
-    const maximized = openedApps.find((app) => app.windowState === "maximized");
+    const maximizedApp = openedApps.find((app) => app.windowState === "maximized");
+    const maximized = Boolean(maximizedApp);
     const apps = AppsMenu(IconStyle);
 
     const [isMouseOver, setIsMouseOver] = useState(false)
 
+    const hidden = maximized && !isMouseOver;
+
     return (
         <div
-            className="w-full flex justify-center items-center absolute bottom-0 z-1000"
+            className="w-full flex justify-center items-end absolute bottom-0 z-1000"
             style={{
-                height: maximized ? (isMouseOver ? "90px" : "5px") : "90px",
+                height: maximized ? (isMouseOver ? "90px" : "12px") : "90px",
                 overflow: "hidden",
                 transition: "height 0.2s ease"
             }}
@@ -35,8 +38,25 @@ export default function AppsBar({ openApp }) {
                 setIsMouseOver(false);
             }}
         >
+            {maximized && (
+                <div
+                    className="absolute bottom-[3px] left-1/2 -translate-x-1/2 w-32 h-[5px] rounded-full bg-white/80 shadow ring-1 ring-black/20"
+                    style={{
+                        opacity: hidden ? 1 : 0,
+                        transition: "opacity 0.2s ease",
+                        pointerEvents: "none",
+                    }}
+                />
+            )}
             <div
                 className="flex justify-center items-center gap-5 w-fit h-23 bg-white/50 backdrop-blur-sm p-4 rounded-xl border border-white"
+                style={{
+                    opacity: hidden ? 0 : 1,
+                    visibility: hidden ? "hidden" : "visible",
+                    transform: hidden ? "translateY(100%)" : "translateY(0)",
+                    pointerEvents: hidden ? "none" : "auto",
+                    transition: "opacity 0.2s ease, transform 0.2s ease, visibility 0.2s",
+                }}
             >
                 <div
                     className="cursor-pointer"

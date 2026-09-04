@@ -196,6 +196,8 @@ export const useAppStore = create((set) => ({
                 ...widget,
                 x: widget.x ?? 50 + position,
                 y: widget.y ?? 50 + position,
+                width: widget.width ?? 280,
+                height: widget.height ?? 260,
                 zIndex: state.highestZindex + 1,
             };
 
