@@ -482,7 +482,7 @@ export default function Terminal() {
                     closeTab(t.id);
                   }}
                   title="Close tab"
-                  className={`p-0.5 rounded transition-colors ${active ? "opacity-60 hover:opacity-100 hover:bg-white/10" : "opacity-0 group-hover:opacity-60 hover:!opacity-100 hover:bg-white/10"}`}
+                  className={`p-0.5 rounded transition-colors ${active ? "opacity-60 hover:opacity-100 hover:bg-white/10" : "opacity-0 group-hover:opacity-60 hover:opacity-100! hover:bg-white/10"}`}
                 >
                   <XIcon size={11} />
                 </span>
@@ -570,7 +570,7 @@ export default function Terminal() {
               spellCheck={false}
               autoComplete="off"
               placeholder="type 'help'…"
-              className="bg-transparent outline-none flex-1 min-w-[60px] text-white placeholder:text-gray-600 caret-green-400"
+              className="bg-transparent outline-none flex-1 min-w-15 text-white placeholder:text-gray-600 caret-green-400"
               onChange={(e) => setTabInput(tab.id, e.target.value)}
               onKeyDown={onKeyDown}
             />

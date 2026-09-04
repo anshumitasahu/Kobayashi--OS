@@ -13,23 +13,24 @@ import Shorts from "../../components/home/AppLogic/Shorts";
 import Chess from "../../components/home/AppLogic/Chess";
 import Kanvas from "../../components/home/AppLogic/Kanvas";
 import Terminal from "../../components/home/AppLogic/Terminal";
-import TripleTileMaster from "../../components/home/AppLogic/TripleTileMaster";
 import KobaSheets from "../../components/home/AppLogic/KobaSheets";
 import Word from "../../components/home/AppLogic/Word";
 import JsonLab from "../../components/home/AppLogic/JSONLab";
 import DevScope from "../../components/home/AppLogic/DevScope";
-import DragonAnhillation from "../../components/home/AppLogic/DragonGame";
-import MergeMania from "../../components/home/AppLogic/Mergemania";
+import SpiderMan from "../../components/home/AppLogic/SpiderMan";
 import TypingTest from "../../components/home/AppLogic/TypingTest";
 import HackClub from "../../components/home/AppLogic/HackClub";
 import MoneyTrail from "../../components/home/AppLogic/ExpenseTracker";
 import Weather from "../../components/home/AppLogic/Weather";
 import Pomodoro from "../../components/home/AppLogic/Pomodoro";
-import AssassinHunt from "../../components/home/AppLogic/Assassin'sHunt";
+import Captain from "../../components/home/AppLogic/CaptainAmerica";
 import MyColorPicker from "../../components/home/AppLogic/ColorPicker";
 import Piano from "../../components/home/AppLogic/Piano";
-import Mahjong from "../../components/home/AppLogic/Majhong";
+import Thor from "../../components/home/AppLogic/ThorGame";
 import VS_Code from "../../components/home/AppLogic/VSCode";
+import ChatBot from "../../components/home/AppLogic/ChatBot";
+import Hunter from "../../components/home/AppLogic/Hunter";
+import Dargon from "../../components/home/AppLogic/DargonGame";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -151,19 +152,19 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
     },
     {
         id: 14,
-        name: "Code Editor",
+        name: "VS Code",
         description: "used to write code",
-        icon: MenuIconApperance[iconStyle].Terminal,
+        icon: MenuIconApperance[iconStyle].VSCode,
         app: <VS_Code />,
         width: 450,
         height: 400,
     },
     {
         id: 15,
-        name: "Triple Tile Master",
-        description: "used tp play game triple tile",
-        icon: "triple_tile_master.png",
-        app: <TripleTileMaster />,
+        name: "Dragon Annihilation",
+        description: "used tp play game Dragon Annihilation",
+        icon: "Dragon.png",
+        app: <Dargon />,
         width: 321,
         height: 566,
     },
@@ -171,7 +172,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 16,
         name: "KobaSheets",
         description: "used to deal with spreadsheets",
-        icon: "KobaSheets.png",
+        icon: MenuIconApperance[iconStyle].Excel,
         app: <KobaSheets />,
         width: 500,
         height: 500,
@@ -189,7 +190,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 18,
         name: "JSON Lab",
         description: "used to deal with JSON",
-        icon: "Lo.png",
+        icon: "Json.png",
         app: <JsonLab />,
         width: 782,
         height: 569,
@@ -198,26 +199,26 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 19,
         name: "DevScope",
         description: "used as a github profile analyzer",
-        icon: "Logo-T-C.png",
+        icon: "DevScope.png",
         app: <DevScope />,
         width: 500,
         height: 500,
     },
     {
         id: 20,
-        name: "Dragon Annihilation",
-        description: "used to play game called Dragon Annihilation",
-        icon: "Dragon.png",
-        app: <DragonAnhillation />,
+        name: "Spider-Man: Mysterio Rush",
+        description: "used to play game called Spider-Man: Mysterio Rush",
+        icon: "SpiderMan.png",
+        app: <SpiderMan />,
         width: 485,
         height: 655,
     },
     {
         id: 21,
-        name: "Merge Mania",
-        description: "used to play game called merge mania",
-        icon: "merge-mania.png",
-        app: <MergeMania />,
+        name: "Assassin's Hunt",
+        description: "used to play game called Hunters Assasin",
+        icon: "Hunter.png",
+        app: <Hunter />,
         width: 460,
         height: 600,
     },
@@ -225,7 +226,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 22,
         name: "TypingTest.com",
         description: "used to test your typing speed",
-        icon: "typingtest.png",
+        icon: "TypingTest.png",
         app: <TypingTest />,
         width: 400,
         height: 500,
@@ -243,10 +244,10 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 24,
         name: "MoneyTrail",
         description: "used to track expense",
-        icon: "logo.svg",
+        icon: "MoneyTrail.png",
         app: <MoneyTrail />,
-        width: 700,
-        height: 600,
+        width: 770,
+        height: 500,
     },
     {
         id: 25,
@@ -261,17 +262,17 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         id: 26,
         name: "Pomodoro",
         description: "used as a pomodoro",
-        icon: "Pomodoro(1).png",
+        icon: "Pomodoro.png",
         app: <Pomodoro />,
         width: 300,
         height: 300,
     },
     {
         id: 27,
-        name: "Hunters",
-        description: "used to play game assasin hunt",
-        icon: "HunterGame.png",
-        app: <AssassinHunt />,
+        name: "Captain America: Shield Strike",
+        description: "used to play game Captain America: Shield Strike",
+        icon: "CaptainAmerica.png",
+        app: <Captain />,
         width: 476,
         height: 671,
     },
@@ -281,34 +282,43 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         description: "used as a color picker",
         icon: "ColorPicker.png",
         app: <MyColorPicker />,
-        width: 452,
-        height: 508,
+        width: 550,
+        height: 390,
     },
     {
         id: 29,
         name: "Piano",
         description: "used to play piano",
-        icon: "Piano.png",
+        icon: MenuIconApperance[iconStyle].Piano,
         app: <Piano />,
-        width: 176,
-        height: 321,
+        width: 600,
+        height: 450,
     },
     {
         id: 30,
-        name: "Mahjong",
-        description: "used to play mahjong",
-        icon: "lo.png",
-        app: <Mahjong />,
-        width: 400,
-        height: 700,
+        name: "Thor : Boss Battle",
+        description: "used to play Thor : Boss Battle",
+        icon: "Thor.png",
+        app: <Thor />,
+        width: 700,
+        height: 500,
     },
     {
         id: 31,
-        name: "Terminal",
+        name: "Kobashi",
         description: "used as terminal for the os",
         icon: MenuIconApperance[iconStyle].Terminal,
         app: <Terminal />,
         width: 400,
         height: 500,
+    },
+    {
+        id: 32,
+        name: "Kobai",
+        description: "used as the ai assistant in the os",
+        icon: "./chatBot.png",
+        app: <ChatBot />,
+        width: 500,
+        height: 600,
     },
 ]

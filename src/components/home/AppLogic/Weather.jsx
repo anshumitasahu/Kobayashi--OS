@@ -333,7 +333,7 @@ export default function Weather() {
                                 <p className="text-xs font-semibold text-neutral-500 px-0.5 pb-2">5-day outlook</p>
                                 <div className="flex gap-1.5 overflow-x-auto">
                                     {days.map((d) => (
-                                        <div key={d.dt} className="flex-1 min-w-[72px] rounded-md bg-neutral-50 border border-black/5 px-2 py-2 flex flex-col items-center gap-1">
+                                        <div key={d.dt} className="flex-1 min-w-18 rounded-md bg-neutral-50 border border-black/5 px-2 py-2 flex flex-col items-center gap-1">
                                             <span className="text-xs text-neutral-500">{formatDay(d.dt, weather.timezone ?? 0)}</span>
                                             {d.icon && (
                                                 <img

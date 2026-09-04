@@ -17,6 +17,9 @@ export const MenuIconApperance = {
         Chess: "./colloid/chess.svg",
         Word: "./colloid/word.svg",
         Weather: "./colloid/weather.svg",
+        VSCode: "./colloid/VSCode.svg",
+        Excel: "./colloid/sheets.svg",
+        Piano: "./colloid/piano.svg",
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
@@ -36,6 +39,9 @@ export const MenuIconApperance = {
         Chess: "./Deepin/chess.svg",
         Word: "./Deepin/word.svg",
         Weather: "./Deepin/weather.svg",
+        VSCode: "./Deepin/VSCode.svg",
+        Excel: "./Deepin/sheets.svg",
+        Piano: "./Deepin/piano.svg",
     },
     Fluent: {
         Calculator: "./Fluent/calc.svg",
@@ -55,6 +61,9 @@ export const MenuIconApperance = {
         Chess: "./Fluent/chess.svg",
         Word: "./Fluent/word.svg",
         Weather: "./Fluent/weather.svg",
+        VSCode: "./Fluent/VSCode.svg",
+        Excel: "./Fluent/sheets.svg",
+        Piano: "./Fluent/piano.svg",
     },
     MacTahoe: {
         Calculator: "./MacTahoe/calc.svg",
@@ -74,6 +83,9 @@ export const MenuIconApperance = {
         Chess: "./MacTahoe/chess.svg",
         Word: "./MacTahoe/word.svg",
         Weather: "./MacTahoe/weather.svg",
+        VSCode: "./MacTahoe/VSCode.svg",
+        Excel: "./MacTahoe/sheets.svg",
+        Piano: "./MacTahoe/piano.svg",
     },
     WhiteSur: {
         Calculator: "./WhiteSur/calc.svg",
@@ -93,5 +105,8 @@ export const MenuIconApperance = {
         Chess: "./WhiteSur/chess.svg",
         Word: "./WhiteSur/word.svg",
         Weather: "./WhiteSur/weather.svg",
+        VSCode: "./WhiteSur/VSCode.svg",
+        Excel: "./WhiteSur/sheets.svg",
+        Piano: "./WhiteSur/piano.svg",
     }
 }

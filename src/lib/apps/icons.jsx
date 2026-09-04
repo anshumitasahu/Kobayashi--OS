@@ -3,30 +3,50 @@ export const IconsApperance = {
         Calculator: "./colloid/calc.svg",
         Settings: "./colloid/settings.svg",
         Browser: "./colloid/browser.svg",
-        Notes: "./colloid/notes.svg"
+        Notes: "./colloid/notes.svg",
+        Piano: "./colloid/piano.svg",
+        Terminal: "./colloid/terminal.svg",
+        VSCode: "./colloid/VSCode.svg",
+        Paint: "./colloid/paint.svg",
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
         Settings: "./Deepin/settings.svg",
         Browser: "./Deepin/browser.svg",
-        Notes: "./Deepin/notes.svg"
+        Notes: "./Deepin/notes.svg",
+        Piano: "./Deepin/piano.svg",
+        Terminal: "./Deepin/terminal.svg",
+        VSCode: "./Deepin/VSCode.svg",
+        Paint: "./Deepin/paint.svg",
     },
     Fluent: {
         Calculator: "./Fluent/calc.svg",
         Settings: "./Fluent/settings.svg",
         Browser: "./Fluent/browser.svg",
-        Notes: "./Fluent/notes.svg"
+        Notes: "./Fluent/notes.svg",
+        Piano: "./Fluent/piano.svg",
+        Terminal: "./Fluent/terminal.svg",
+        VSCode: "./Fluent/VSCode.svg",
+        Paint: "./Fluent/paint.svg",
     },
     MacTahoe: {
         Calculator: "./MacTahoe/calc.svg",
         Settings: "./MacTahoe/settings.svg",
         Browser: "./MacTahoe/browser.svg",
-        Notes: "./MacTahoe/notes.svg"
+        Notes: "./MacTahoe/notes.svg",
+        Piano: "./MacTahoe/piano.svg",
+        Terminal: "./MacTahoe/terminal.svg",
+        VSCode: "./MacTahoe/VSCode.svg",
+        Paint: "./MacTahoe/paint.svg",
     },
     WhiteSur: {
         Calculator: "./WhiteSur/calc.svg",
         Settings: "./WhiteSur/settings.svg",
         Browser: "./WhiteSur/browser.svg",
-        Notes: "./WhiteSur/notes.svg"
+        Notes: "./WhiteSur/notes.svg",
+        Piano: "./WhiteSur/piano.svg",
+        Terminal: "./WhiteSur/terminal.svg",
+        VSCode: "./WhiteSur/VSCode.svg",
+        Paint: "./WhiteSur/paint.svg",
     }
 }
