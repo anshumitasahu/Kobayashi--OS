@@ -28,8 +28,8 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         description: "used to paint",
         icon: IconsApperance[iconStyle].Paint,
         app: <Kanvas />,
-        width: 676,
-        height: 500,
+        width: 796,
+        height: 560,
     },
     {
         id: 3,

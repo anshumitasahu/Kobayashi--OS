@@ -11,7 +11,6 @@ export const MenuIconApperance = {
         YouTube: "./colloid/youtube.svg",
         Games: "./colloid/games.svg",
         FileManager: "./colloid/file-manager.svg",
-        Shorts: "./colloid/DoomsScroll.svg",
         Paint: "./colloid/paint.svg",
         Terminal: "./colloid/terminal.svg",
         Chess: "./colloid/chess.svg",
@@ -20,6 +19,7 @@ export const MenuIconApperance = {
         VSCode: "./colloid/VSCode.svg",
         Excel: "./colloid/sheets.svg",
         Piano: "./colloid/piano.svg",
+        ColorPicker: "./colloid/colorpicker.svg"
     },
     Deepin: {
         Calculator: "./Deepin/calc.svg",
@@ -33,7 +33,6 @@ export const MenuIconApperance = {
         YouTube: "./Deepin/youtube.svg",
         Games: "./Deepin/games.svg",
         FileManager: "./Deepin/file-manager.svg",
-        Shorts: "./Deepin/DoomsScroll.svg",
         Paint: "./Deepin/paint.svg",
         Terminal: "./Deepin/terminal.svg",
         Chess: "./Deepin/chess.svg",
@@ -42,6 +41,7 @@ export const MenuIconApperance = {
         VSCode: "./Deepin/VSCode.svg",
         Excel: "./Deepin/sheets.svg",
         Piano: "./Deepin/piano.svg",
+        ColorPicker: "./Deepin/colorpicker.svg"
     },
     Fluent: {
         Calculator: "./Fluent/calc.svg",
@@ -55,8 +55,7 @@ export const MenuIconApperance = {
         YouTube: "./Fluent/youtube.svg",
         Games: "./Fluent/games.svg",
         FileManager: "./Fluent/file-manager.svg",
-        Shorts: "./Fluent/DoomScroll.svg",
-        Paint: "./Fluent/paint.svg",
+        Paint: "./Deepin/paint.svg",
         Terminal: "./Fluent/terminal.svg",
         Chess: "./Fluent/chess.svg",
         Word: "./Fluent/word.svg",
@@ -64,6 +63,7 @@ export const MenuIconApperance = {
         VSCode: "./Fluent/VSCode.svg",
         Excel: "./Fluent/sheets.svg",
         Piano: "./Fluent/piano.svg",
+        ColorPicker: "./Fluent/colorpicker.svg"
     },
     MacTahoe: {
         Calculator: "./MacTahoe/calc.svg",
@@ -77,8 +77,7 @@ export const MenuIconApperance = {
         YouTube: "./MacTahoe/youtube.svg",
         Games: "./MacTahoe/games.svg",
         FileManager: "./MacTahoe/file-manager.svg",
-        Shorts: "./MacTahoe/DoomScroll.svg",
-        Paint: "./MacTahoe/paint.svg",
+        Paint: "./colloid/paint.svg",
         Terminal: "./MacTahoe/terminal.svg",
         Chess: "./MacTahoe/chess.svg",
         Word: "./MacTahoe/word.svg",
@@ -86,6 +85,7 @@ export const MenuIconApperance = {
         VSCode: "./MacTahoe/VSCode.svg",
         Excel: "./MacTahoe/sheets.svg",
         Piano: "./MacTahoe/piano.svg",
+        ColorPicker: "./MacTahoe/colorpicker.svg"
     },
     WhiteSur: {
         Calculator: "./WhiteSur/calc.svg",
@@ -99,8 +99,7 @@ export const MenuIconApperance = {
         YouTube: "./WhiteSur/youtube.svg",
         Games: "./WhiteSur/games.svg",
         FileManager: "./WhiteSur/file-manager.svg",
-        Shorts: "./WhiteSur/DoomScroll.svg",
-        Paint: "./WhiteSur/paint.svg",
+        Paint: "./Colloid/paint.svg",
         Terminal: "./WhiteSur/terminal.svg",
         Chess: "./WhiteSur/chess.svg",
         Word: "./WhiteSur/word.svg",
@@ -108,5 +107,6 @@ export const MenuIconApperance = {
         VSCode: "./WhiteSur/VSCode.svg",
         Excel: "./WhiteSur/sheets.svg",
         Piano: "./WhiteSur/piano.svg",
+        ColorPicker: "./WhiteSur/colorpicker.svg"
     }
 }

@@ -315,7 +315,7 @@ export default function MyColorPicker() {
                     </p>
                 )}
 
-                <div className="overflow-hidden rounded-3xl border border-black/5 bg-white p-4 sm:p-5 [&_.rcp]:!border-0 [&_.rcp]:!shadow-none">
+                <div className="overflow-hidden rounded-3xl border border-black/5 bg-white p-4 sm:p-5 [&_.rcp]:border-0! [&_.rcp]:shadow-none!">
                     <ColorPicker color={color} onChange={setColor} hideAlpha hideInput height={180} />
                 </div>
 
