@@ -45,8 +45,13 @@ const saveWidgets = (widgets) => {
 };
 
 
-export const useAppStore = create((set) => ({
-    openedApps: [{
+const getInitialApps = () => {
+    try {
+        if (!localStorage.getItem("kobayashi-seen")) return [];
+    } catch {
+        return [];
+    }
+    return [{
         id: uuidv4(),
         name: "Welcome",
         app: <Welcome />,
@@ -55,8 +60,13 @@ export const useAppStore = create((set) => ({
         x: 350,
         y: 100,
         windowState: "normal"
-    }],
-    Wallpaper: localStorage.getItem("Wallpaper") || "./bg2.png",
+    }];
+};
+
+
+export const useAppStore = create((set) => ({
+    openedApps: getInitialApps(),
+    Wallpaper: localStorage.getItem("Wallpaper") || "bg2.png",
     openedSetting: SettingsIndex[0],
     highestZindex: 1,
     Brightness: localStorage.getItem("Brightness") || 100,
@@ -144,6 +154,15 @@ export const useAppStore = create((set) => ({
             openedApps: state.openedApps.map((app) => {
                 return (
                     app.id === id ? { ...app, x: newX, y: newY } : app
+                )
+            })
+        }))
+    },
+    setWindowSize: (id, newWidth, newHeight) => {
+        set((state) => ({
+            openedApps: state.openedApps.map((app) => {
+                return (
+                    app.id === id ? { ...app, width: newWidth, height: newHeight } : app
                 )
             })
         }))

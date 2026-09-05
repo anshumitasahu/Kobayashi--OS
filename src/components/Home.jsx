@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TopBar from "./home/topbar";
 import AppsBar from "./home/AppsBar";
 import Window from "./Window";
@@ -8,6 +8,9 @@ import MenuApps from "./home/AppLogic/MenuApp.jsx";
 import WidgetsWindow from "./WidgetsWindow.jsx";
 import RightClick from "./home/RightClick.jsx";
 import { PlusIcon, TrashIcon } from "@phosphor-icons/react";
+import { getWallpaper } from "../DB/wallpaperDB";
+
+const CUSTOM_PREFIX = "idb://";
 
 export default function Home() {
     const desktopRef = useRef();
@@ -30,6 +33,41 @@ export default function Home() {
 
     const Widgets = WidgetsStore(IconStyle);
 
+    const [customSrc, setCustomSrc] = useState(null);
+    const [customKind, setCustomKind] = useState(null);
+
+    const isCustomWallpaper = (Wallpaper || "").startsWith(CUSTOM_PREFIX);
+
+    useEffect(() => {
+        if (!isCustomWallpaper) {
+            setCustomSrc(null);
+            setCustomKind(null);
+            return;
+        }
+        let cancelled = false;
+        let url = null;
+        const id = (Wallpaper || "").slice(CUSTOM_PREFIX.length);
+        getWallpaper(id)
+            .then((row) => {
+                if (cancelled || !row?.blob) return;
+                url = URL.createObjectURL(row.blob);
+                setCustomSrc(url);
+                setCustomKind(row.kind || (row.mime?.startsWith("video/") ? "video" : "image"));
+            })
+            .catch((err) => console.error("Failed to load custom wallpaper", err));
+        return () => {
+            cancelled = true;
+            if (url) URL.revokeObjectURL(url);
+            setCustomSrc(null);
+            setCustomKind(null);
+        };
+    }, [Wallpaper, isCustomWallpaper]);
+
+    const resolvedSrc = isCustomWallpaper ? customSrc : Wallpaper;
+    const isVideoWallpaper = isCustomWallpaper
+        ? customKind === "video"
+        : /\.(mp4|webm|mov|m4v|ogv|ogg)(\?.*)?$/i.test(Wallpaper || "");
+
     const handleRightClick = (event) => {
         event.preventDefault();
         clickComponent ? setClickComponent(false) : setClickComponent(true);
@@ -50,7 +88,20 @@ export default function Home() {
             }}
         >
             <div className="w-screen h-screen absolute -z-10">
-                <img src={Wallpaper} alt="wallpaper" className="h-full w-full object-cover" />
+                {isVideoWallpaper ? (
+                    <video
+                        key={resolvedSrc}
+                        src={resolvedSrc}
+                        className="h-full w-full object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        disablePictureInPicture
+                    />
+                ) : (
+                    resolvedSrc && <img src={resolvedSrc} alt="wallpaper" className="h-full w-full object-cover" />
+                )}
             </div>
 
             <TopBar />
@@ -70,7 +121,7 @@ export default function Home() {
             <div>
                 <div
                     className={`
-            absolute top-8 right-0 z-50 flex flex-col bg-white/40 text-sm/6 text-neutral-600 rounded-lg shadow-lg transition-all duration-600 ease-in-out origin-top-right backdrop-blur-sm h-full overflow-hidden
+            absolute top-8 bottom-0 right-0 z-50 flex flex-col bg-white/40 text-sm/6 text-neutral-600 rounded-lg shadow-lg transition-all duration-600 ease-in-out origin-top-right backdrop-blur-sm overflow-hidden
             ${isWidgetsMenuOpen
                             ? "opacity-100 translate-x-0 visible"
                             : "opacity-0 translate-x-100 invisible pointer-events-none"
@@ -123,7 +174,7 @@ export default function Home() {
                     </div>
                 </div>
             </div>
-            <div ref={desktopRef} className="relative flex-1 overflow-hidden">
+            <div ref={desktopRef} className="relative flex-1 overflow-clip">
                 {
                     openedWidgets.map((widget) => {
                         const Widget = widget.component;

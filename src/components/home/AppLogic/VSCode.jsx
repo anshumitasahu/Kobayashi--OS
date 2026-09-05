@@ -1,18 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Editor } from "@monaco-editor/react";
-
-const STARTER = {
-    html: `<div class="card">\n  <h1>Hello Kobayashi</h1>\n  <p>Edit HTML, CSS & JS — then hit Run.</p>\n  <button id="btn">Click me</button>\n</div>`,
-    css: `body {\n  font-family: sans-serif;\n  background: #0f172a;\n  color: #e2e8f0;\n  display: grid;\n  place-items: center;\n  height: 100vh;\n  margin: 0;\n}\n.card {\n  background: #1e293b;\n  padding: 32px 40px;\n  border-radius: 16px;\n  text-align: center;\n  box-shadow: 0 20px 60px rgba(0,0,0,.4);\n}\nbutton {\n  background: #22c55e;\n  border: none;\n  padding: 10px 20px;\n  border-radius: 8px;\n  font-weight: bold;\n  cursor: pointer;\n}`,
-    js: `console.log("Preview running!");\ndocument.getElementById("btn").onclick = () => {\n  console.log("Button clicked");\n};`,
-};
-
-const CONSOLE_HOOK = `<script>(function(){var send=function(type,args){try{parent.postMessage({__kobaConsole:true,type:type,args:args.map(function(a){try{return typeof a==="object"?JSON.stringify(a):String(a)}catch(e){return String(a)}})},"*")}catch(e){}};["log","info","warn","error"].forEach(function(m){var orig=console[m];console[m]=function(){send(m,Array.prototype.slice.call(arguments));if(orig)orig.apply(console,arguments)}});window.addEventListener("error",function(e){send("error",[e.message])});})();</script>`;
-
-function buildDoc({ html, css, js }) {
-    const safeJs = (js || "").replace(/<\/script>/gi, "<\\/script>");
-    return `<!DOCTYPE html>\n<html>\n<head>\n<meta charset="UTF-8" />\n<meta name="viewport" content="width=device-width, initial-scale=1.0" />\n<style>${css || ""}</style>\n</head>\n<body>\n${html || ""}\n${CONSOLE_HOOK}\n<script>${safeJs}</script>\n</body>\n</html>`;
-}
+import { VSCODE_STARTER as STARTER, buildPreviewDoc as buildDoc } from "../../../lib/vscode/landingTemplate";
 
 const TABS = [
     { id: "html", label: "index.html", short: "HTML", lang: "html", dot: "bg-orange-500" },

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { useAppStore } from "../../store";
 
 export default function TopBar() {
+    const openedApps = useAppStore((state) => state.openedApps);
+    const maximized = openedApps.some((app) => app.windowState === "maximized");
+
     const [now, setNow] = useState(new Date())
 
     useEffect(() => {
@@ -10,6 +14,8 @@ export default function TopBar() {
 
         return () => clearInterval(interval);
     }, [])
+
+    if (maximized) return null;
 
     const time = now.toLocaleTimeString("en-IN", {
         hour: "2-digit",

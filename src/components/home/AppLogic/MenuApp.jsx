@@ -15,7 +15,7 @@ export default function MenuApps({ openApp }) {
     return (
         <div className="bg-transparent backdrop-blur-lg w-screen h-screen" >
             <div className="flex flex-col gap-5 items-center mt-10">
-                <div>
+                <div className="menu-app-fade">
                     <input
                         type="text"
                         placeholder="Search Apps"
@@ -27,15 +27,15 @@ export default function MenuApps({ openApp }) {
                     {
                         apps.filter((app) => {
                             return search.toLowerCase() === '' ? app : app.name.toLowerCase().includes(search);
-                        }).map((app) => {
+                        }).map((app, index) => {
                             const minimized = openedApps.find((property) => property.name === app.name && property.windowState === "minimized")
                             const maximized = openedApps.find((property) => property.name === app.name && property.windowState === "maximized");
                             return (
-                                < div
+                                <div
                                     key={app.id}
-                                    className="rounded-md hover:-translate-y-0.5 cursor-pointer"
+                                    className="menu-app-fade rounded-md hover:-translate-y-0.5 cursor-pointer transition-transform duration-200"
                                     style={{
-                                        transition: "all 0.3s"
+                                        animationDelay: `${Math.min(index * 12, 240)}ms`
                                     }}
                                     onClick={() => {
                                         const existing = openedApps.find((property) => property.name === app.name && property.windowState !== "normal");

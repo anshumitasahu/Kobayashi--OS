@@ -108,6 +108,7 @@ export default function Terminal() {
   const sandboxRef = useRef(null);
   const scrollRef = useRef(null);
   const inputRef = useRef(null);
+  const scriptInputRef = useRef(null);
   const busyRef = useRef(false);
   busyRef.current = busy;
   const activeIdRef = useRef(null);
@@ -128,9 +129,14 @@ export default function Terminal() {
   }, [tab.history, busy, scriptOpen, activeId]);
 
   useEffect(() => {
+    inputRef.current?.focus({ preventScroll: true });
     getSandbox().catch(() => {});
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (scriptOpen) scriptInputRef.current?.focus({ preventScroll: true });
+  }, [scriptOpen]);
 
   function updateTab(id, fn) {
     setTabs((prev) => prev.map((t) => (t.id === id ? fn(t) : t)));
@@ -148,7 +154,7 @@ export default function Terminal() {
     const fresh = makeTab(false);
     setTabs((prev) => [...prev, fresh]);
     setActiveId(fresh.id);
-    setTimeout(() => inputRef.current?.focus(), 0);
+    setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 0);
   }
 
   function closeTab(id) {
@@ -377,7 +383,7 @@ export default function Terminal() {
     } finally {
       setBusy(false);
       setBusyTab(null);
-      inputRef.current?.focus();
+      inputRef.current?.focus({ preventScroll: true });
     }
   }
 
@@ -418,7 +424,7 @@ export default function Terminal() {
     } finally {
       setBusy(false);
       setBusyTab(null);
-      inputRef.current?.focus();
+      inputRef.current?.focus({ preventScroll: true });
     }
   }
 
@@ -464,7 +470,7 @@ export default function Terminal() {
                 key={t.id}
                 onClick={() => {
                   setActiveId(t.id);
-                  setTimeout(() => inputRef.current?.focus(), 0);
+                  setTimeout(() => inputRef.current?.focus({ preventScroll: true }), 0);
                 }}
                 className={`group flex items-center gap-1.5 pl-3 pr-1.5 py-1.5 rounded-t-md text-xs transition-colors whitespace-nowrap shrink-0 ${
                   active
@@ -511,7 +517,7 @@ export default function Terminal() {
         </div>
       </div>
 
-      <div ref={scrollRef} onClick={() => inputRef.current?.focus()}
+      <div ref={scrollRef} onClick={() => inputRef.current?.focus({ preventScroll: true })}
         className="flex-1 min-h-0 overflow-y-auto px-3 py-2 space-y-1 cursor-text select-text selection:bg-[#ff4d9d]/30">
         {tab.history.map((item, i) => {
           if (item.type === "input") {
@@ -564,7 +570,6 @@ export default function Terminal() {
             <span className="text-gray-600">$&nbsp;</span>
             <input
               ref={inputRef}
-              autoFocus
               value={tab.input}
               disabled={busy}
               spellCheck={false}
@@ -589,7 +594,7 @@ export default function Terminal() {
               </button>
             </div>
             <textarea
-              autoFocus
+              ref={scriptInputRef}
               value={script}
               spellCheck={false}
               onChange={(e) => setScript(e.target.value)}

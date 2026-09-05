@@ -12,6 +12,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^44.3.0",
     "@ckeditor/ckeditor5-react": "^11.2.0",
+    "@excalidraw/excalidraw": "^0.18.1",
     "@fortune-sheet/react": "^1.0.4",
     "@google/genai": "^2.18.0",
     "@monaco-editor/react": "^4.7.0",
@@ -31,7 +32,6 @@
     "react-router-dom": "^7.18.1",
     "soundfont-player": "^0.12.0",
     "tailwindcss": "^4.3.2",
-    "tldraw": "^5.3.2",
     "tone": "^15.1.22",
     "uuid": "^14.0.1",
     "xlsx": "^0.18.5",

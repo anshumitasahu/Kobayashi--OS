@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
 @theme {
   --color-primary: #a866ff
 }
@@ -66,6 +73,26 @@
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 100;
   pointer-events: none;
+}
+
+@keyframes menu-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.menu-app-fade {
+  animation: menu-fade 0.25s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu-app-fade {
+    animation: none;
+  }
 }
 
 button {
