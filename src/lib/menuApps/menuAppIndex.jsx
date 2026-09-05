@@ -141,7 +141,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         description: "used to doomscroll",
         icon: "./Shorts.png",
         app: <Shorts />,
-        width: 714,
+        width: 314,
         height: 641,
     },
     {
@@ -186,8 +186,8 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         description: "used to deal with words and docx",
         icon: MenuIconApperance[iconStyle].Word,
         app: <Word />,
-        width: 750,
-        height: 666,
+        width: 700,
+        height: 480,
     },
     {
         id: 18,

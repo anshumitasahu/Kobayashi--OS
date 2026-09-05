@@ -20,7 +20,7 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         icon: "./chatBot.png",
         app: <ChatBot />,
         width: 400,
-        height: 300,
+        height: 500,
     },
     {
         id: 12,
@@ -46,8 +46,8 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         description: "used to write code",
         icon: IconsApperance[iconStyle].VSCode,
         app: <VS_Code />,
-        width: 450,
-        height: 400,
+        width: 850,
+        height: 660,
     },
     {
         id: 5,
@@ -64,7 +64,7 @@ export const AppsMenu = (iconStyle = "Colloid") => [
         description: "used to play piano",
         icon: IconsApperance[iconStyle].Piano,
         app: <Piano />,
-        width: 600,
-        height: 450,
+        width: 800,
+        height: 500,
     },
 ]
