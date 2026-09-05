@@ -5,6 +5,10 @@ import DigitalClock from "../../components/home/Widgets/DigitalClock";
 import WeatherGlass from "../../components/home/Widgets/WeatherGlass";
 import PhotoFrame from "../../components/home/Widgets/PhotoFrame";
 import TodoToday from "../../components/home/Widgets/TodoToday";
+import SonomaClock from "../../components/home/Widgets/SonomaClock";
+import SonomaDate from "../../components/home/Widgets/SonomaDate";
+import SonomaWeather from "../../components/home/Widgets/SonomaWeather";
+import AppShortcuts from "../../components/home/Widgets/AppShortcuts";
 import { WidgetsIconApperance } from "./WidgetsIcons";
 
 
@@ -78,5 +82,45 @@ export const WidgetsStore = (iconStyle = "Colloid") => [
         height: 320,
         minWidth: 200,
         minHeight: 220,
+    },
+    {
+        id: 8,
+        name: "Sonoma Clock",
+        component: SonomaClock,
+        icon: WidgetsIconApperance[iconStyle].Clock,
+        width: 260,
+        height: 260,
+        minWidth: 150,
+        minHeight: 150,
+    },
+    {
+        id: 9,
+        name: "Sonoma Date",
+        component: SonomaDate,
+        icon: WidgetsIconApperance[iconStyle].Calendar,
+        width: 260,
+        height: 260,
+        minWidth: 150,
+        minHeight: 150,
+    },
+    {
+        id: 10,
+        name: "Sonoma Weather",
+        component: SonomaWeather,
+        icon: WidgetsIconApperance[iconStyle].WeatherGlass,
+        width: 260,
+        height: 260,
+        minWidth: 150,
+        minHeight: 150,
+    },
+    {
+        id: 11,
+        name: "App Shortcuts",
+        component: AppShortcuts,
+        icon: WidgetsIconApperance[iconStyle].AppShortcuts,
+        width: 280,
+        height: 280,
+        minWidth: 170,
+        minHeight: 170,
     },
 ];

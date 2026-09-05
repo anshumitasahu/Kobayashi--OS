@@ -6,7 +6,8 @@ export const WidgetsIconApperance = {
         DigitalClock: "./colloid/clock.svg",
         WeatherGlass: "./colloid/weather.svg",
         PhotoFrame: "./colloid/gallery.svg",
-        TodoToday: "./colloid/todo.svg"
+        TodoToday: "./colloid/todo.svg",
+        AppShortcuts: "./colloid/games.svg"
     },
     Deepin: {
         Calendar: "./Deepin/calendar.svg",
@@ -15,7 +16,8 @@ export const WidgetsIconApperance = {
         DigitalClock: "./Deepin/clock.svg",
         WeatherGlass: "./Deepin/weather.svg",
         PhotoFrame: "./Deepin/gallery.svg",
-        TodoToday: "./Deepin/todo.svg"
+        TodoToday: "./Deepin/todo.svg",
+        AppShortcuts: "./Deepin/games.svg"
     },
     Fluent: {
         Calendar: "./Fluent/calendar.svg",
@@ -24,7 +26,8 @@ export const WidgetsIconApperance = {
         DigitalClock: "./Fluent/clock.svg",
         WeatherGlass: "./Fluent/weather.svg",
         PhotoFrame: "./Fluent/gallery.svg",
-        TodoToday: "./Fluent/todo.svg"
+        TodoToday: "./Fluent/todo.svg",
+        AppShortcuts: "./Fluent/games.svg"
     },
     MacTahoe: {
         Calendar: "./MacTahoe/calendar.svg",
@@ -33,7 +36,8 @@ export const WidgetsIconApperance = {
         DigitalClock: "./MacTahoe/clock.svg",
         WeatherGlass: "./MacTahoe/weather.svg",
         PhotoFrame: "./MacTahoe/gallery.svg",
-        TodoToday: "./MacTahoe/todo.svg"
+        TodoToday: "./MacTahoe/todo.svg",
+        AppShortcuts: "./MacTahoe/games.svg"
     },
     WhiteSur: {
         Calendar: "./WhiteSur/calendar.svg",
@@ -42,6 +46,7 @@ export const WidgetsIconApperance = {
         DigitalClock: "./WhiteSur/clock.svg",
         WeatherGlass: "./WhiteSur/weather.svg",
         PhotoFrame: "./WhiteSur/gallery.svg",
-        TodoToday: "./WhiteSur/todo.svg"
+        TodoToday: "./WhiteSur/todo.svg",
+        AppShortcuts: "./WhiteSur/games.svg"
     }
 }
