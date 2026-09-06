@@ -22,28 +22,33 @@ export default function Calendar() {
 
     const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     return (
-        <div className="@container w-full h-full min-w-0 min-h-0 p-1 rounded-md">
-            <div className="bg-[#f8f7ff] w-full h-full min-h-0 px-[3cqw] py-[2cqw] rounded-md overflow-y-auto flex flex-col">
-                <p className="text-center font-semibold text-neutral-600 leading-tight text-[clamp(11px,5.5cqw,18px)]">{year}-{monthName}</p>
-                <div className="grid grid-cols-7 gap-[1.2cqw] p-[1.5cqw] content-start">
+        <div className="@container w-full h-full min-w-0 min-h-0">
+            <div className="flex flex-col w-full h-full min-h-0 overflow-hidden rounded-[26px] bg-white/60 backdrop-blur-2xl border border-white/70 shadow-[0_8px_24px_rgba(0,0,0,0.12)] px-[5cqw] py-[4cqw]">
+                <p className="truncate font-semibold tracking-tight text-neutral-900 leading-tight text-[clamp(12px,6cqw,20px)]">
+                    {monthName} <span className="font-medium text-neutral-400">{year}</span>
+                </p>
+                <div className="grid grid-cols-7 gap-[1cqw] pt-[2cqw] content-start overflow-y-auto">
                     {weekDays.map((day, index) => (
                         <div
                             key={index}
-                            className="font-semibold text-neutral-500 text-center truncate text-[clamp(7px,3.2cqw,12px)]"
+                            className={`font-semibold text-center truncate text-[clamp(7px,3cqw,11px)] ${index === 6 ? "text-[#ff3b30]" : "text-neutral-400"}`}
                         >
                             {day}
                         </div>
                     ))}
                     {days.map((day, index) => {
                         const isToday = day === today.getDate();
+                        const isSunday = index % 7 === 6;
 
                         return (
                             <div
                                 key={index}
-                                className="rounded-[0.8cqw] aspect-square flex items-center justify-center text-neutral-700 text-[clamp(7px,3.4cqw,13px)]"
-                                style={{
-                                    backgroundColor: isToday ? "#beb9e2" : null
-                                }}
+                                className={`rounded-full aspect-square flex items-center justify-center tabular-nums text-[clamp(7px,3.4cqw,13px)] ${isToday
+                                    ? "bg-[#ff3b30] text-white font-semibold shadow-[0_2px_8px_rgba(255,59,48,0.45)]"
+                                    : isSunday && day
+                                        ? "text-[#ff3b30]"
+                                        : "text-neutral-700"
+                                    }`}
                             >
                                 {day}
                             </div>

@@ -1,15 +1,22 @@
 import { useEffect, useState } from "react";
 import Welcome from "./home/AppLogic/Welcome";
 import { getWallpaper } from "../DB/wallpaperDB";
-
-const CUSTOM_PREFIX = "idb://";
+import {
+    CUSTOM_PREFIX,
+    COLOR_PREFIX,
+    DEFAULT_WALLPAPER,
+    normalizeWallpaper,
+    isColorWallpaper,
+    isCustomWallpaper as checkCustomWallpaper,
+    isVideoWallpaper as checkVideoWallpaper,
+} from "../lib/wallpapers";
 
 export default function FirstRun({ onDone }) {
     const savedWallpaper = (() => {
         try {
-            return localStorage.getItem("Wallpaper") || "bg2.png";
+            return normalizeWallpaper(localStorage.getItem("Wallpaper"), DEFAULT_WALLPAPER);
         } catch {
-            return "bg2.png";
+            return DEFAULT_WALLPAPER;
         }
     })();
 
@@ -26,7 +33,8 @@ export default function FirstRun({ onDone }) {
         return () => window.removeEventListener("resize", onResize);
     }, []);
 
-    const isCustom = (savedWallpaper || "").startsWith(CUSTOM_PREFIX);
+    const isCustom = checkCustomWallpaper(savedWallpaper);
+    const isSolid = isColorWallpaper(savedWallpaper);
 
     useEffect(() => {
         if (!isCustom) return;
@@ -52,10 +60,12 @@ export default function FirstRun({ onDone }) {
         };
     }, [savedWallpaper, isCustom]);
 
-    const resolvedSrc = isCustom ? customSrc : savedWallpaper;
-    const isVideo = isCustom
-        ? customKind === "video"
-        : /\.(mp4|webm|mov|m4v|ogv|ogg)(\?.*)?$/i.test(savedWallpaper || "");
+    const resolvedSrc = isCustom ? customSrc : isSolid ? null : savedWallpaper;
+    const isVideo = isSolid
+        ? false
+        : isCustom
+            ? customKind === "video"
+            : checkVideoWallpaper(savedWallpaper);
 
     const FRAME_PAD = 8;
     const TEXT_H = 152;
@@ -65,8 +75,8 @@ export default function FirstRun({ onDone }) {
 
     return (
         <div className="fixed inset-0 z-50 h-screen w-screen overflow-hidden">
-            <div className="absolute inset-0 -z-10">
-                {isVideo ? (
+            <div className="absolute inset-0 -z-10" style={isSolid ? { backgroundColor: savedWallpaper.slice(COLOR_PREFIX.length) } : undefined}>
+                {isSolid ? null : isVideo ? (
                     resolvedSrc && (
                         <video
                             key={resolvedSrc}

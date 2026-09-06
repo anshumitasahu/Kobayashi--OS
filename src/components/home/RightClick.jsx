@@ -4,7 +4,7 @@ import { AppsMenu } from "../../lib/apps";
 
 export default function RightClick({ onClose }) {
     const toggleWidgetMenu = useAppStore((state) => state.toggleWidgetMenu);
-    const openSetting = useAppStore((state) => state.openSetting);
+    const setAppSettingId = useAppStore((state) => state.setAppSettingId);
     const openApp = useAppStore((state) => state.openApp);
     const IconStyle = useAppStore((state) => state.IconStyle);
     const openedApps = useAppStore((state) => state.openedApps)
@@ -16,15 +16,15 @@ export default function RightClick({ onClose }) {
 
     const openSettings = (setting) => {
         onClose()
-        openSetting(setting);
 
         const existingSetting = openedApps.find((app) => app.name === "Settings")
 
         if (existingSetting) {
+            setAppSettingId(existingSetting.id, setting.id);
             bringToFront(existingSetting.id);
             return;
         }
-        openApp(settingsApp);
+        openApp({ ...settingsApp, settingId: setting.id });
     };
 
     const openWidgets = () => {

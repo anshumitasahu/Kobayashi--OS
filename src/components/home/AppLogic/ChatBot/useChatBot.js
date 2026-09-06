@@ -13,7 +13,6 @@ import {
 import { buildSystemPrompt } from "../../../../lib/AIChats/kobayashiPrompt.js";
 import { runLocalCommand } from "../../../../lib/AIChats/localCommands.js";
 import { speak } from "../../../../lib/AIChats/speech.js";
-import { handleSearchWeb } from "../../../../lib/AIChats/Capabilities.jsx";
 import {
     awardExchange,
     describeRelation,
@@ -27,11 +26,25 @@ const LOCAL_EMOTION = "bored";
 export const ASSISTANT_ROLE = "kobayashi-chan-ai";
 
 function toApiMessages(history) {
-    return history.map((msg) =>
-        msg.role === "user"
-            ? { role: "user", content: msg.content }
-            : { role: "assistant", content: msg.content }
-    );
+    return history
+        .filter((msg) => msg.status !== "failed")
+        .map((msg) =>
+            msg.role === "user"
+                ? { role: "user", content: msg.content }
+                : { role: "assistant", content: msg.content }
+        );
+}
+
+function toFailureReason(error) {
+    if (error?.code === "NETWORK_ERROR") return "Network error. Check your connection and retry.";
+    if (error?.code === "EMPTY_RESPONSE") return "The AI returned an empty reply.";
+    if (error?.code === "INVALID_JSON_RESPONSE") return "The AI reply was unreadable.";
+    return error?.message || "Request failed.";
+}
+
+function newId() {
+    if (typeof crypto !== "undefined" && crypto.randomUUID) return crypto.randomUUID();
+    return `${Date.now()}-${Math.floor(Math.random() * 1e9)}`;
 }
 
 function toFallbackReply(commandName) {
@@ -114,6 +127,19 @@ export function useChatBot() {
         ]);
     };
 
+    const pushFailure = (reason, userText) => {
+        setMessageHistory((prev) => [
+            ...prev,
+            {
+                id: newId(),
+                role: ASSISTANT_ROLE,
+                status: "failed",
+                error: reason,
+                retryText: userText,
+            },
+        ]);
+    };
+
     const handleTextResponse = async (aiResponse, userText) => {
         const answer = aiResponse.text || "I don't have an answer for that.";
         await persistMemories(aiResponse, userText);
@@ -122,16 +148,20 @@ export function useChatBot() {
     };
 
     const handleCommandsResponse = async (aiResponse, userText) => {
-        for (const command of aiResponse.commands ?? []) {
-            await processCommand(command);
+        try {
+            for (const command of aiResponse.commands ?? []) {
+                await processCommand(command);
+            }
+            await persistMemories(aiResponse, userText);
+            pushAssistant("Done. Moving on.", aiResponse.emotion, aiResponse.avatar_quote);
+        } catch (commandError) {
+            pushFailure(commandError?.message || "That action failed.", userText);
         }
-        await persistMemories(aiResponse, userText);
-        pushAssistant("Done. Moving on.", aiResponse.emotion, aiResponse.avatar_quote);
     };
 
     const handleSingleCommandResponse = async (aiResponse, userText) => {
         if (!aiResponse.command) {
-            pushAssistant("I couldn't determine the requested command.", aiResponse.emotion, aiResponse.avatar_quote);
+            pushFailure("The AI reply was missing the requested action.", userText);
             return;
         }
         try {
@@ -144,11 +174,7 @@ export function useChatBot() {
             await persistMemories(aiResponse, userText);
             pushAssistant(reply, aiResponse.emotion, aiResponse.avatar_quote);
         } catch (commandError) {
-            pushAssistant(
-                commandError?.message || "It failed. Not my fault. Probably.",
-                "sulking",
-                "Tch. Try again, I guess."
-            );
+            pushFailure(commandError?.message || "That action failed.", userText);
         }
     };
 
@@ -156,19 +182,38 @@ export function useChatBot() {
         if (aiResponse.type === "text") return handleTextResponse(aiResponse, userText);
         if (aiResponse.type === "commands") return handleCommandsResponse(aiResponse, userText);
         if (aiResponse.type !== "command") {
-            pushAssistant("I couldn't determine what you want me to do.", aiResponse.emotion, aiResponse.avatar_quote);
+            pushFailure("The AI reply was unreadable.", userText);
             return;
         }
         return handleSingleCommandResponse(aiResponse, userText);
     };
 
     const handleAiError = (error, userInput) => {
-        if (error?.code === "INVALID_JSON_RESPONSE") {
-            console.log({error})
-            pushAssistant("Sorry, I couldn't understand that request.");
+        pushFailure(toFailureReason(error), userInput);
+    };
+
+    const runRequest = async (userText) => {
+        const localReply = runLocalCommand(userText);
+        if (localReply) {
+            pushAssistant(localReply, LOCAL_EMOTION, localReply);
             return;
         }
-        handleSearchWeb(userInput);
+
+        const systemPrompt = buildSystemPrompt({
+            commands: ChatsCommand,
+            validEmotions: VALID_EMOTION_NAMES,
+            messageHistory: toApiMessages(messageHistory),
+            memories,
+            relation: describeRelation(relation),
+        });
+
+        const aiResponse = await sendChatCompletion([
+            { role: "system", content: systemPrompt },
+            ...toApiMessages(messageHistory),
+            { role: "user", content: userText },
+        ]);
+
+        await handleAiResponse(aiResponse, userText);
     };
 
     const handleSend = async () => {
@@ -180,31 +225,25 @@ export function useChatBot() {
         setMessageHistory((prev) => [...prev, { role: "user", content: userInput }]);
 
         try {
-            const localReply = runLocalCommand(userInput);
-            if (localReply) {
-                pushAssistant(localReply, LOCAL_EMOTION, localReply);
-                return;
-            }
-
-            const systemPrompt = buildSystemPrompt({
-                commands: ChatsCommand,
-                validEmotions: VALID_EMOTION_NAMES,
-                messageHistory: toApiMessages(messageHistory),
-                memories,
-                relation: describeRelation(relation),
-            });
-
-            const aiResponse = await sendChatCompletion([
-                { role: "system", content: systemPrompt },
-                ...toApiMessages(messageHistory),
-                { role: "user", content: userInput },
-            ]);
-
-            console.log(aiResponse);
-
-            await handleAiResponse(aiResponse, userInput);
+            await runRequest(userInput);
         } catch (error) {
             handleAiError(error, userInput);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleRetry = async (failedMessage) => {
+        const retryText = (failedMessage?.retryText || "").trim();
+        if (!retryText || loading) return;
+
+        setMessageHistory((prev) => prev.filter((msg) => msg.id !== failedMessage.id));
+        setLoading(true);
+
+        try {
+            await runRequest(retryText);
+        } catch (error) {
+            handleAiError(error, retryText);
         } finally {
             setLoading(false);
         }
@@ -221,11 +260,14 @@ export function useChatBot() {
         relation: describeRelation(relation),
         openingKey,
         handleSend,
+        handleRetry,
     };
 }
 
 export function getDisplayText(msg) {
     if (msg.role === "user") return msg.content;
+    if (msg.status === "failed") return msg.error || "Message failed to send.";
+    if (!msg.content) return "";
     try {
         const parsed = JSON.parse(msg.content);
         if (parsed.type === "text" && parsed.text) return parsed.text;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { cloneElement, isValidElement, useEffect, useRef, useState } from "react";
 import TopBar from "./home/topbar";
 import AppsBar from "./home/AppsBar";
 import Window from "./Window";
@@ -9,8 +9,14 @@ import WidgetsWindow from "./WidgetsWindow.jsx";
 import RightClick from "./home/RightClick.jsx";
 import { PlusIcon, TrashIcon } from "@phosphor-icons/react";
 import { getWallpaper } from "../DB/wallpaperDB";
-
-const CUSTOM_PREFIX = "idb://";
+import {
+    CUSTOM_PREFIX,
+    COLOR_PREFIX,
+    DEFAULT_WALLPAPER,
+    isColorWallpaper as checkColorWallpaper,
+    isCustomWallpaper as checkCustomWallpaper,
+    isVideoWallpaper as checkVideoWallpaper,
+} from "../lib/wallpapers";
 
 export default function Home() {
     const desktopRef = useRef();
@@ -21,7 +27,9 @@ export default function Home() {
     const openedApps = useAppStore((state) => state.openedApps);
     const openApp = useAppStore((state) => state.openApp);
     const closeApp = useAppStore((state) => state.closeApp);
-    const Wallpaper = useAppStore((state) => state.Wallpaper);
+    const Wallpaper = useAppStore((state) => state.Wallpaper) || DEFAULT_WALLPAPER;
+    const WallpaperBlur = useAppStore((state) => state.WallpaperBlur) || 0;
+    const WallpaperDim = useAppStore((state) => state.WallpaperDim) || 0;
     const Brightness = useAppStore((state) => state.Brightness);
     const isMenuOpen = useAppStore((state) => state.isMenuOpen);
     const openedWidgets = useAppStore((state) => state.openedWidgets);
@@ -36,7 +44,8 @@ export default function Home() {
     const [customSrc, setCustomSrc] = useState(null);
     const [customKind, setCustomKind] = useState(null);
 
-    const isCustomWallpaper = (Wallpaper || "").startsWith(CUSTOM_PREFIX);
+    const isCustomWallpaper = checkCustomWallpaper(Wallpaper);
+    const isSolidWallpaper = checkColorWallpaper(Wallpaper);
 
     useEffect(() => {
         if (!isCustomWallpaper) {
@@ -63,10 +72,14 @@ export default function Home() {
         };
     }, [Wallpaper, isCustomWallpaper]);
 
-    const resolvedSrc = isCustomWallpaper ? customSrc : Wallpaper;
-    const isVideoWallpaper = isCustomWallpaper
-        ? customKind === "video"
-        : /\.(mp4|webm|mov|m4v|ogv|ogg)(\?.*)?$/i.test(Wallpaper || "");
+    const resolvedSrc = isCustomWallpaper ? customSrc : isSolidWallpaper ? null : Wallpaper;
+    const isVideoWallpaper = isSolidWallpaper
+        ? false
+        : isCustomWallpaper
+            ? customKind === "video"
+            : checkVideoWallpaper(Wallpaper);
+    const wallpaperFilter = WallpaperBlur ? `blur(${WallpaperBlur}px)` : undefined;
+    const wallpaperScale = WallpaperBlur ? "scale(1.08)" : undefined;
 
     const handleRightClick = (event) => {
         event.preventDefault();
@@ -87,12 +100,13 @@ export default function Home() {
                 filter: `brightness(${Brightness}%)`
             }}
         >
-            <div className="w-screen h-screen absolute -z-10">
-                {isVideoWallpaper ? (
+            <div className="w-screen h-screen absolute -z-10 overflow-hidden" style={isSolidWallpaper ? { backgroundColor: Wallpaper.slice(COLOR_PREFIX.length) } : undefined}>
+                {isSolidWallpaper ? null : isVideoWallpaper ? (
                     <video
                         key={resolvedSrc}
                         src={resolvedSrc}
                         className="h-full w-full object-cover"
+                        style={{ filter: wallpaperFilter, transform: wallpaperScale }}
                         autoPlay
                         muted
                         loop
@@ -100,8 +114,9 @@ export default function Home() {
                         disablePictureInPicture
                     />
                 ) : (
-                    resolvedSrc && <img src={resolvedSrc} alt="wallpaper" className="h-full w-full object-cover" />
+                    resolvedSrc && <img src={resolvedSrc} alt="wallpaper" className="h-full w-full object-cover" style={{ filter: wallpaperFilter, transform: wallpaperScale }} />
                 )}
+                {WallpaperDim > 0 && <div className="absolute inset-0 bg-black pointer-events-none" style={{ opacity: WallpaperDim / 100 }} />}
             </div>
 
             <TopBar />
@@ -216,7 +231,7 @@ export default function Home() {
                             windowState={app.windowState}
                             closeApp={() => closeApp(app.id)}
                         >
-                            {app.app}
+                            {isValidElement(app.app) ? cloneElement(app.app, { windowId: app.id }) : app.app}
                         </Window>
                     ))
                 }

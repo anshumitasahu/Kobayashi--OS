@@ -12,11 +12,12 @@ export default function ChatBot() {
         loading,
         messageHistory,
         handleSend,
+        handleRetry,
     } = useChatBot();
 
     return (
         <div className="bg-[#ffe9f3] h-full w-full flex flex-col overflow-hidden">
-            <ChatMessageList messages={messageHistory} />
+            <ChatMessageList messages={messageHistory} onRetry={handleRetry} retryDisabled={loading} />
             <AvatarCard emotion={avatarEmotion} quote={avatarQuote} loading={loading} />
             <ChatInput
                 value={input}

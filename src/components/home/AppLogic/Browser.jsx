@@ -13,6 +13,11 @@ import {
 } from "@phosphor-icons/react";
 import { useAppStore } from "../../../store";
 import { getWallpaper } from "../../../DB/wallpaperDB";
+import {
+    isColorWallpaper,
+    isCustomWallpaper as checkCustomWallpaper,
+    isVideoWallpaper as checkVideoWallpaper,
+} from "../../../lib/wallpapers";
 
 const ENGINES = {
     google: { label: "Google", search: (q) => `https://www.google.com/search?igu=1&q=${encodeURIComponent(q)}` },
@@ -80,7 +85,8 @@ function useWallpaper() {
     const wallpaper = useAppStore((s) => s.Wallpaper);
     const [customSrc, setCustomSrc] = useState(null);
     const [customKind, setCustomKind] = useState(null);
-    const isCustom = (wallpaper || "").startsWith("idb://");
+    const isCustom = checkCustomWallpaper(wallpaper);
+    const isSolid = isColorWallpaper(wallpaper);
 
     useEffect(() => {
         if (!isCustom) {
@@ -107,20 +113,22 @@ function useWallpaper() {
         };
     }, [wallpaper, isCustom]);
 
-    const src = isCustom ? customSrc : wallpaper;
-    const isVideo = isCustom
-        ? customKind === "video"
-        : /\.(mp4|webm|mov|m4v|ogv|ogg)(\?.*)?$/i.test(wallpaper || "");
-    return { src, isVideo };
+    const src = isCustom ? customSrc : isSolid ? null : wallpaper;
+    const isVideo = isSolid
+        ? false
+        : isCustom
+            ? customKind === "video"
+            : checkVideoWallpaper(wallpaper);
+    return { src, isVideo, isSolid, solid: isSolid ? (wallpaper || "").slice("color:".length) : null };
 }
 
 function KobasurfHome({ engineLabel, onSearch }) {
     const [q, setQ] = useState("");
-    const { src, isVideo } = useWallpaper();
+    const { src, isVideo, isSolid, solid } = useWallpaper();
 
     return (
-        <div className="relative h-full w-full overflow-hidden bg-neutral-100">
-            {src && (
+        <div className="relative h-full w-full overflow-hidden bg-neutral-100" style={isSolid ? { backgroundColor: solid } : undefined}>
+            {!isSolid && src && (
                 isVideo ? (
                     <video key={src} src={src} autoPlay muted loop playsInline className="absolute inset-0 h-full w-full object-cover" />
                 ) : (

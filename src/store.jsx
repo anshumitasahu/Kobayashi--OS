@@ -4,6 +4,7 @@ import Display from './components/home/AppLogic/Settings/Display';
 import Wallpaper from './components/home/AppLogic/Settings/Wallpaper';
 import Welcome from './components/home/AppLogic/Welcome';
 import { SettingsIndex } from './lib/settingsStore/settingsIndex';
+import { DEFAULT_WALLPAPER, normalizeWallpaper } from './lib/wallpapers';
 import Calendar from './components/home/Widgets/Calendar';
 import { CalendarIcon } from '@phosphor-icons/react';
 import { WidgetsStore } from './lib/Widgets/WidgetsStore';
@@ -68,8 +69,9 @@ const getInitialApps = () => {
 
 export const useAppStore = create((set) => ({
     openedApps: getInitialApps(),
-    Wallpaper: localStorage.getItem("Wallpaper") || "bg2.png",
-    openedSetting: SettingsIndex[0],
+    Wallpaper: normalizeWallpaper(localStorage.getItem("Wallpaper"), DEFAULT_WALLPAPER),
+    WallpaperBlur: Number(localStorage.getItem("WallpaperBlur") ?? 0) || 0,
+    WallpaperDim: Number(localStorage.getItem("WallpaperDim") ?? 0) || 0,
     highestZindex: 1,
     Brightness: localStorage.getItem("Brightness") || 100,
     IconStyle: localStorage.getItem("IconStyle") || "Colloid",
@@ -102,6 +104,7 @@ export const useAppStore = create((set) => ({
                 openedApps: [...state.openedApps, {
                     ...app, id: uniqueId, zIndex: state.highestZindex + 1, windowState: "normal", x: 250 + position, y: 100 + position, width: app.width ?? 500,
                     height: app.height ?? 400,
+                    ...(app.name === "Settings" ? { settingId: app.settingId ?? SettingsIndex[0].id } : {}),
                 }],
                 highestZindex: state.highestZindex + 1
             }
@@ -113,8 +116,19 @@ export const useAppStore = create((set) => ({
         }));
     },
     setWallpaper: (Wallpaper) => {
-        localStorage.setItem("Wallpaper", Wallpaper);
-        set({ Wallpaper });
+        const normalized = normalizeWallpaper(Wallpaper, DEFAULT_WALLPAPER);
+        localStorage.setItem("Wallpaper", normalized);
+        set({ Wallpaper: normalized });
+    },
+    setWallpaperBlur: (WallpaperBlur) => {
+        const value = Math.min(24, Math.max(0, Number(WallpaperBlur) || 0));
+        localStorage.setItem("WallpaperBlur", value);
+        set({ WallpaperBlur: value })
+    },
+    setWallpaperDim: (WallpaperDim) => {
+        const value = Math.min(80, Math.max(0, Number(WallpaperDim) || 0));
+        localStorage.setItem("WallpaperDim", value);
+        set({ WallpaperDim: value })
     },
     bringToFront: (id) => {
         set(state => {
@@ -134,8 +148,12 @@ export const useAppStore = create((set) => ({
             }
         })
     },
-    openSetting: (setting) => {
-        set({ openedSetting: setting })
+    setAppSettingId: (appId, settingId) => {
+        set((state) => ({
+            openedApps: state.openedApps.map((app) =>
+                app.id === appId ? { ...app, settingId } : app
+            ),
+        }));
     },
     minimize: (id) => {
         set((state) => ({

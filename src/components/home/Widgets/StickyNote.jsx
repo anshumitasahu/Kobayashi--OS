@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { PushPinIcon, CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
+import { NoteIcon, CaretLeftIcon, CaretRightIcon } from "@phosphor-icons/react";
 import { loadWidgetSettings, saveWidgetSetting, readNotes } from "../../../lib/Widgets/widgetSettings";
 
 const stop = (e) => e.stopPropagation();
@@ -31,34 +31,36 @@ export default function StickyNote() {
         pick(notes[(idx + dir + notes.length) % notes.length].id);
     };
 
+    const lines = (pinned?.text ?? "").split("\n").filter((l) => l.trim() !== "");
+    const title = lines[0] ?? "";
+    const preview = lines.slice(1).join("\n");
+    const accent = pinned?.color || "#ffd60a";
+
     return (
-        <div
-            className="@container group/note relative w-full h-full min-w-0 min-h-0 overflow-hidden rounded-[4px] border border-black/[0.07]"
-            style={{ backgroundColor: pinned?.color || "#fef08a", boxShadow: "0 4px 14px rgba(0,0,0,0.18)" }}
-        >
-            <span aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-[30%] bg-gradient-to-b from-black/[0.07] to-transparent" />
-            <span
-                aria-hidden="true"
-                className="pointer-events-none absolute bottom-0 right-0 h-[clamp(14px,9cqw,26px)] w-[clamp(14px,9cqw,26px)]"
-                style={{ backgroundColor: "rgba(0,0,0,0.12)", clipPath: "polygon(100% 0, 0 100%, 100% 100%)" }}
-            />
-            <span
-                aria-hidden="true"
-                className="pointer-events-none absolute bottom-0 right-0 h-[clamp(14px,9cqw,26px)] w-[clamp(14px,9cqw,26px)]"
-                style={{ backgroundColor: "rgba(255,255,255,0.65)", clipPath: "polygon(100% 5px, 5px 100%, 100% 100%)" }}
-            />
-            <span className="absolute left-1/2 top-[1.5cqw] -translate-x-1/2 -rotate-6 leading-none text-red-500 drop-shadow-[0_2px_2px_rgba(0,0,0,0.35)] text-[clamp(14px,8cqw,26px)]">
-                <PushPinIcon size="1em" weight="fill" />
-            </span>
+        <div className="@container group/note relative w-full h-full min-w-0 min-h-0 overflow-hidden rounded-[26px] bg-white/60 backdrop-blur-2xl border border-white/70 shadow-[0_8px_24px_rgba(0,0,0,0.12)] flex flex-col">
+            <div className="flex items-center gap-[2cqw] px-[5cqw] pt-[4cqw] pb-[2cqw]">
+                <span className="flex shrink-0 items-center justify-center rounded-[2.2cqw] bg-gradient-to-b from-[#ffe45e] to-[#ffc93c] text-white shadow-[0_2px_6px_rgba(0,0,0,0.15)] w-[clamp(22px,9cqw,32px)] h-[clamp(22px,9cqw,32px)]">
+                    <NoteIcon size="60%" weight="fill" />
+                </span>
+                <p className="min-w-0 flex-1 truncate font-semibold text-neutral-700 text-[clamp(10px,4.4cqw,15px)]">Notes</p>
+                <span className="h-[2.4cqw] max-h-[10px] min-h-[6px] w-[2.4cqw] max-w-[10px] min-w-[6px] shrink-0 rounded-full" style={{ backgroundColor: accent }} />
+            </div>
 
             {pinned ? (
-                <p className="absolute inset-0 overflow-y-auto whitespace-pre-wrap break-words leading-snug text-neutral-800 px-[5cqw] pt-[11cqw] pb-[8cqw] text-[clamp(9px,5.2cqw,15px)]">
-                    {pinned.text}
-                </p>
+                <div className="min-h-0 flex-1 overflow-y-auto px-[5cqw] pb-[4cqw]">
+                    <p className="truncate font-semibold tracking-tight text-neutral-900 leading-snug text-[clamp(11px,5cqw,17px)]">
+                        {title}
+                    </p>
+                    {preview && (
+                        <p className="mt-[1cqw] whitespace-pre-wrap break-words leading-snug text-neutral-500 text-[clamp(9px,4cqw,13px)]">
+                            {preview}
+                        </p>
+                    )}
+                </div>
             ) : (
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-[1cqw] px-[5cqw] pt-[8cqw] text-center">
-                    <p className="font-semibold text-neutral-600 text-[clamp(9px,4.2cqw,14px)]">No notes yet</p>
-                    <p className="text-neutral-500 text-[clamp(8px,3.6cqw,12px)]">Create one in the Notes app</p>
+                <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-[1cqw] px-[5cqw] pb-[5cqw] text-center">
+                    <p className="font-semibold text-neutral-500 text-[clamp(9px,4.2cqw,14px)]">No notes yet</p>
+                    <p className="text-neutral-400 text-[clamp(8px,3.6cqw,12px)]">Create one in the Notes app</p>
                 </div>
             )}
 

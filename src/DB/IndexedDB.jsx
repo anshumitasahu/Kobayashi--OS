@@ -32,7 +32,10 @@ export const savePhoto = async (blob) => {
             date: new Date(),
         });
 
-        request.onsuccess = () => { resolve(request.result); };
+        request.onsuccess = () => {
+            resolve(request.result);
+            window.dispatchEvent(new Event("gallery-photos-changed"));
+        };
         request.onerror = () => { reject(request.error); };
     });
 };
@@ -61,7 +64,10 @@ export const deletePhoto = async (id) => {
         const store = transaction.objectStore(STORE_NAME);
         const request = store.delete(id);
 
-        request.onsuccess = () => resolve(request.result);
-        request.onerror = () => reject(request.error);
+        request.onsuccess = () => {
+            resolve(request.result);
+            window.dispatchEvent(new Event("gallery-photos-changed"));
+        };
+        request.onerror = () => { reject(request.error); };
     });
 }

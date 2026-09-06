@@ -1,11 +1,9 @@
-import { MagnifyingGlassIcon, PaletteIcon } from "@phosphor-icons/react";
+import { MagnifyingGlassIcon } from "@phosphor-icons/react";
 import { useAppStore } from "../../../../store";
 import { SettingsIndex } from "../../../../lib/settingsStore/settingsIndex";
-import { useEffect } from "react";
 
-export default function SideBar() {
-    const openSetting = useAppStore((state) => state.openSetting);
-    const openedSetting = useAppStore((state) => state.openedSetting);
+export default function SideBar({ windowId, activeSettingId }) {
+    const setAppSettingId = useAppStore((state) => state.setAppSettingId);
 
     return (
         <div className="w-full bg-white/50 p-1">
@@ -20,9 +18,9 @@ export default function SideBar() {
                     <div
                         className="flex gap-3 items-center p-1 rounded-md"
                         key={setting.id}
-                        onClick={() => openSetting(setting)}
+                        onClick={() => setAppSettingId(windowId, setting.id)}
                         style={{
-                            backgroundColor: (openedSetting.id === setting.id) && "rgba(241, 226, 255, 0.8)"
+                            backgroundColor: (activeSettingId === setting.id) && "rgba(241, 226, 255, 0.8)"
                         }}
                     >
                         <div

@@ -3,6 +3,7 @@ import { useAppStore } from "../../store";
 import Browser from "../../components/home/AppLogic/Browser";
 import Camera from "../../components/home/AppLogic/Camera";
 import MusicPlayer from "../../components/home/AppLogic/MusicPlayer";
+import { WALL_STILLS } from "../wallpapers";
 
 export function openAppByName(name) {
     const openApp = useAppStore.getState().openApp;
@@ -168,14 +169,7 @@ export function handleDecreaseBrightness() {
 export function handleWallpaper() {
     const setWallpaper =
         useAppStore.getState().setWallpaper;
-    const wallpapers = [
-        "bg2.png",
-        "bg.png",
-        "bg-6.jpg",
-        "bg-n.png",
-        "bg-1.png",
-        "bg-new.jpeg"
-    ]
+    const wallpapers = WALL_STILLS;
     const randomWallpaper = wallpapers[Math.floor(Math.random() * wallpapers.length)]
 
     setWallpaper(randomWallpaper)

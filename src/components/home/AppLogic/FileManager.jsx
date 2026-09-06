@@ -18,7 +18,7 @@ import {
     CaretLeftIcon,
     FileIcon,
 } from "@phosphor-icons/react";
-import { getPhotos, deletePhoto } from "../../../DB/IndexedDB";
+import { getPhotos, savePhoto, deletePhoto } from "../../../DB/IndexedDB";
 import { MusicIndex } from "../../../lib/Music/MusicIndex";
 
 const DB_NAME = "file-manager";
@@ -134,7 +134,17 @@ export default function FileManager() {
 
     useEffect(() => {
         loadAll();
+        const reloadPhotos = async () => {
+            try {
+                const galleryPhotos = await getPhotos();
+                setPhotos(galleryPhotos);
+            } catch (error) {
+                console.error("Failed to reload photos:", error);
+            }
+        };
+        window.addEventListener("gallery-photos-changed", reloadPhotos);
         return () => {
+            window.removeEventListener("gallery-photos-changed", reloadPhotos);
             urlCache.current.forEach((url) => URL.revokeObjectURL(url));
             urlCache.current.clear();
         };
@@ -336,6 +346,28 @@ export default function FileManager() {
         const input = document.createElement("input");
         input.type = "file";
         input.multiple = true;
+
+        if (activeFolder === "pictures") {
+            input.accept = "image/*";
+            input.onchange = async (event) => {
+                const files = Array.from(event.target.files || []).filter((f) => f.type?.startsWith("image/"));
+                for (const file of files) {
+                    try {
+                        await savePhoto(file);
+                    } catch (error) {
+                        console.error("Failed to save photo to Gallery:", error);
+                    }
+                }
+                try {
+                    const galleryPhotos = await getPhotos();
+                    setPhotos(galleryPhotos);
+                } catch (error) {
+                    console.error("Failed to reload photos:", error);
+                }
+            };
+            input.click();
+            return;
+        }
 
         input.onchange = async (event) => {
             const files = Array.from(event.target.files || []);
