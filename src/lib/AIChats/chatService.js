@@ -4,13 +4,14 @@
  * code "INVALID_JSON_RESPONSE" so the caller can reply gracefully.
  */
 export async function sendChatCompletion(messages) {
+    const apikey = import.meta.env.VITE_OPENROUTER_API_KEY;
     let response;
     try {
         response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: `Bearer ${import.meta.env.VITE_OPENROUTER_API_KEY}`,
+                Authorization: `Bearer ${apikey}`,
                 "HTTP-Referer": window.location.origin,
                 "X-Title": "Kobayashi OS",
             },
