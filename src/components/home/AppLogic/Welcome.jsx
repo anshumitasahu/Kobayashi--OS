@@ -9,16 +9,16 @@ const slides = [
         image: null,
     },
     {
-        title: "Code like Kobayashi",
-        description:
-            "VS Code, a real terminal, instant run. Write it, break it, run it again.",
-        image: "/showcase/code.png",
-    },
-    {
         title: "Make it yours",
         description:
             "Wallpapers, videos, icons, widgets. Tweak it all, or tell Kobayashi-chan to do it.",
         image: "/showcase/settings.png",
+    },
+    {
+        title: "Code like Kobayashi",
+        description:
+            "VS Code, a real terminal, instant run. Write it, break it, run it again.",
+        image: "/showcase/code.png",
     },
     {
         title: "Kobayashi-chan is here",

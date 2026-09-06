@@ -111,7 +111,7 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
     },
     {
         id: 9,
-        name: "YouTube",
+        name: "KobaTube",
         description: "used to watch Youtube",
         icon: MenuIconApperance[iconStyle].YouTube,
         app: <YouTube />,
