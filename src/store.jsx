@@ -57,8 +57,10 @@ const getInitialApps = () => {
         app: <Welcome />,
         icon: "/logo.svg",
         zIndex: 1,
-        x: 350,
-        y: 100,
+        x: 400,
+        y: 110,
+        width: 652,
+        height: 524,
         windowState: "normal"
     }];
 };

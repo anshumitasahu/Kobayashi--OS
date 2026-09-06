@@ -34,6 +34,7 @@ import MineCraft from "../../components/home/AppLogic/MineCraft";
 import Ben10S from "../../components/home/AppLogic/Ben10S";
 import Ben10G from "../../components/home/AppLogic/Ben!0G";
 import DelackHack from "../../components/home/AppLogic/DelackHack";
+import AboutApp from "../../components/home/AppLogic/AboutApp";
 
 export const AppsInMenu = (iconStyle = "Colloid") => [
     {
@@ -350,5 +351,14 @@ export const AppsInMenu = (iconStyle = "Colloid") => [
         app: <Ben10G />,
         width: 750,
         height: 666,
+    },
+    {
+        id: 36,
+        name: "About",
+        description: "used to know about the os",
+        icon: "./logo.svg",
+        app: <AboutApp />,
+        width: 700,
+        height: 563,
     },
 ]
