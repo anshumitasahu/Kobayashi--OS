@@ -15,6 +15,12 @@ const slides = [
         image: "/showcase/code.png",
     },
     {
+        title: "Make it yours",
+        description:
+            "Wallpapers, videos, icons, widgets. Tweak it all, or tell Kobayashi-chan to do it.",
+        image: "/showcase/settings.png",
+    },
+    {
         title: "Kobayashi-chan is here",
         description:
             "Chat, open apps, change settings. She remembers, reacts, and doesn't mind a little flirting.",
@@ -43,12 +49,6 @@ const slides = [
         description:
             "Drop clocks and notes anywhere, or just ask Kobayashi-chan. Surf with Kobasurf.",
         image: "/showcase/wedgets.png",
-    },
-    {
-        title: "Make it yours",
-        description:
-            "Wallpapers, videos, icons, widgets. Tweak it all, or tell Kobayashi-chan to do it.",
-        image: "/showcase/settings.png",
     },
     {
         title: "Piano is the star",
@@ -119,15 +119,15 @@ export default function Welcome({ isInSettings, onDone, fit }) {
                             </p>
                         </div>
                     ) : (
-                    <div className="w-full aspect-video bg-neutral-950 flex flex-col items-center justify-center gap-2 px-6 text-center">
-                        <img src="/logo.svg" alt="Kobayashi OS" className="w-10 h-10" draggable={false} />
-                        <p className="text-white text-sm font-medium tracking-tight">
-                            Kobayashi OS
-                        </p>
-                        <p className="text-neutral-500 text-xs">
-                            A tiny desktop in your browser.
-                        </p>
-                    </div>
+                        <div className="w-full aspect-video bg-neutral-950 flex flex-col items-center justify-center gap-2 px-6 text-center">
+                            <img src="/logo.svg" alt="Kobayashi OS" className="w-10 h-10" draggable={false} />
+                            <p className="text-white text-sm font-medium tracking-tight">
+                                Kobayashi OS
+                            </p>
+                            <p className="text-neutral-500 text-xs">
+                                A tiny desktop in your browser.
+                            </p>
+                        </div>
                     )
                 )}
 
