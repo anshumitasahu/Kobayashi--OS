@@ -16,59 +16,59 @@ And don't forget Kobayashi-chan — she's here, living in the system. Talk to he
 > Ships with VS Code + Terminal, Kobayashi-chan AI, Office suite, Kanvas, Sticky Notes, To-Dos, Pomodoro, Weather, Color Picker, Files, Gallery, Camera, Piano, Games, YouTube, Music, Kobasurf Browser, Widgets, and deep customization. Persistent state via Local Storage.
 
 ## Live Demo
-🔗 **Try Kobayashi OS:** <https://dev-dock-ruddy.vercel.app/>
+🔗 **Try Kobayashi OS:** <https://kobayashi.cawai.site/>
 
 ## Features
 
-### 🎛️ Make it yours
+### Make it yours
 > Wallpapers, videos, icons, widgets. Tweak it all, or tell Kobayashi-chan to do it.
 <p align="center">
   <img src="public/showcase/settings.png" alt="Customization and settings" width="100%">
 </p>
 
-### 💻 Code like Kobayashi
+### Code like Kobayashi
 > VS Code, a real terminal, instant run. Write it, break it, run it again.
 <p align="center">
   <img src="public/showcase/code.png" alt="Code like Kobayashi" width="100%">
 </p>
 
-### ✨ Kobayashi-chan is here
+### Kobayashi-chan is here
 > Chat, open apps, change settings. She remembers, reacts, and doesn't mind a little flirting.
 <p align="center">
   <img src="public/showcase/koba-ai.png" alt="Kobayashi-chan AI" width="100%">
 </p>
 
-### 📄 Office work, sorted
+### Office work, sorted
 > Word and sheets for docs, numbers and boring business stuff.
 <p align="center">
   <img src="public/showcase/office.png" alt="Office work" width="100%">
 </p>
 
-### 🎨 Doodle and jot
+### Doodle and jot
 > Kanvas for drawing, sticky notes for quick thoughts, todo for keeping track.
 <p align="center">
   <img src="public/showcase/util2.png" alt="Doodle and jot" width="100%">
 </p>
 
-### 🛠️ Little everyday tools
+### Little everyday tools
 > Pomodoro, weather, color picker, files. Small apps for daily stuff.
 <p align="center">
   <img src="public/showcase/utils.png" alt="Everyday tools" width="100%">
 </p>
 
-### 🧩 Widgets + a fast browser
+### Widgets + a fast browser
 > Drop clocks and notes anywhere, or just ask Kobayashi-chan. Surf with Kobasurf.
 <p align="center">
   <img src="public/showcase/wedgets.png" alt="Widgets and browser" width="100%">
 </p>
 
-### 🎹 Piano is the star
+### Piano is the star
 > Learn songs, practice typing, or sneak in a game. You won't get bored here.
 <p align="center">
   <img src="public/showcase/games-piano.png" alt="Piano and games" width="100%">
 </p>
 
-### 🎬 Watch and listen
+### Watch and listen
 > YouTube, shorts, streaming and music. Scroll, play, repeat.
 <p align="center">
   <img src="public/showcase/entertainment.png" alt="Entertainment" width="100%">
