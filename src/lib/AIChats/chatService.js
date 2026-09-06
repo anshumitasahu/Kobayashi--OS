@@ -5,6 +5,8 @@
  */
 export async function sendChatCompletion(messages) {
     const apikey = import.meta.env.VITE_OPENROUTER_API_KEY;
+    console.log("OpenRouter key exists:", Boolean(apikey));
+    console.log("OpenRouter key length:", apikey?.length);
     let response;
     try {
         response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
