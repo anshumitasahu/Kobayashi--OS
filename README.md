@@ -11,7 +11,7 @@ Not just floating windows — everything is connected, just like a real desktop 
 
 And don't forget Kobayashi-chan — she's here, living in the system. Talk to her and it feels like the real her.
 
-> **Version 1.0 is Live!**
+> **Version 2.0 is Live!**
 >
 > Ships with VS Code + Terminal, Kobayashi-chan AI, Office suite, Kanvas, Sticky Notes, To-Dos, Pomodoro, Weather, Color Picker, Files, Gallery, Camera, Piano, Games, YouTube, Music, Kobasurf Browser, Widgets, and deep customization. Persistent state via Local Storage.
 
